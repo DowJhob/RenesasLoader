@@ -1,0 +1,183 @@
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s 			page 1
+
+
+   1              		.file	"ISR.c"
+   2              		.text
+   3              	! GNU C (GCC) version 4.7-GNUSH_v13.01 (sh-elf)
+   4              	!	compiled by GNU C version 4.2.1-sjlj (mingw32-2), GMP version 4.3.2, MPFR version 2.4.2, MPC vers
+   5              	! GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+   6              	! options passed:  -I . -imultilib m2
+   7              	! -iprefix c:\program files (x86)\kpit\gnushv13.01-elf\sh-elf\bin\../lib/gcc/sh-elf/4.7-GNUSH_v13.0
+   8              	! -D SH7052 -D PLATF="SH7052" ISR.c -m2 -mb -auxbase-strip ISR.o -Os -Wall
+   9              	! -Wextra -Wstrict-prototypes -std=gnu99 -ffunction-sections
+  10              	! -fomit-frame-pointer -fstack-usage -fverbose-asm
+  11              	! options enabled:  -fauto-inc-dec -fbranch-count-reg
+  12              	! -fbranch-target-load-optimize -fcaller-saves -fcombine-stack-adjustments
+  13              	! -fcommon -fcompare-elim -fcprop-registers -fcrossjumping
+  14              	! -fcse-follow-jumps -fdebug-types-section -fdefer-pop -fdelayed-branch
+  15              	! -fdelete-null-pointer-checks -fdevirtualize -fdwarf2-cfi-asm
+  16              	! -fearly-inlining -feliminate-unused-debug-types -fexpensive-optimizations
+  17              	! -fforward-propagate -ffunction-cse -ffunction-sections -fgcse -fgcse-lm
+  18              	! -fgnu-runtime -fguess-branch-probability -fident -fif-conversion
+  19              	! -fif-conversion2 -findirect-inlining -finline -finline-atomics
+  20              	! -finline-functions -finline-functions-called-once
+  21              	! -finline-small-functions -fipa-cp -fipa-profile -fipa-pure-const
+  22              	! -fipa-reference -fipa-sra -fira-share-save-slots -fira-share-spill-slots
+  23              	! -fivopts -fkeep-static-consts -fleading-underscore -fmath-errno
+  24              	! -fmerge-constants -fmerge-debug-strings -fmove-loop-invariants
+  25              	! -fomit-frame-pointer -foptimize-register-move -foptimize-sibling-calls
+  26              	! -fpartial-inlining -fpeephole -fpeephole2 -fprefetch-loop-arrays
+  27              	! -freg-struct-return -fregmove -freorder-blocks -freorder-functions
+  28              	! -frerun-cse-after-loop -fsched-critical-path-heuristic
+  29              	! -fsched-dep-count-heuristic -fsched-group-heuristic -fsched-interblock
+  30              	! -fsched-last-insn-heuristic -fsched-rank-heuristic -fsched-spec
+  31              	! -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
+  32              	! -fshow-column -fshrink-wrap -fsigned-zeros -fsort-data
+  33              	! -fsplit-ivs-in-unroller -fsplit-wide-types -fstrict-aliasing
+  34              	! -fstrict-overflow -fstrict-volatile-bitfields -fthread-jumps
+  35              	! -ftoplevel-reorder -ftrapping-math -ftree-bit-ccp -ftree-builtin-call-dce
+  36              	! -ftree-ccp -ftree-ch -ftree-copy-prop -ftree-copyrename -ftree-cselim
+  37              	! -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+  38              	! -ftree-loop-if-convert -ftree-loop-im -ftree-loop-ivcanon
+  39              	! -ftree-loop-optimize -ftree-parallelize-loops= -ftree-phiprop -ftree-pre
+  40              	! -ftree-pta -ftree-reassoc -ftree-scev-cprop -ftree-sink
+  41              	! -ftree-slp-vectorize -ftree-sra -ftree-switch-conversion
+  42              	! -ftree-tail-merge -ftree-ter -ftree-vect-loop-version -ftree-vrp
+  43              	! -funit-at-a-time -fverbose-asm -fzero-initialized-in-bss
+  44              	! -maccumulate-outgoing-args -mb
+  45              	
+  46              		.section	.text.die_trace,"ax",@progbits
+  47              		.align 1
+  48              		.global	_die_trace
+  49              		.type	_die_trace, @function
+  50              	_die_trace:
+  51              	! 167 "ISR.h" 1
+  52 0000 2F06     		mov.l	r0, @-r15
+  53 0002 0002     	stc	sr, r0
+  54 0004 CBF0     	or	#0xF0, r0
+  55 0006 400E     	ldc	r0, sr
+  56              	
+  57              	! 0 "" 2
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s 			page 2
+
+
+  58 0008 9018     		mov.w	.L2,r0	!,
+  59              	! 175 "ISR.h" 1
+  60 000a 2F16     		mov.l	r1, @-r15
+  61 000c 61F3     	mov	r15, r1
+  62 000e 7108     	add	#0x08, r1
+  63 0010 6112     	mov.l	@r1, r1
+  64 0012 2016     	mov.l	r1, @-r0
+  65 0014 20F6     	mov.l	r15, @-r0
+  66 0016 20E6     	mov.l	r14, @-r0
+  67 0018 20D6     	mov.l	r13, @-r0
+  68 001a 20C6     	mov.l	r12, @-r0
+  69 001c 20B6     	mov.l	r11, @-r0
+  70 001e 20A6     	mov.l	r10, @-r0
+  71 0020 2096     	mov.l	r9, @-r0
+  72 0022 2086     	mov.l	r8, @-r0
+  73 0024 2076     	mov.l	r7, @-r0
+  74 0026 2066     	mov.l	r6, @-r0
+  75 0028 2056     	mov.l	r5, @-r0
+  76 002a 2046     	mov.l	r4, @-r0
+  77 002c 6BF6     	mov.l	@r15+, r11
+  78 002e 2036     	mov.l	r3, @-r0
+  79 0030 6AF6     	mov.l	@r15+, r10
+  80 0032 2026     	mov.l	r2, @-r0
+  81 0034 20B6     	mov.l	r11, @-r0
+  82 0036 20A6     	mov.l	r10, @-r0
+  83              	0:
+  84 0038 AFFE     	bra	0b
+  85 003a 0009     	nop
+  86              	
+  87              	! 0 "" 2
+  88              		.align 1
+  89              	.L2:
+  90 003c B000     		.short	-20480
+  91              		.size	_die_trace, .-_die_trace
+  92              		.section	.text.INT_ATU11_IMI1A,"ax",@progbits
+  93              		.align 1
+  94              		.global	_INT_ATU11_IMI1A
+  95              		.type	_INT_ATU11_IMI1A, @function
+  96              	_INT_ATU11_IMI1A:
+  97 0000 4F02     		sts.l	mach,@-r15	!,
+  98 0002 4F12     		sts.l	macl,@-r15	!,
+  99 0004 2F06     		mov.l	r0,@-r15	!,
+ 100 0006 2F16     		mov.l	r1,@-r15	!,
+ 101 0008 2F26     		mov.l	r2,@-r15	!,
+ 102 000a 2F36     		mov.l	r3,@-r15	!,
+ 103 000c 2F46     		mov.l	r4,@-r15	!,
+ 104 000e 2F56     		mov.l	r5,@-r15	!,
+ 105 0010 2F66     		mov.l	r6,@-r15	!,
+ 106 0012 D10E     		mov.l	.L4,r1	!, tmp160
+ 107 0014 2F76     		mov.l	r7,@-r15	!,
+ 108 0016 4F22     		sts.l	pr,@-r15	!,
+ 109 0018 410B     		jsr	@r1
+ 110 001a 0009     		nop	! tmp160
+ 111 001c 9115     		mov.w	.L5,r1	!,
+ 112 001e E300     		mov	#0,r3	!, tmp164
+ 113 0020 6213     		mov	r1,r2	! tmp161, tmp163
+ 114 0022 7202     		add	#2,r2	!, tmp163
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s 			page 3
+
+
+ 115 0024 2231     		mov.w	r3,@r2	! tmp164, MEM[(volatile struct st_atu1 *)4294964288B].TCNTB
+ 116 0026 7120     		add	#32,r1	!, tmp167
+ 117 0028 6311     		mov.w	@r1,r3	!,
+ 118 002a E2FE     		mov	#-2,r2	!, tmp171
+ 119 002c 2239     		and	r3,r2	! tmp169, tmp170
+ 120 002e 2121     		mov.w	r2,@r1	! tmp170,
+ 121 0030 4F26     		lds.l   @r15+,pr	!,
+ 122 0032 67F6     		mov.l   @r15+,r7	!,
+ 123 0034 66F6     		mov.l   @r15+,r6	!,
+ 124 0036 65F6     		mov.l   @r15+,r5	!,
+ 125 0038 64F6     		mov.l   @r15+,r4	!,
+ 126 003a 63F6     		mov.l   @r15+,r3	!,
+ 127 003c 62F6     		mov.l   @r15+,r2	!,
+ 128 003e 61F6     		mov.l   @r15+,r1	!,
+ 129 0040 60F6     		mov.l   @r15+,r0	!,
+ 130 0042 4F16     		lds.l   @r15+,macl	!,
+ 131 0044 4F06     		lds.l   @r15+,mach	!,
+ 132 0046 002B     		rte	
+ 133 0048 0009     		nop
+ 134              		.align 1
+ 135              	.L5:
+ 136 004a F440     		.short	-3008
+ 137              	.L6:
+ 138              		.align 2
+ 139              	.L4:
+ 140 004c 00000000 		.long	_wdt_tog
+ 141              		.size	_INT_ATU11_IMI1A, .-_INT_ATU11_IMI1A
+ 142              		.comm	_ivt,660,4
+ 143              		.global	_fblocks
+ 144              		.section	.rodata.align4,"a"
+ 145              		.align 2
+ 146              		.type	_fblocks, @object
+ 147              		.size	_fblocks, 52
+ 148              	_fblocks:
+ 149 0000 00000000 		.long	0
+ 150 0004 00001000 		.long	4096
+ 151 0008 00002000 		.long	8192
+ 152 000c 00003000 		.long	12288
+ 153 0010 00004000 		.long	16384
+ 154 0014 00005000 		.long	20480
+ 155 0018 00006000 		.long	24576
+ 156 001c 00007000 		.long	28672
+ 157 0020 00008000 		.long	32768
+ 158 0024 00010000 		.long	65536
+ 159 0028 00020000 		.long	131072
+ 160 002c 00030000 		.long	196608
+ 161 0030 00040000 		.long	262144
+ 162              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 ISR.c
+C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s:50     .text.die_trace:0000000000000000 _die_trace
+C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s:96     .text.INT_ATU11_IMI1A:0000000000000000 _INT_ATU11_IMI1A
+                            *COM*:0000000000000294 _ivt
+C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s:148    .rodata.align4:0000000000000000 _fblocks
+
+UNDEFINED SYMBOLS
+_wdt_tog

@@ -1,0 +1,1157 @@
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 1
+
+
+   1              		.file	"cmd_parser.c"
+   2              		.text
+   3              	! GNU C (GCC) version 4.7-GNUSH_v13.01 (sh-elf)
+   4              	!	compiled by GNU C version 4.2.1-sjlj (mingw32-2), GMP version 4.3.2, MPFR version 2.4.2, MPC vers
+   5              	! GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+   6              	! options passed:  -I . -imultilib m2
+   7              	! -iprefix c:\program files (x86)\kpit\gnushv13.01-elf\sh-elf\bin\../lib/gcc/sh-elf/4.7-GNUSH_v13.0
+   8              	! -D SH7052 -D PLATF="SH7052" cmd_parser.c -m2 -mb
+   9              	! -auxbase-strip cmd_parser.o -Os -Wall -Wextra -Wstrict-prototypes
+  10              	! -std=gnu99 -ffunction-sections -fomit-frame-pointer -fstack-usage
+  11              	! -fverbose-asm
+  12              	! options enabled:  -fauto-inc-dec -fbranch-count-reg
+  13              	! -fbranch-target-load-optimize -fcaller-saves -fcombine-stack-adjustments
+  14              	! -fcommon -fcompare-elim -fcprop-registers -fcrossjumping
+  15              	! -fcse-follow-jumps -fdebug-types-section -fdefer-pop -fdelayed-branch
+  16              	! -fdelete-null-pointer-checks -fdevirtualize -fdwarf2-cfi-asm
+  17              	! -fearly-inlining -feliminate-unused-debug-types -fexpensive-optimizations
+  18              	! -fforward-propagate -ffunction-cse -ffunction-sections -fgcse -fgcse-lm
+  19              	! -fgnu-runtime -fguess-branch-probability -fident -fif-conversion
+  20              	! -fif-conversion2 -findirect-inlining -finline -finline-atomics
+  21              	! -finline-functions -finline-functions-called-once
+  22              	! -finline-small-functions -fipa-cp -fipa-profile -fipa-pure-const
+  23              	! -fipa-reference -fipa-sra -fira-share-save-slots -fira-share-spill-slots
+  24              	! -fivopts -fkeep-static-consts -fleading-underscore -fmath-errno
+  25              	! -fmerge-constants -fmerge-debug-strings -fmove-loop-invariants
+  26              	! -fomit-frame-pointer -foptimize-register-move -foptimize-sibling-calls
+  27              	! -fpartial-inlining -fpeephole -fpeephole2 -fprefetch-loop-arrays
+  28              	! -freg-struct-return -fregmove -freorder-blocks -freorder-functions
+  29              	! -frerun-cse-after-loop -fsched-critical-path-heuristic
+  30              	! -fsched-dep-count-heuristic -fsched-group-heuristic -fsched-interblock
+  31              	! -fsched-last-insn-heuristic -fsched-rank-heuristic -fsched-spec
+  32              	! -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
+  33              	! -fshow-column -fshrink-wrap -fsigned-zeros -fsort-data
+  34              	! -fsplit-ivs-in-unroller -fsplit-wide-types -fstrict-aliasing
+  35              	! -fstrict-overflow -fstrict-volatile-bitfields -fthread-jumps
+  36              	! -ftoplevel-reorder -ftrapping-math -ftree-bit-ccp -ftree-builtin-call-dce
+  37              	! -ftree-ccp -ftree-ch -ftree-copy-prop -ftree-copyrename -ftree-cselim
+  38              	! -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+  39              	! -ftree-loop-if-convert -ftree-loop-im -ftree-loop-ivcanon
+  40              	! -ftree-loop-optimize -ftree-parallelize-loops= -ftree-phiprop -ftree-pre
+  41              	! -ftree-pta -ftree-reassoc -ftree-scev-cprop -ftree-sink
+  42              	! -ftree-slp-vectorize -ftree-sra -ftree-switch-conversion
+  43              	! -ftree-tail-merge -ftree-ter -ftree-vect-loop-version -ftree-vrp
+  44              	! -funit-at-a-time -fverbose-asm -fzero-initialized-in-bss
+  45              	! -maccumulate-outgoing-args -mb
+  46              	
+  47              		.section	.text.set_lasterr,"ax",@progbits
+  48              		.align 1
+  49              		.global	_set_lasterr
+  50              		.type	_set_lasterr, @function
+  51              	_set_lasterr:
+  52 0000 D101     		mov.l	.L2,r1	!, tmp162
+  53 0002 000B     		rts	
+  54 0004 2140     		mov.b	r4,@r1	! err, lasterr
+  55              	.L3:
+  56 0006 0009     		.align 2
+  57              	.L2:
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 2
+
+
+  58 0008 00000000 		.long	_lasterr
+  59              		.size	_set_lasterr, .-_set_lasterr
+  60              		.section	.text.cmd_init,"ax",@progbits
+  61              		.align 1
+  62              		.global	_cmd_init
+  63              		.type	_cmd_init, @function
+  64              	_cmd_init:
+  65 0000 D20C     		mov.l	.L5,r2	!, tmp168
+  66 0002 E100     		mov	#0,r1	!, tmp169
+  67 0004 644C     		extu.b	r4,r4	! brrdiv, brrdiv
+  68 0006 2212     		mov.l	r1,@r2	! tmp169, cmstate
+  69 0008 D20B     		mov.l	.L6,r2	!, tmp170
+  70 000a 2212     		mov.l	r1,@r2	! tmp169, flashstate
+  71 000c 9211     		mov.w	.L7,r2	!,
+  72 000e 6123     		mov	r2,r1	! tmp172, tmp174
+  73 0010 7102     		add	#2,r1	!, tmp174
+  74 0012 6010     		mov.b	@r1,r0	! MEM[(volatile struct st_sci *)4294963200B].SCR.BYTE,
+  75 0014 6323     		mov	r2,r3	! tmp172, tmp183
+  76 0016 C9CF     		and	#207,r0	!, D.5146
+  77 0018 2100     		mov.b	r0,@r1	! D.5146, MEM[(volatile struct st_sci *)4294963200B].SCR.BYTE
+  78 001a 7301     		add	#1,r3	!, tmp183
+  79 001c 2340     		mov.b	r4,@r3	! brrdiv, MEM[(volatile struct st_sci *)4294963200B].BRR
+  80 001e 7204     		add	#4,r2	!, tmp186
+  81 0020 6020     		mov.b	@r2,r0	! MEM[(volatile struct st_sci *)4294963200B].SSR.BYTE,
+  82 0022 C987     		and	#135,r0	!, D.5148
+  83 0024 2200     		mov.b	r0,@r2	! D.5148, MEM[(volatile struct st_sci *)4294963200B].SSR.BYTE
+  84 0026 6010     		mov.b	@r1,r0	! MEM[(volatile struct st_sci *)4294963200B].SCR.BYTE,
+  85 0028 600C     		extu.b	r0,r0	! MEM[(volatile struct st_sci *)4294963200B].SCR.BYTE, D.5150
+  86 002a CB30     		or	#48,r0	!, D.5150
+  87 002c 2100     		mov.b	r0,@r1	! D.5150, MEM[(volatile struct st_sci *)4294963200B].SCR.BYTE
+  88 002e 000B     		rts	
+  89 0030 0009     		nop
+  90              		.align 1
+  91              	.L7:
+  92 0032 F000     		.short	-4096
+  93              	.L8:
+  94              		.align 2
+  95              	.L5:
+  96 0034 00000004 		.long	_cmstate
+  97              	.L6:
+  98 0038 00000008 		.long	_flashstate
+  99              		.size	_cmd_init, .-_cmd_init
+ 100              		.section	.text.cmd_loop,"ax",@progbits
+ 101              		.align 1
+ 102              		.global	_cmd_loop
+ 103              		.type	_cmd_loop, @function
+ 104              	_cmd_loop:
+ 105 0000 2F86     		mov.l	r8,@-r15	!,
+ 106 0002 2F96     		mov.l	r9,@-r15	!,
+ 107 0004 2FA6     		mov.l	r10,@-r15	!,
+ 108 0006 2FB6     		mov.l	r11,@-r15	!,
+ 109 0008 2FC6     		mov.l	r12,@-r15	!,
+ 110 000a 2FD6     		mov.l	r13,@-r15	!,
+ 111 000c D94B     		mov.l	.L126,r9	!, tmp914
+ 112 000e 2FE6     		mov.l	r14,@-r15	!,
+ 113 0010 6B93     		mov	r9,r11	! tmp914, tmp915
+ 114 0012 D14B     		mov.l	.L127,r1	!, tmp428
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 3
+
+
+ 115 0014 7B01     		add	#1,r11	!, tmp915
+ 116 0016 4F22     		sts.l	pr,@-r15	!,
+ 117 0018 9A8D     		mov.w	.L128,r10	!,
+ 118 001a D44A     		mov.l	.L136,r4	!,
+ 119 001c 410B     		jsr	@r1	! tmp428
+ 120 001e 7FD0     		add	#-48,r15	!,
+ 121              	.L103:
+ 122 0020 60A0     		mov.b	@r10,r0	! MEM[(volatile struct st_sci *)4294963200B].SSR.BYTE,
+ 123 0022 C838     		tst	#56,r0	!, MEM[(volatile struct st_sci *)4294963200B].SSR.BYTE
+ 124 0024 8D06     		bt.s	.L12	!
+ 125 0026 E100     		mov	#0,r1	!, tmp437
+ 126 0028 D247     		mov.l	.L130,r2	!, tmp436
+ 127 002a 2212     		mov.l	r1,@r2	! tmp437, cmstate
+ 128 002c D247     		mov.l	.L140,r2	!, tmp438
+ 129 002e 2212     		mov.l	r1,@r2	! tmp437, flashstate
+ 130              	.L215:
+ 131 0030 A2D6     		bra	.L14
+ 132 0032 0009     		nop	!
+ 133              	.L12:
+ 134 0034 60A0     		mov.b	@r10,r0	! MEM[(volatile struct st_sci *)4294963200B],
+ 135 0036 C840     		tst	#64,r0	!, MEM[(volatile struct st_sci *)4294963200B]
+ 136 0038 8DF2     		bt.s	.L103	!
+ 137 003a E2BF     		mov	#-65,r2	!, tmp460
+ 138 003c 917C     		mov.w	.L132,r1	!,
+ 139 003e 6110     		mov.b	@r1,r1	! MEM[(volatile struct st_sci *)4294963200B].RDR,
+ 140 0040 63A0     		mov.b	@r10,r3	!,
+ 141 0042 671C     		extu.b	r1,r7	! MEM[(volatile struct st_sci *)4294963200B].RDR, rxbyte
+ 142 0044 2239     		and	r3,r2	! tmp458, tmp459
+ 143 0046 2A20     		mov.b	r2,@r10	! tmp459,
+ 144 0048 D23E     		mov.l	.L136,r2	!, tmp462
+ 145 004a 5522     		mov.l	@(8,r2),r5	! msg.hi, D.5358
+ 146 004c 2558     		tst	r5,r5	! D.5358
+ 147 004e 8F16     		bf.s	.L13	!
+ 148 0050 E301     		mov	#1,r3	!, tmp464
+ 149 0052 2232     		mov.l	r3,@r2	! tmp464, msg.hdrlen
+ 150 0054 9371     		mov.w	.L134,r3	!,
+ 151 0056 2379     		and	r7,r3	! rxbyte, tmp467
+ 152 0058 6033     		mov	r3,r0	! tmp467,
+ 153 005a 8840     		cmp/eq	#64,r0	!,
+ 154 005c 8DE8     		bt.s	.L215	!
+ 155 005e 631E     		exts.b	r1,r3	! MEM[(volatile struct st_sci *)4294963200B].RDR, rxbyte
+ 156 0060 4311     		cmp/pz	r3	! rxbyte
+ 157 0062 8D03     		bt.s	.L237	!
+ 158 0064 E33F     		mov	#63,r3	!, dl
+ 159 0066 E303     		mov	#3,r3	!, tmp470
+ 160 0068 2232     		mov.l	r3,@r2	! tmp470, msg.hdrlen
+ 161 006a E33F     		mov	#63,r3	!, dl
+ 162              	.L237:
+ 163 006c 2379     		and	r7,r3	! rxbyte, dl
+ 164 006e 2338     		tst	r3,r3	! dl
+ 165 0070 D234     		mov.l	.L136,r2	!, tmp904
+ 166 0072 8B03     		bf	.L16	!
+ 167 0074 6322     		mov.l	@r2,r3	! msg.hdrlen, tmp474
+ 168 0076 7301     		add	#1,r3	!, tmp474
+ 169 0078 A001     		bra	.L13	!
+ 170 007a 2232     		mov.l	r3,@r2	! tmp474, msg.hdrlen
+ 171              	.L16:
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 4
+
+
+ 172 007c 1231     		mov.l	r3,@(4,r2)	! dl, msg.datalen
+ 173              	.L13:
+ 174 007e D831     		mov.l	.L136,r8	!, tmp477
+ 175 0080 6382     		mov.l	@r8,r3	! msg.hdrlen, D.5362
+ 176 0082 3530     		cmp/eq	r3,r5	! D.5362, D.5358
+ 177 0084 8D0D     		bt.s	.L17	!
+ 178 0086 6283     		mov	r8,r2	! tmp477, tmp481
+ 179 0088 325C     		add	r5,r2	! D.5358, tmp481
+ 180 008a 7210     		add	#16,r2	!, tmp481
+ 181 008c 2210     		mov.b	r1,@r2	! MEM[(volatile struct st_sci *)4294963200B].RDR, msg.hdr
+ 182 008e 7501     		add	#1,r5	!, D.5365
+ 183 0090 5181     		mov.l	@(4,r8),r1	! msg.datalen, msg.datalen
+ 184 0092 2118     		tst	r1,r1	! msg.datalen
+ 185 0094 8FC4     		bf.s	.L103	!
+ 186 0096 1852     		mov.l	r5,@(8,r8)	! D.5365, msg.hi
+ 187 0098 3530     		cmp/eq	r3,r5	! D.5362, D.5365
+ 188 009a 8BC1     		bf	.L103	!
+ 189 009c 1871     		mov.l	r7,@(4,r8)	! rxbyte, msg.datalen
+ 190 009e AFBF     		bra	.L103
+ 191 00a0 0009     		nop	!
+ 192              	.L17:
+ 193 00a2 5383     		mov.l	@(12,r8),r3	! msg.di, D.5367
+ 194 00a4 323C     		add	r3,r2	! D.5367, tmp490
+ 195 00a6 7214     		add	#20,r2	!, tmp490
+ 196 00a8 2210     		mov.b	r1,@r2	! MEM[(volatile struct st_sci *)4294963200B].RDR, msg.data
+ 197 00aa 6233     		mov	r3,r2	! D.5367, D.5368
+ 198 00ac 5181     		mov.l	@(4,r8),r1	! msg.datalen, tmp493
+ 199 00ae 7201     		add	#1,r2	!, D.5368
+ 200 00b0 7101     		add	#1,r1	!, tmp493
+ 201 00b2 3210     		cmp/eq	r1,r2	! tmp493, D.5368
+ 202 00b4 8FB4     		bf.s	.L103	!
+ 203 00b6 1823     		mov.l	r2,@(12,r8)	! D.5368, msg.di
+ 204 00b8 DD25     		mov.l	.L137,r13	!, tmp496
+ 205 00ba 6483     		mov	r8,r4	! tmp477,
+ 206 00bc 6E83     		mov	r8,r14	! tmp477, tmp499
+ 207 00be 7410     		add	#16,r4	!,
+ 208 00c0 4D0B     		jsr	@r13	! tmp496
+ 209 00c2 7E14     		add	#20,r14	!, tmp499
+ 210 00c4 6C03     		mov	r0,r12	!, tmp497
+ 211 00c6 64E3     		mov	r14,r4	! tmp499,
+ 212 00c8 4D0B     		jsr	@r13	! tmp496
+ 213 00ca 5581     		mov.l	@(4,r8),r5	! msg.datalen,
+ 214 00cc 5181     		mov.l	@(4,r8),r1	! msg.datalen, D.5366
+ 215 00ce 6383     		mov	r8,r3	! tmp477, tmp510
+ 216 00d0 30CC     		add	r12,r0	! tmp497, tmp506
+ 217 00d2 331C     		add	r1,r3	! D.5366, tmp510
+ 218 00d4 7314     		add	#20,r3	!, tmp510
+ 219 00d6 6330     		mov.b	@r3,r3	! msg.data,
+ 220 00d8 620C     		extu.b	r0,r2	! tmp506, tmp513
+ 221 00da 633C     		extu.b	r3,r3	! tmp512, tmp511
+ 222 00dc 3320     		cmp/eq	r2,r3	! tmp513, tmp511
+ 223 00de 8BA7     		bf	.L215	!
+ 224 00e0 A272     		bra	.L20
+ 225 00e2 0009     		nop	!
+ 226              	.L21:
+ 227 00e4 6013     		mov	r1,r0	! tmp519,
+ 228 00e6 8881     		cmp/eq	#-127,r0	!,
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 5
+
+
+ 229 00e8 8F09     		bf.s	.L216	!
+ 230 00ea E503     		mov	#3,r5	!,
+ 231 00ec D119     		mov.l	.L138,r1	!, tmp521
+ 232 00ee D41A     		mov.l	.L139,r4	!,
+ 233 00f0 410B     		jsr	@r1	! tmp521
+ 234 00f2 1F21     		mov.l	r2,@(4,r15)	!,
+ 235 00f4 D115     		mov.l	.L140,r1	!, tmp522
+ 236 00f6 52F1     		mov.l	@(4,r15),r2	!,
+ 237 00f8 21C2     		mov.l	r12,@r1	! cmstate, flashstate
+ 238 00fa E101     		mov	#1,r1	!, tmp525
+ 239 00fc 2212     		mov.l	r1,@r2	! tmp525, cmstate
+ 240              	.L216:
+ 241 00fe A257     		bra	.L116
+ 242 0100 0009     		nop	!
+ 243              	.L24:
+ 244 0102 883D     		cmp/eq	#61,r0	!, D.4923
+ 245 0104 8B01     		bf	.L233	!
+ 246 0106 A120     		bra	.L30	!
+ 247 0108 E205     		mov	#5,r2	!, tmp694
+ 248              	.L233:
+ 249 010a E23D     		mov	#61,r2	!, tmp532
+ 250 010c 3026     		cmp/hi	r2,r0	! tmp532, D.4923
+ 251 010e 8D25     		bt.s	.L36	!
+ 252 0110 881A     		cmp/eq	#26,r0	!, D.4923
+ 253 0112 8D45     		bt.s	.L27	!
+ 254 0114 E21A     		mov	#26,r2	!, tmp533
+ 255 0116 3026     		cmp/hi	r2,r0	! tmp533, D.4923
+ 256 0118 8D05     		bt.s	.L37	!
+ 257 011a 8823     		cmp/eq	#35,r0	!, D.4923
+ 258 011c 8811     		cmp/eq	#17,r0	!, D.4923
+ 259 011e 8B35     		bf	.L218	!
+ 260 0120 E151     		mov	#81,r1	!, tmp642
+ 261 0122 A0B7     		bra	.L26
+ 262 0124 0009     		nop	!
+ 263              	.L37:
+ 264 0126 8F02     		bf.s	.L231	!
+ 265 0128 8834     		cmp/eq	#52,r0	!, D.4923
+ 266 012a A0D9     		bra	.L28	!
+ 267 012c 6013     		mov	r1,r0	! D.5366,
+ 268              	.L231:
+ 269 012e 8B2D     		bf	.L218	!
+ 270 0130 68F3     		mov	r15,r8	!, tmp875
+ 271 0132 A226     		bra	.L29	!
+ 272 0134 780B     		add	#11,r8	!, tmp875
+ 273              		.align 1
+ 274              	.L128:
+ 275 0136 F004     		.short	-4092
+ 276              	.L132:
+ 277 0138 F005     		.short	-4091
+ 278              	.L134:
+ 279 013a 00C0     		.short	192
+ 280              	.L141:
+ 281              		.align 2
+ 282              	.L126:
+ 283 013c 00000021 		.long	_msg.4883+21
+ 284              	.L127:
+ 285 0140 00000000 		.long	_iso_clearmsg
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 6
+
+
+ 286              	.L136:
+ 287 0144 0000000C 		.long	_msg.4883
+ 288              	.L130:
+ 289 0148 00000004 		.long	_cmstate
+ 290              	.L140:
+ 291 014c 00000008 		.long	_flashstate
+ 292              	.L137:
+ 293 0150 00000000 		.long	_cks_u8
+ 294              	.L138:
+ 295 0154 00000000 		.long	_iso_sendpkt
+ 296              	.L139:
+ 297 0158 00000004 		.long	_startcomm_resp.4800
+ 298              	.L36:
+ 299 015c 92A4     		mov.w	.L142,r2	!,
+ 300 015e 3020     		cmp/eq	r2,r0	! tmp534, D.4923
+ 301 0160 8F02     		bf.s	.L230	!
+ 302 0162 3026     		cmp/hi	r2,r0	! tmp534, D.4923
+ 303 0164 A1B2     		bra	.L33
+ 304 0166 0009     		nop	!
+ 305              	.L230:
+ 306 0168 8D08     		bt.s	.L38	!
+ 307 016a 883E     		cmp/eq	#62,r0	!, D.4923
+ 308 016c 8B01     		bf	.L229	!
+ 309 016e A205     		bra	.L31	!
+ 310 0170 E17E     		mov	#126,r1	!, tmp870
+ 311              	.L229:
+ 312 0172 919A     		mov.w	.L143,r1	!,
+ 313 0174 3010     		cmp/eq	r1,r0	! tmp536, D.4923
+ 314 0176 8B09     		bf	.L218	!
+ 315 0178 A00C     		bra	.L32
+ 316 017a 0009     		nop	!
+ 317              	.L38:
+ 318 017c 9296     		mov.w	.L144,r2	!,
+ 319 017e 3020     		cmp/eq	r2,r0	! tmp537, D.4923
+ 320 0180 8F02     		bf.s	.L228	!
+ 321 0182 7201     		add	#1,r2	!, tmp538
+ 322 0184 A114     		bra	.L34	!
+ 323 0186 6013     		mov	r1,r0	! D.5366,
+ 324              	.L228:
+ 325 0188 3020     		cmp/eq	r2,r0	! tmp538, D.4923
+ 326 018a 8901     		bt	.L232	!
+ 327              	.L218:
+ 328 018c A20C     		bra	.L25	!
+ 329 018e 6403     		mov	r0,r4	! D.4923,
+ 330              	.L232:
+ 331 0190 A00C     		bra	.L35	!
+ 332 0192 62F3     		mov	r15,r2	!, tmp550
+ 333              	.L32:
+ 334 0194 D147     		mov.l	.L161,r1	!, tmp540
+ 335 0196 D448     		mov.l	.L146,r4	!,
+ 336 0198 410B     		jsr	@r1	! tmp540
+ 337 019a E503     		mov	#3,r5	!,
+ 338 019c A201     		bra	.L122	!
+ 339 019e E200     		mov	#0,r2	!, tmp542
+ 340              	.L27:
+ 341 01a0 D144     		mov.l	.L161,r1	!, tmp546
+ 342 01a2 D446     		mov.l	.L148,r4	!,
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 7
+
+
+ 343 01a4 410B     		jsr	@r1	! tmp546
+ 344 01a6 E502     		mov	#2,r5	!,
+ 345 01a8 A203     		bra	.L117	!
+ 346 01aa 6483     		mov	r8,r4	! tmp477,
+ 347              	.L35:
+ 348 01ac 720C     		add	#12,r2	!, tmp550
+ 349 01ae E3FE     		mov	#-2,r3	!, tmp551
+ 350 01b0 2230     		mov.b	r3,@r2	! tmp551, resp
+ 351 01b2 E201     		mov	#1,r2	!, tmp552
+ 352 01b4 3127     		cmp/gt	r2,r1	! tmp552, D.5366
+ 353 01b6 8B6A     		bf	.L39	!
+ 354 01b8 6290     		mov.b	@r9,r2	! msg.data,
+ 355 01ba E304     		mov	#4,r3	!, tmp559
+ 356 01bc 622C     		extu.b	r2,r2	! msg.data, msg.data
+ 357 01be 72FF     		add	#-1,r2	!, msg.data
+ 358 01c0 3236     		cmp/hi	r3,r2	! tmp559, msg.data
+ 359 01c2 8964     		bt	.L39	!
+ 360 01c4 C702     		mova	.L44,r0	!
+ 361 01c6 022C     		mov.b	@(r0,r2),r2	! msg.data, tmp561
+ 362 01c8 622C     		extu.b	r2,r2	! tmp561
+ 363 01ca 0223     		braf	r2
+ 364 01cc 0009     		nop	! tmp561
+ 365              	.L45:
+ 366 01ce 0009     		.align 2
+ 367              	.L44:
+ 368 01d0 08       		.byte	.L40-.L45
+ 369 01d1 26       		.byte	.L41-.L45
+ 370 01d2 50       		.byte	.L42-.L45
+ 371 01d3 C0       		.byte	.L39-.L45
+ 372 01d4 AA       		.byte	.L43-.L45
+ 373 01d5 00       		.align 1
+ 374              	.L40:
+ 375 01d6 D137     		mov.l	.L161,r1	!, tmp565
+ 376 01d8 64F3     		mov	r15,r4	!,
+ 377 01da E501     		mov	#1,r5	!,
+ 378 01dc 410B     		jsr	@r1	! tmp565
+ 379 01de 740C     		add	#12,r4	!,
+ 380 01e0 D137     		mov.l	.L155,r1	!, tmp568
+ 381 01e2 6410     		mov.b	@r1,r4	! msg.data,
+ 382 01e4 D137     		mov.l	.L151,r1	!, tmp571
+ 383 01e6 410B     		jsr	@r1	! tmp571
+ 384 01e8 644C     		extu.b	r4,r4	! msg.data,
+ 385 01ea D137     		mov.l	.L152,r1	!, tmp572
+ 386 01ec 410B     		jsr	@r1	! tmp572
+ 387 01ee E419     		mov	#25,r4	!,
+ 388 01f0 A1DE     		bra	.L116
+ 389 01f2 0009     		nop	!
+ 390              	.L41:
+ 391 01f4 6013     		mov	r1,r0	! D.5366,
+ 392 01f6 8805     		cmp/eq	#5,r0	!,
+ 393 01f8 8B49     		bf	.L39	!
+ 394 01fa D331     		mov.l	.L155,r3	!, tmp576
+ 395 01fc 6233     		mov	r3,r2	! tmp576, tmp582
+ 396 01fe 6124     		mov.b	@r2+,r1	! msg.data,
+ 397 0200 7302     		add	#2,r3	!, tmp589
+ 398 0202 6220     		mov.b	@r2,r2	! msg.data,
+ 399 0204 611C     		extu.b	r1,r1	! msg.data, tmp586
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 8
+
+
+ 400 0206 6430     		mov.b	@r3,r4	! msg.data,
+ 401 0208 622C     		extu.b	r2,r2	! msg.data, tmp585
+ 402 020a 4218     		shll8	r2	!, tmp585
+ 403 020c 4128     		shll16	r1	!, tmp586
+ 404 020e 212B     		or	r2,r1	! tmp585, tmp586
+ 405 0210 644C     		extu.b	r4,r4	! msg.data, msg.data
+ 406 0212 241B     		or	r1,r4	! tmp586,
+ 407 0214 D12D     		mov.l	.L154,r1	!, tmp593
+ 408 0216 410B     		jsr	@r1
+ 409 0218 0009     		nop	! tmp593
+ 410 021a A1D0     		bra	.L234	!
+ 411 021c 64F3     		mov	r15,r4	!,
+ 412              	.L42:
+ 413 021e 6013     		mov	r1,r0	! D.5366,
+ 414 0220 880C     		cmp/eq	#12,r0	!,
+ 415 0222 8F34     		bf.s	.L39	!
+ 416 0224 EE00     		mov	#0,r14	!, ivtmp.58
+ 417 0226 D326     		mov.l	.L155,r3	!, tmp599
+ 418 0228 DD29     		mov.l	.L156,r13	!, tmp912
+ 419 022a 6233     		mov	r3,r2	! tmp599, tmp605
+ 420 022c 6124     		mov.b	@r2+,r1	! MEM[(const u8 *)&msg + 22B],
+ 421 022e 6C33     		mov	r3,r12	! tmp599, tmp911
+ 422 0230 6820     		mov.b	@r2,r8	! MEM[(const u8 *)&msg + 23B],
+ 423 0232 611C     		extu.b	r1,r1	! MEM[(const u8 *)&msg + 22B], tmp602
+ 424 0234 4118     		shll8	r1	!, tmp602
+ 425 0236 688C     		extu.b	r8,r8	! MEM[(const u8 *)&msg + 23B], chunkno
+ 426 0238 281B     		or	r1,r8	! tmp602, chunkno
+ 427 023a 7CEA     		add	#-22,r12	!, tmp911
+ 428              	.L48:
+ 429 023c 61E3     		mov	r14,r1	! ivtmp.58, D.5609
+ 430 023e 31CC     		add	r12,r1	! tmp911, D.5609
+ 431 0240 6213     		mov	r1,r2	! D.5609, tmp611
+ 432 0242 7218     		add	#24,r2	!, tmp611
+ 433 0244 6220     		mov.b	@r2,r2	! MEM[base: D.5610_48, offset: 0B],
+ 434 0246 7119     		add	#25,r1	!, tmp615
+ 435 0248 6110     		mov.b	@r1,r1	! MEM[base: D.5612_12, offset: 0B],
+ 436 024a 622C     		extu.b	r2,r2	! MEM[base: D.5610_48, offset: 0B], tmp614
+ 437 024c 4218     		shll8	r2	!, tmp614
+ 438 024e 611C     		extu.b	r1,r1	! MEM[base: D.5612_12, offset: 0B], test_crc
+ 439 0250 212B     		or	r2,r1	! tmp614, test_crc
+ 440 0252 6483     		mov	r8,r4	! chunkno,
+ 441 0254 2F12     		mov.l	r1,@r15	!,
+ 442 0256 952A     		mov.w	.L157,r5	!,
+ 443 0258 4D0B     		jsr	@r13	! tmp912
+ 444 025a 4418     		shll8	r4	!,
+ 445 025c 61F2     		mov.l	@r15,r1	!,
+ 446 025e 3010     		cmp/eq	r1,r0	! test_crc, tmp623
+ 447 0260 8D03     		bt.s	.L227	!
+ 448 0262 7E02     		add	#2,r14	!, ivtmp.58
+ 449 0264 7EFE     		add	#-2,r14	!, ivtmp.58
+ 450 0266 A1A7     		bra	.L47	!
+ 451 0268 E577     		mov	#119,r5	!,
+ 452              	.L227:
+ 453 026a 60E3     		mov	r14,r0	! ivtmp.58,
+ 454 026c 7801     		add	#1,r8	!, tmp625
+ 455 026e 8808     		cmp/eq	#8,r0	!,
+ 456 0270 8FE4     		bf.s	.L48	!
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 9
+
+
+ 457 0272 688D     		extu.w	r8,r8	! tmp625, chunkno
+ 458 0274 A1A3     		bra	.L104	!
+ 459 0276 64F3     		mov	r15,r4	!,
+ 460              	.L43:
+ 461 0278 D116     		mov.l	.L158,r1	!, tmp631
+ 462 027a 62F3     		mov	r15,r2	!, tmp630
+ 463 027c 720D     		add	#13,r2	!, tmp630
+ 464 027e 6310     		mov.b	@r1,r3	! lasterr,
+ 465 0280 64F3     		mov	r15,r4	!,
+ 466 0282 2230     		mov.b	r3,@r2	! lasterr, resp
+ 467 0284 E200     		mov	#0,r2	!, tmp634
+ 468 0286 2120     		mov.b	r2,@r1	! tmp634, lasterr
+ 469 0288 740C     		add	#12,r4	!,
+ 470 028a A19A     		bra	.L119	!
+ 471 028c E502     		mov	#2,r5	!,
+ 472              	.L39:
+ 473 028e 940F     		mov.w	.L159,r4	!,
+ 474 0290 A18B     		bra	.L123	!
+ 475 0292 E512     		mov	#18,r5	!,
+ 476              	.L26:
+ 477 0294 D410     		mov.l	.L160,r4	!, tmp641
+ 478 0296 2410     		mov.b	r1,@r4	! tmp642, txbuf
+ 479 0298 D106     		mov.l	.L161,r1	!, tmp644
+ 480 029a 410B     		jsr	@r1	! tmp644
+ 481 029c E501     		mov	#1,r5	!,
+ 482 029e D00F     		mov.l	.L162,r0	!, tmp645
+ 483 02a0 400B     		jsr	@r0
+ 484 02a2 0009     		nop	! tmp645
+ 485 02a4 AEBC     		bra	.L103
+ 486 02a6 0009     		nop	!
+ 487              		.align 1
+ 488              	.L142:
+ 489 02a8 00BC     		.short	188
+ 490              	.L143:
+ 491 02aa 0081     		.short	129
+ 492              	.L144:
+ 493 02ac 00BD     		.short	189
+ 494              	.L157:
+ 495 02ae 0100     		.short	256
+ 496              	.L159:
+ 497 02b0 00BE     		.short	190
+ 498              	.L163:
+ 499 02b2 0009     		.align 2
+ 500              	.L161:
+ 501 02b4 00000000 		.long	_iso_sendpkt
+ 502              	.L146:
+ 503 02b8 00000004 		.long	_startcomm_resp.4800
+ 504              	.L148:
+ 505 02bc 00000000 		.long	_npk_ver_string
+ 506              	.L155:
+ 507 02c0 00000022 		.long	_msg.4883+22
+ 508              	.L151:
+ 509 02c4 00000000 		.long	_cmd_init
+ 510              	.L152:
+ 511 02c8 00000000 		.long	_sci_rxidle
+ 512              	.L154:
+ 513 02cc 00000000 		.long	_eep_setptr
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 10
+
+
+ 514              	.L156:
+ 515 02d0 00000000 		.long	_crc16
+ 516              	.L158:
+ 517 02d4 00000000 		.long	_lasterr
+ 518              	.L160:
+ 519 02d8 00000120 		.long	_txbuf
+ 520              	.L162:
+ 521 02dc 00000000 		.long	_die
+ 522              	.L28:
+ 523 02e0 8805     		cmp/eq	#5,r0	!,
+ 524 02e2 8F30     		bf.s	.L238	!
+ 525 02e4 E423     		mov	#35,r4	!,
+ 526 02e6 D262     		mov.l	.L164,r2	!, tmp649
+ 527 02e8 6820     		mov.b	@r2,r8	! msg.data,
+ 528 02ea 688C     		extu.b	r8,r8	! msg.data, D.5423
+ 529 02ec 2888     		tst	r8,r8	! D.5423
+ 530 02ee 892A     		bt	.L238	!
+ 531 02f0 91BB     		mov.w	.L165,r1	!,
+ 532 02f2 3817     		cmp/gt	r1,r8	! tmp651, D.5423
+ 533 02f4 8927     		bt	.L50	!
+ 534 02f6 6190     		mov.b	@r9,r1	! MEM[(const u8 *)&msg + 21B],
+ 535 02f8 72FF     		add	#-1,r2	!, tmp662
+ 536 02fa 6DB0     		mov.b	@r11,r13	! MEM[(const u8 *)&msg + 22B],
+ 537 02fc 651C     		extu.b	r1,r5	! MEM[(const u8 *)&msg + 21B], addr
+ 538 02fe 67DC     		extu.b	r13,r7	! MEM[(const u8 *)&msg + 22B], tmp665
+ 539 0300 4718     		shll8	r7	!, tmp665
+ 540 0302 6C20     		mov.b	@r2,r12	! MEM[(const u8 *)&msg + 23B],
+ 541 0304 4528     		shll16	r5	!, addr
+ 542 0306 257B     		or	r7,r5	! tmp665, addr
+ 543 0308 671E     		exts.b	r1,r7	! MEM[(const u8 *)&msg + 21B], D.5443
+ 544 030a 66CC     		extu.b	r12,r6	! MEM[(const u8 *)&msg + 23B], D.5436
+ 545 030c 4711     		cmp/pz	r7	! D.5443
+ 546 030e 8D02     		bt.s	.L51	!
+ 547 0310 256B     		or	r6,r5	! D.5436, addr
+ 548 0312 D758     		mov.l	.L170,r7	!, tmp668
+ 549 0314 257B     		or	r7,r5	! tmp668, addr
+ 550              	.L51:
+ 551 0316 DE58     		mov.l	.L179,r14	!, tmp669
+ 552 0318 E763     		mov	#99,r7	!, tmp670
+ 553 031a D058     		mov.l	.L181,r0	!, tmp675
+ 554 031c 64E3     		mov	r14,r4	! tmp669,
+ 555 031e 2E70     		mov.b	r7,@r14	! tmp670, txbuf
+ 556 0320 7401     		add	#1,r4	!,
+ 557 0322 6683     		mov	r8,r6	! D.5423,
+ 558 0324 400B     		jsr	@r0	! tmp675
+ 559 0326 2F12     		mov.l	r1,@r15	!,
+ 560 0328 67E3     		mov	r14,r7	! tmp669, tmp680
+ 561 032a 61F2     		mov.l	@r15,r1	!,
+ 562 032c 378C     		add	r8,r7	! D.5423, tmp680
+ 563 032e 6673     		mov	r7,r6	! tmp680, tmp681
+ 564 0330 7601     		add	#1,r6	!, tmp681
+ 565 0332 2610     		mov.b	r1,@r6	! MEM[(const u8 *)&msg + 21B], txbuf
+ 566 0334 6173     		mov	r7,r1	! tmp680, tmp685
+ 567 0336 7102     		add	#2,r1	!, tmp685
+ 568 0338 21D0     		mov.b	r13,@r1	! MEM[(const u8 *)&msg + 22B], txbuf
+ 569 033a 7703     		add	#3,r7	!, tmp689
+ 570 033c 6583     		mov	r8,r5	! D.5423,
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 11
+
+
+ 571 033e 27C0     		mov.b	r12,@r7	! MEM[(const u8 *)&msg + 23B], txbuf
+ 572 0340 64E3     		mov	r14,r4	! tmp669,
+ 573 0342 A13E     		bra	.L119	!
+ 574 0344 7504     		add	#4,r5	!,
+ 575              	.L50:
+ 576              	.L110:
+ 577              	.L238:
+ 578 0346 A130     		bra	.L123	!
+ 579 0348 E512     		mov	#18,r5	!,
+ 580              	.L30:
+ 581 034a 3127     		cmp/gt	r2,r1	! tmp694, D.5366
+ 582 034c 8F2B     		bf.s	.L78	!
+ 583 034e 6283     		mov	r8,r2	! tmp477, tmp697
+ 584 0350 7218     		add	#24,r2	!, tmp697
+ 585 0352 6620     		mov.b	@r2,r6	! msg.data,
+ 586 0354 666C     		extu.b	r6,r6	! msg.data, siz
+ 587 0356 6363     		mov	r6,r3	! siz, tmp699
+ 588 0358 9288     		mov.w	.L169,r2	!,
+ 589 035a 73FF     		add	#-1,r3	!, tmp699
+ 590 035c 633C     		extu.b	r3,r3	! tmp699, tmp700
+ 591 035e 3326     		cmp/hi	r2,r3	! tmp701, tmp700
+ 592 0360 8D24     		bt.s	.L239	!
+ 593 0362 E512     		mov	#18,r5	!, rv
+ 594 0364 6263     		mov	r6,r2	! siz, tmp702
+ 595 0366 7205     		add	#5,r2	!, tmp702
+ 596 0368 3120     		cmp/eq	r2,r1	! tmp702, D.5366
+ 597 036a 8B1F     		bf	.L239	!
+ 598 036c 6290     		mov.b	@r9,r2	! MEM[(const u8 *)&msg + 21B], MEM[(const u8 *)&msg + 21B]
+ 599 036e 7817     		add	#23,r8	!, tmp717
+ 600 0370 61B0     		mov.b	@r11,r1	! MEM[(const u8 *)&msg + 22B],
+ 601 0372 642C     		extu.b	r2,r4	! MEM[(const u8 *)&msg + 21B], addr
+ 602 0374 611C     		extu.b	r1,r1	! MEM[(const u8 *)&msg + 22B], tmp713
+ 603 0376 4118     		shll8	r1	!, tmp713
+ 604 0378 4428     		shll16	r4	!, addr
+ 605 037a 241B     		or	r1,r4	! tmp713, addr
+ 606 037c 6180     		mov.b	@r8,r1	! MEM[(const u8 *)&msg + 23B],
+ 607 037e 4211     		cmp/pz	r2	! D.5473
+ 608 0380 611C     		extu.b	r1,r1	! MEM[(const u8 *)&msg + 23B], MEM[(const u8 *)&msg + 23B]
+ 609 0382 8D02     		bt.s	.L53	!
+ 610 0384 241B     		or	r1,r4	! MEM[(const u8 *)&msg + 23B], addr
+ 611 0386 D13B     		mov.l	.L170,r1	!, tmp721
+ 612 0388 241B     		or	r1,r4	! tmp721, addr
+ 613              	.L53:
+ 614 038a D13D     		mov.l	.L171,r1	!, tmp722
+ 615 038c 926F     		mov.w	.L172,r2	!,
+ 616 038e 314C     		add	r4,r1	! addr, tmp722
+ 617 0390 3126     		cmp/hi	r2,r1	! tmp724, tmp722
+ 618 0392 890A     		bt	.L79	!
+ 619 0394 D039     		mov.l	.L181,r0	!, tmp729
+ 620 0396 D53B     		mov.l	.L174,r5	!,
+ 621 0398 400B     		jsr	@r0
+ 622 039a 0009     		nop	! tmp729
+ 623 039c D43A     		mov.l	.L175,r4	!, tmp734
+ 624 039e E17D     		mov	#125,r1	!, tmp735
+ 625 03a0 E504     		mov	#4,r5	!,
+ 626 03a2 A10E     		bra	.L119	!
+ 627 03a4 2410     		mov.b	r1,@r4	! tmp735, msg.data
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 12
+
+
+ 628              	.L78:
+ 629 03a6 A001     		bra	.L52	!
+ 630 03a8 E512     		mov	#18,r5	!, rv
+ 631              	.L79:
+ 632 03aa E542     		mov	#66,r5	!, rv
+ 633              	.L52:
+ 634              	.L239:
+ 635 03ac A0FD     		bra	.L123	!
+ 636 03ae E43D     		mov	#61,r4	!,
+ 637              	.L34:
+ 638 03b0 8806     		cmp/eq	#6,r0	!,
+ 639 03b2 8901     		bt	.L54	!
+ 640 03b4 A087     		bra	.L105
+ 641 03b6 0009     		nop	!
+ 642              	.L54:
+ 643 03b8 D234     		mov.l	.L176,r2	!, tmp743
+ 644 03ba 6123     		mov	r2,r1	! tmp743, tmp749
+ 645 03bc 6814     		mov.b	@r1+,r8	! MEM[(u8 *)&msg + 22B],
+ 646 03be 6323     		mov	r2,r3	! tmp743, tmp761
+ 647 03c0 6110     		mov.b	@r1,r1	! MEM[(u8 *)&msg + 23B],
+ 648 03c2 688C     		extu.b	r8,r8	! MEM[(u8 *)&msg + 22B], len
+ 649 03c4 611C     		extu.b	r1,r1	! MEM[(u8 *)&msg + 23B], MEM[(u8 *)&msg + 23B]
+ 650 03c6 4818     		shll8	r8	!, len
+ 651 03c8 281B     		or	r1,r8	! MEM[(u8 *)&msg + 23B], len
+ 652 03ca 6123     		mov	r2,r1	! tmp743, tmp755
+ 653 03cc 7102     		add	#2,r1	!, tmp755
+ 654 03ce 6110     		mov.b	@r1,r1	! MEM[(u8 *)&msg + 24B],
+ 655 03d0 7303     		add	#3,r3	!, tmp761
+ 656 03d2 6330     		mov.b	@r3,r3	! MEM[(u8 *)&msg + 25B],
+ 657 03d4 611C     		extu.b	r1,r1	! MEM[(u8 *)&msg + 24B], addr
+ 658 03d6 72FF     		add	#-1,r2	!, tmp767
+ 659 03d8 4118     		shll8	r1	!, addr
+ 660 03da 633C     		extu.b	r3,r3	! MEM[(u8 *)&msg + 25B], MEM[(u8 *)&msg + 25B]
+ 661 03dc 6020     		mov.b	@r2,r0	! MEM[(u8 *)&msg + 21B],
+ 662 03de 213B     		or	r3,r1	! MEM[(u8 *)&msg + 25B], addr
+ 663 03e0 4808     		shll2	r8	!, len
+ 664 03e2 4108     		shll2	r1	!, addr
+ 665 03e4 600C     		extu.b	r0,r0	! MEM[(u8 *)&msg + 21B], MEM[(u8 *)&msg + 21B]
+ 666 03e6 388C     		add	r8,r8	! len
+ 667 03e8 311C     		add	r1,r1	! addr
+ 668 03ea 2008     		tst	r0,r0	! MEM[(u8 *)&msg + 21B]
+ 669 03ec 4808     		shll2	r8	!, len
+ 670 03ee 8D05     		bt.s	.L56	!
+ 671 03f0 4108     		shll2	r1	!, addr
+ 672 03f2 8801     		cmp/eq	#1,r0	!, MEM[(u8 *)&msg + 21B]
+ 673 03f4 8F67     		bf.s	.L105	!
+ 674 03f6 E3FD     		mov	#-3,r3	!, tmp791
+ 675 03f8 A031     		bra	.L57
+ 676 03fa 0009     		nop	!
+ 677              	.L56:
+ 678 03fc 6E13     		mov	r1,r14	! addr, addr
+ 679 03fe E3FE     		mov	#-2,r3	!, tmp770
+ 680 0400 4E01     		shlr	r14	! addr
+ 681 0402 A027     		bra	.L58	!
+ 682 0404 2839     		and	r3,r8	! tmp770, len
+ 683              	.L62:
+ 684 0406 720D     		add	#13,r2	!, tmp773
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 13
+
+
+ 685 0408 E7FD     		mov	#-3,r7	!, tmp774
+ 686 040a 2270     		mov.b	r7,@r2	! tmp774, MEM[(u8 *)&pbuf + 1B]
+ 687 040c E220     		mov	#32,r2	!, tmp775
+ 688 040e 3827     		cmp/gt	r2,r8	! tmp775, len
+ 689 0410 8F01     		bf.s	.L59	!
+ 690 0412 6D83     		mov	r8,r13	! len, pktlen
+ 691 0414 ED20     		mov	#32,r13	!, pktlen
+ 692              	.L59:
+ 693 0416 6CD3     		mov	r13,r12	! pktlen, tmp779
+ 694 0418 4C04     		rotl	r12	! tmp779
+ 695 041a 0C29     		movt	r12	! tmp779
+ 696 041c 3CDC     		add	r13,r12	! pktlen, tmp779
+ 697 041e 60F3     		mov	r15,r0	!, ivtmp.50
+ 698 0420 4C21     		shar	r12	! tmp779
+ 699 0422 700E     		add	#14,r0	!, ivtmp.50
+ 700 0424 A00B     		bra	.L60	!
+ 701 0426 E600     		mov	#0,r6	!, ecur
+ 702              	.L61:
+ 703 0428 D119     		mov.l	.L177,r1	!,
+ 704 042a 34EC     		add	r14,r4	! addr, tmp783
+ 705 042c 6503     		mov	r0,r5	! ivtmp.50,
+ 706 042e 1F01     		mov.l	r0,@(4,r15)	!,
+ 707 0430 644C     		extu.b	r4,r4	! tmp783,
+ 708 0432 410B     		jsr	@r1	!
+ 709 0434 2F62     		mov.l	r6,@r15	!,
+ 710 0436 66F2     		mov.l	@r15,r6	!,
+ 711 0438 50F1     		mov.l	@(4,r15),r0	!,
+ 712 043a 7601     		add	#1,r6	!, ecur
+ 713 043c 7002     		add	#2,r0	!, ivtmp.50
+ 714              	.L60:
+ 715 043e 36C3     		cmp/ge	r12,r6	! tmp779, ecur
+ 716 0440 8FF2     		bf.s	.L61	!
+ 717 0442 6463     		mov	r6,r4	! ecur, tmp783
+ 718 0444 D213     		mov.l	.L180,r2	!,
+ 719 0446 64F3     		mov	r15,r4	!,
+ 720 0448 65D3     		mov	r13,r5	! pktlen,
+ 721 044a 740D     		add	#13,r4	!,
+ 722 044c 7501     		add	#1,r5	!,
+ 723 044e 420B     		jsr	@r2	!
+ 724 0450 38D8     		sub	r13,r8	! pktlen, len
+ 725 0452 3ECC     		add	r12,r14	! tmp779, addr
+ 726              	.L58:
+ 727 0454 2888     		tst	r8,r8	! len
+ 728 0456 8FD6     		bf.s	.L62	!
+ 729 0458 62F3     		mov	r15,r2	!, tmp773
+ 730 045a A0A9     		bra	.L116
+ 731 045c 0009     		nop	!
+ 732              	.L57:
+ 733 045e D206     		mov.l	.L179,r2	!, tmp790
+ 734 0460 DC0C     		mov.l	.L180,r12	!, tmp910
+ 735 0462 2230     		mov.b	r3,@r2	! tmp791, txbuf
+ 736 0464 D305     		mov.l	.L181,r3	!, tmp909
+ 737 0466 A02A     		bra	.L235	!
+ 738 0468 2888     		tst	r8,r8	! len
+ 739              		.align 1
+ 740              	.L165:
+ 741 046a 00FB     		.short	251
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 14
+
+
+ 742              	.L169:
+ 743 046c 00F9     		.short	249
+ 744              	.L172:
+ 745 046e 2FFF     		.short	12287
+ 746              	.L182:
+ 747              		.align 2
+ 748              	.L164:
+ 749 0470 00000024 		.long	_msg.4883+24
+ 750              	.L170:
+ 751 0474 FF000000 		.long	-16777216
+ 752              	.L179:
+ 753 0478 00000120 		.long	_txbuf
+ 754              	.L181:
+ 755 047c 00000000 		.long	_memcpy
+ 756              	.L171:
+ 757 0480 00008000 		.long	32768
+ 758              	.L174:
+ 759 0484 00000025 		.long	_msg.4883+25
+ 760              	.L175:
+ 761 0488 00000020 		.long	_msg.4883+20
+ 762              	.L176:
+ 763 048c 00000022 		.long	_msg.4883+22
+ 764              	.L177:
+ 765 0490 00000000 		.long	_eep_read16
+ 766              	.L180:
+ 767 0494 00000000 		.long	_iso_sendpkt
+ 768              	.L66:
+ 769 0498 3877     		cmp/gt	r7,r8	! tmp792, len
+ 770 049a 8F01     		bf.s	.L65	!
+ 771 049c 6E83     		mov	r8,r14	! len, pktlen
+ 772 049e EE20     		mov	#32,r14	!, pktlen
+ 773              	.L65:
+ 774 04a0 6513     		mov	r1,r5	! addr,
+ 775 04a2 2F12     		mov.l	r1,@r15	!,
+ 776 04a4 66E3     		mov	r14,r6	! pktlen,
+ 777 04a6 1F31     		mov.l	r3,@(4,r15)	!,
+ 778 04a8 D456     		mov.l	.L183,r4	!,
+ 779 04aa 430B     		jsr	@r3	! tmp909
+ 780 04ac 38E8     		sub	r14,r8	! pktlen, len
+ 781 04ae 65E3     		mov	r14,r5	! pktlen,
+ 782 04b0 D455     		mov.l	.L202,r4	!,
+ 783 04b2 4C0B     		jsr	@r12	! tmp910
+ 784 04b4 7501     		add	#1,r5	!,
+ 785 04b6 61F2     		mov.l	@r15,r1	!,
+ 786 04b8 53F1     		mov.l	@(4,r15),r3	!,
+ 787 04ba 31EC     		add	r14,r1	! pktlen, addr
+ 788 04bc 2888     		tst	r8,r8	! len
+ 789              	.L235:
+ 790 04be 8FEB     		bf.s	.L66	!
+ 791 04c0 E720     		mov	#32,r7	!, tmp792
+ 792 04c2 A075     		bra	.L116
+ 793 04c4 0009     		nop	!
+ 794              	.L105:
+ 795 04c6 9495     		mov.w	.L185,r4	!,
+ 796 04c8 AF3D     		bra	.L110
+ 797 04ca 0009     		nop	!
+ 798              	.L33:
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 15
+
+
+ 799 04cc D24F     		mov.l	.L204,r2	!, tmp805
+ 800 04ce 6022     		mov.l	@r2,r0	! flashstate, flashstate
+ 801 04d0 8801     		cmp/eq	#1,r0	!, flashstate
+ 802 04d2 8F4D     		bf.s	.L80	!
+ 803 04d4 3107     		cmp/gt	r0,r1	! flashstate, D.5366
+ 804 04d6 8F4E     		bf.s	.L67	!
+ 805 04d8 E012     		mov	#18,r0	!, rv
+ 806 04da D84D     		mov.l	.L212,r8	!, tmp809
+ 807 04dc 6283     		mov	r8,r2	! tmp809, tmp811
+ 808 04de 7215     		add	#21,r2	!, tmp811
+ 809 04e0 6020     		mov.b	@r2,r0	! msg.data,
+ 810 04e2 600C     		extu.b	r0,r0	! msg.data, msg.data
+ 811 04e4 8802     		cmp/eq	#2,r0	!, msg.data
+ 812 04e6 8D0D     		bt.s	.L69	!
+ 813 04e8 8855     		cmp/eq	#85,r0	!, msg.data
+ 814 04ea 8D32     		bt.s	.L70	!
+ 815 04ec 8801     		cmp/eq	#1,r0	!, msg.data
+ 816 04ee 8B41     		bf	.L86	!
+ 817 04f0 6013     		mov	r1,r0	! D.5366,
+ 818 04f2 8803     		cmp/eq	#3,r0	!,
+ 819 04f4 8F3E     		bf.s	.L86	!
+ 820 04f6 7816     		add	#22,r8	!, tmp817
+ 821 04f8 D046     		mov.l	.L188,r0	!, tmp820
+ 822 04fa 6480     		mov.b	@r8,r4	! msg.data,
+ 823 04fc 400B     		jsr	@r0	! tmp820
+ 824 04fe 644C     		extu.b	r4,r4	! msg.data,
+ 825 0500 A023     		bra	.L236	!
+ 826 0502 2008     		tst	r0,r0	! rv
+ 827              	.L69:
+ 828 0504 9277     		mov.w	.L189,r2	!,
+ 829 0506 3120     		cmp/eq	r2,r1	! tmp821, D.5366
+ 830 0508 8F34     		bf.s	.L86	!
+ 831 050a 6E83     		mov	r8,r14	! tmp809, tmp822
+ 832 050c D042     		mov.l	.L190,r0	!, tmp824
+ 833 050e 7E16     		add	#22,r14	!, tmp822
+ 834 0510 9572     		mov.w	.L191,r5	!,
+ 835 0512 400B     		jsr	@r0	! tmp824
+ 836 0514 64E3     		mov	r14,r4	! tmp822,
+ 837 0516 9170     		mov.w	.L192,r1	!,
+ 838 0518 6203     		mov	r0,r2	!, tmp825
+ 839 051a 6013     		mov	r1,r0	! tmp830,
+ 840 051c 018C     		mov.b	@(r0,r8),r1	! msg.data,
+ 841 051e 611C     		extu.b	r1,r1	! msg.data, msg.data
+ 842 0520 3120     		cmp/eq	r2,r1	! tmp825, msg.data
+ 843 0522 8F28     		bf.s	.L67	!
+ 844 0524 E077     		mov	#119,r0	!, rv
+ 845 0526 D33D     		mov.l	.L193,r3	!,
+ 846 0528 6583     		mov	r8,r5	! tmp809,
+ 847 052a D03D     		mov.l	.L194,r0	!,
+ 848 052c 7519     		add	#25,r5	!,
+ 849 052e 61E0     		mov.b	@r14,r1	! msg.data,
+ 850 0530 6230     		mov.b	@r3,r2	! msg.data,
+ 851 0532 611C     		extu.b	r1,r1	! msg.data, tmp845
+ 852 0534 6400     		mov.b	@r0,r4	! msg.data,
+ 853 0536 622C     		extu.b	r2,r2	! msg.data, tmp844
+ 854 0538 D03A     		mov.l	.L195,r0	!, tmp854
+ 855 053a 4128     		shll16	r1	!, tmp845
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 16
+
+
+ 856 053c 4218     		shll8	r2	!, tmp844
+ 857 053e 212B     		or	r2,r1	! tmp844, tmp845
+ 858 0540 644C     		extu.b	r4,r4	! msg.data, msg.data
+ 859 0542 965B     		mov.w	.L196,r6	!,
+ 860 0544 400B     		jsr	@r0	! tmp854
+ 861 0546 241B     		or	r1,r4	! tmp845,
+ 862 0548 2008     		tst	r0,r0	! rv
+ 863              	.L236:
+ 864 054a 8D0E     		bt.s	.L72	!
+ 865 054c 600C     		extu.b	r0,r0	! rv, rv
+ 866 054e A012     		bra	.L67	!
+ 867 0550 CB80     		or	#128,r0	!, rv
+ 868              	.L70:
+ 869 0552 6013     		mov	r1,r0	! D.5366,
+ 870 0554 8803     		cmp/eq	#3,r0	!,
+ 871 0556 8F0E     		bf.s	.L67	!
+ 872 0558 E012     		mov	#18,r0	!, rv
+ 873 055a 7816     		add	#22,r8	!, tmp858
+ 874 055c 6080     		mov.b	@r8,r0	! msg.data, tmp861
+ 875 055e 88AA     		cmp/eq	#-86,r0	!, tmp861
+ 876 0560 8F09     		bf.s	.L87	!
+ 877 0562 E035     		mov	#53,r0	!, rv
+ 878 0564 D130     		mov.l	.L197,r1	!, tmp862
+ 879 0566 410B     		jsr	@r1
+ 880 0568 0009     		nop	! tmp862
+ 881              	.L72:
+ 882 056a D427     		mov.l	.L202,r4	!, tmp863
+ 883 056c A007     		bra	.L125	!
+ 884 056e E1FC     		mov	#-4,r1	!, tmp864
+ 885              	.L80:
+ 886 0570 A001     		bra	.L67	!
+ 887 0572 E022     		mov	#34,r0	!, rv
+ 888              	.L86:
+ 889 0574 E012     		mov	#18,r0	!, rv
+ 890              	.L87:
+ 891              	.L67:
+ 892 0576 9442     		mov.w	.L199,r4	!,
+ 893 0578 A017     		bra	.L123	!
+ 894 057a 6503     		mov	r0,r5	! rv,
+ 895              	.L31:
+ 896 057c D422     		mov.l	.L202,r4	!, tmp869
+ 897              	.L125:
+ 898 057e A01F     		bra	.L124	!
+ 899 0580 2410     		mov.b	r1,@r4	! tmp870, txbuf
+ 900              	.L29:
+ 901 0582 D02A     		mov.l	.L201,r0	!, tmp876
+ 902 0584 400B     		jsr	@r0	! tmp876
+ 903 0586 6483     		mov	r8,r4	! tmp875,
+ 904 0588 2008     		tst	r0,r0	! tmp877
+ 905 058a 8B03     		bf	.L74	!
+ 906 058c 6580     		mov.b	@r8,r5	! errval,
+ 907 058e E434     		mov	#52,r4	!,
+ 908 0590 A00B     		bra	.L123	!
+ 909 0592 655C     		extu.b	r5,r5	! errval,
+ 910              	.L74:
+ 911 0594 D41C     		mov.l	.L202,r4	!, tmp884
+ 912 0596 E174     		mov	#116,r1	!, tmp885
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 17
+
+
+ 913 0598 2410     		mov.b	r1,@r4	! tmp885, txbuf
+ 914 059a D125     		mov.l	.L209,r1	!, tmp887
+ 915 059c 410B     		jsr	@r1	! tmp887
+ 916 059e E501     		mov	#1,r5	!,
+ 917 05a0 E201     		mov	#1,r2	!, tmp889
+ 918              	.L122:
+ 919 05a2 D11A     		mov.l	.L204,r1	!, tmp888
+ 920 05a4 A004     		bra	.L116	!
+ 921 05a6 2122     		mov.l	r2,@r1	! tmp889, flashstate
+ 922              	.L25:
+ 923 05a8 E511     		mov	#17,r5	!,
+ 924              	.L123:
+ 925 05aa D122     		mov.l	.L205,r1	!, tmp892
+ 926              	.L118:
+ 927 05ac 410B     		jsr	@r1
+ 928 05ae 0009     		nop	! tmp892
+ 929              	.L116:
+ 930 05b0 D417     		mov.l	.L212,r4	!,
+ 931              	.L117:
+ 932 05b2 D121     		mov.l	.L211,r1	!, tmp894
+ 933 05b4 A01A     		bra	.L107
+ 934 05b6 0009     		nop	!
+ 935              	.L47:
+ 936 05b8 9422     		mov.w	.L208,r4	!,
+ 937 05ba AFF6     		bra	.L123
+ 938 05bc 0009     		nop	!
+ 939              	.L104:
+ 940              	.L234:
+ 941 05be 740C     		add	#12,r4	!,
+ 942              	.L124:
+ 943 05c0 E501     		mov	#1,r5	!,
+ 944              	.L119:
+ 945 05c2 D11B     		mov.l	.L209,r1	!, tmp898
+ 946 05c4 AFF2     		bra	.L118
+ 947 05c6 0009     		nop	!
+ 948              	.L20:
+ 949 05c8 D21C     		mov.l	.L210,r2	!, tmp899
+ 950 05ca 6C22     		mov.l	@r2,r12	! cmstate, cmstate
+ 951 05cc 2CC8     		tst	r12,r12	! cmstate
+ 952 05ce 8F02     		bf.s	.L226	!
+ 953 05d0 60C3     		mov	r12,r0	! cmstate,
+ 954 05d2 AD87     		bra	.L21	!
+ 955 05d4 61E0     		mov.b	@r14,r1	! msg.data, tmp519
+ 956              	.L226:
+ 957 05d6 8801     		cmp/eq	#1,r0	!,
+ 958 05d8 8B0A     		bf	.L225	!
+ 959 05da 60E0     		mov.b	@r14,r0	! msg.data,
+ 960 05dc AD91     		bra	.L24	!
+ 961 05de 600C     		extu.b	r0,r0	! msg.data, D.4923
+ 962              	.L14:
+ 963 05e0 D115     		mov.l	.L211,r1	!, tmp902
+ 964 05e2 D40B     		mov.l	.L212,r4	!,
+ 965 05e4 410B     		jsr	@r1
+ 966 05e6 0009     		nop	! tmp902
+ 967 05e8 D115     		mov.l	.L213,r1	!, tmp903
+ 968 05ea E40A     		mov	#10,r4	!,
+ 969              	.L107:
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 18
+
+
+ 970 05ec 410B     		jsr	@r1
+ 971 05ee 0009     		nop	! tmp903
+ 972              	.L225:
+ 973 05f0 AD16     		bra	.L103
+ 974 05f2 0009     		nop	!
+ 975              		.align 1
+ 976              	.L185:
+ 977 05f4 00BD     		.short	189
+ 978              	.L189:
+ 979 05f6 0086     		.short	134
+ 980              	.L191:
+ 981 05f8 0083     		.short	131
+ 982              	.L192:
+ 983 05fa 0099     		.short	153
+ 984              	.L196:
+ 985 05fc 0080     		.short	128
+ 986              	.L199:
+ 987 05fe 00BC     		.short	188
+ 988              	.L208:
+ 989 0600 00BE     		.short	190
+ 990              	.L214:
+ 991 0602 0009     		.align 2
+ 992              	.L183:
+ 993 0604 00000121 		.long	_txbuf+1
+ 994              	.L202:
+ 995 0608 00000120 		.long	_txbuf
+ 996              	.L204:
+ 997 060c 00000008 		.long	_flashstate
+ 998              	.L212:
+ 999 0610 0000000C 		.long	_msg.4883
+ 1000              	.L188:
+ 1001 0614 00000000 		.long	_platf_flash_eb
+ 1002              	.L190:
+ 1003 0618 00000000 		.long	_cks_add8
+ 1004              	.L193:
+ 1005 061c 00000023 		.long	_msg.4883+23
+ 1006              	.L194:
+ 1007 0620 00000024 		.long	_msg.4883+24
+ 1008              	.L195:
+ 1009 0624 00000000 		.long	_platf_flash_wb
+ 1010              	.L197:
+ 1011 0628 00000000 		.long	_platf_flash_unprotect
+ 1012              	.L201:
+ 1013 062c 00000000 		.long	_platf_flash_init
+ 1014              	.L209:
+ 1015 0630 00000000 		.long	_iso_sendpkt
+ 1016              	.L205:
+ 1017 0634 00000000 		.long	_tx_7F
+ 1018              	.L211:
+ 1019 0638 00000000 		.long	_iso_clearmsg
+ 1020              	.L210:
+ 1021 063c 00000004 		.long	_cmstate
+ 1022              	.L213:
+ 1023 0640 00000000 		.long	_sci_rxidle
+ 1024              		.size	_cmd_loop, .-_cmd_loop
+ 1025              		.global	_fblocks
+ 1026              		.section	.rodata.align4,"a"
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 19
+
+
+ 1027              		.align 2
+ 1028              		.type	_fblocks, @object
+ 1029              		.size	_fblocks, 52
+ 1030              	_fblocks:
+ 1031 0000 00000000 		.long	0
+ 1032 0004 00001000 		.long	4096
+ 1033 0008 00002000 		.long	8192
+ 1034 000c 00003000 		.long	12288
+ 1035 0010 00004000 		.long	16384
+ 1036 0014 00005000 		.long	20480
+ 1037 0018 00006000 		.long	24576
+ 1038 001c 00007000 		.long	28672
+ 1039 0020 00008000 		.long	32768
+ 1040 0024 00010000 		.long	65536
+ 1041 0028 00020000 		.long	131072
+ 1042 002c 00030000 		.long	196608
+ 1043 0030 00040000 		.long	262144
+ 1044              		.local	_lasterr
+ 1045              		.comm	_lasterr,1,1
+ 1046              		.local	_cmstate
+ 1047              		.comm	_cmstate,4,4
+ 1048              		.local	_flashstate
+ 1049              		.comm	_flashstate,4,4
+ 1050              		.local	_msg.4883
+ 1051              		.comm	_msg.4883,276,4
+ 1052              		.section	.rodata.align1,"a"
+ 1053              		.align 2
+ 1054              		.type	_npk_ver_string, @object
+ 1055              		.size	_npk_ver_string, 2
+ 1056              	_npk_ver_string:
+ 1057 0000 5A00     		.string	"Z"
+ 1058              		.local	_txbuf
+ 1059              		.comm	_txbuf,256,4
+ 1060 0002 0000     		.align 2
+ 1061              		.type	_startcomm_resp.4800, @object
+ 1062              		.size	_startcomm_resp.4800, 3
+ 1063              	_startcomm_resp.4800:
+ 1064 0004 C1       		.byte	-63
+ 1065 0005 67       		.byte	103
+ 1066 0006 8F       		.byte	-113
+ 1067 0007 00       		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 cmd_parser.c
+C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s:51     .text.set_lasterr:0000000000000000 _set_lasterr
+                             .bss:0000000000000000 _lasterr
+C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s:64     .text.cmd_init:0000000000000000 _cmd_init
+C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s:1047   .bss:0000000000000004 _cmstate
+C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s:1049   .bss:0000000000000008 _flashstate
+C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s:104    .text.cmd_loop:0000000000000000 _cmd_loop
+C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s:1051   .bss:000000000000000c _msg.4883
+C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s:1063   .rodata.align1:0000000000000004 _startcomm_resp.4800
+C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s:1056   .rodata.align1:0000000000000000 _npk_ver_string
+C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s:1059   .bss:0000000000000120 _txbuf
+C:\Users\Limbo-s\AppData\Local\Temp\ccnml1Jg.s:1030   .rodata.align4:0000000000000000 _fblocks
+
+UNDEFINED SYMBOLS
+_iso_clearmsg
+_cks_u8
+_iso_sendpkt
+_sci_rxidle
+_eep_setptr
+_crc16
+_die
+_memcpy
+_eep_read16
+_platf_flash_eb
+_cks_add8
+_platf_flash_wb
+_platf_flash_unprotect
+_platf_flash_init
+_tx_7F

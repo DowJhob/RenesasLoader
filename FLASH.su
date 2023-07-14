@@ -1,0 +1,8 @@
+FLASH.c:25:13:sweclear	0	static
+FLASH.c:10:13:fwecheck	0	static
+ISR.h:165:6:die_trace	0	static
+WDT.h:39:6:INT_ATU11_IMI1A	44	static
+FLASH.c:103:10:platf_flash_eb	48	static
+FLASH.c:290:10:platf_flash_wb	320	static
+FLASH.c:318:6:platf_flash_init	8	static
+FLASH.c:333:6:platf_flash_unprotect	0	static

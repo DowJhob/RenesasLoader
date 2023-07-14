@@ -1,0 +1,1059 @@
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 1
+
+
+   1              		.file	"FLASH.c"
+   2              		.text
+   3              	! GNU C (GCC) version 4.7-GNUSH_v13.01 (sh-elf)
+   4              	!	compiled by GNU C version 4.2.1-sjlj (mingw32-2), GMP version 4.3.2, MPFR version 2.4.2, MPC vers
+   5              	! GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+   6              	! options passed:  -I . -imultilib m2
+   7              	! -iprefix c:\program files (x86)\kpit\gnushv13.01-elf\sh-elf\bin\../lib/gcc/sh-elf/4.7-GNUSH_v13.0
+   8              	! -D SH7052 -D PLATF="SH7052" FLASH.c -m2 -mb -auxbase-strip FLASH.o -Os
+   9              	! -Wall -Wextra -Wstrict-prototypes -std=gnu99 -ffunction-sections
+  10              	! -fomit-frame-pointer -fstack-usage -fverbose-asm
+  11              	! options enabled:  -fauto-inc-dec -fbranch-count-reg
+  12              	! -fbranch-target-load-optimize -fcaller-saves -fcombine-stack-adjustments
+  13              	! -fcommon -fcompare-elim -fcprop-registers -fcrossjumping
+  14              	! -fcse-follow-jumps -fdebug-types-section -fdefer-pop -fdelayed-branch
+  15              	! -fdelete-null-pointer-checks -fdevirtualize -fdwarf2-cfi-asm
+  16              	! -fearly-inlining -feliminate-unused-debug-types -fexpensive-optimizations
+  17              	! -fforward-propagate -ffunction-cse -ffunction-sections -fgcse -fgcse-lm
+  18              	! -fgnu-runtime -fguess-branch-probability -fident -fif-conversion
+  19              	! -fif-conversion2 -findirect-inlining -finline -finline-atomics
+  20              	! -finline-functions -finline-functions-called-once
+  21              	! -finline-small-functions -fipa-cp -fipa-profile -fipa-pure-const
+  22              	! -fipa-reference -fipa-sra -fira-share-save-slots -fira-share-spill-slots
+  23              	! -fivopts -fkeep-static-consts -fleading-underscore -fmath-errno
+  24              	! -fmerge-constants -fmerge-debug-strings -fmove-loop-invariants
+  25              	! -fomit-frame-pointer -foptimize-register-move -foptimize-sibling-calls
+  26              	! -fpartial-inlining -fpeephole -fpeephole2 -fprefetch-loop-arrays
+  27              	! -freg-struct-return -fregmove -freorder-blocks -freorder-functions
+  28              	! -frerun-cse-after-loop -fsched-critical-path-heuristic
+  29              	! -fsched-dep-count-heuristic -fsched-group-heuristic -fsched-interblock
+  30              	! -fsched-last-insn-heuristic -fsched-rank-heuristic -fsched-spec
+  31              	! -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
+  32              	! -fshow-column -fshrink-wrap -fsigned-zeros -fsort-data
+  33              	! -fsplit-ivs-in-unroller -fsplit-wide-types -fstrict-aliasing
+  34              	! -fstrict-overflow -fstrict-volatile-bitfields -fthread-jumps
+  35              	! -ftoplevel-reorder -ftrapping-math -ftree-bit-ccp -ftree-builtin-call-dce
+  36              	! -ftree-ccp -ftree-ch -ftree-copy-prop -ftree-copyrename -ftree-cselim
+  37              	! -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+  38              	! -ftree-loop-if-convert -ftree-loop-im -ftree-loop-ivcanon
+  39              	! -ftree-loop-optimize -ftree-parallelize-loops= -ftree-phiprop -ftree-pre
+  40              	! -ftree-pta -ftree-reassoc -ftree-scev-cprop -ftree-sink
+  41              	! -ftree-slp-vectorize -ftree-sra -ftree-switch-conversion
+  42              	! -ftree-tail-merge -ftree-ter -ftree-vect-loop-version -ftree-vrp
+  43              	! -funit-at-a-time -fverbose-asm -fzero-initialized-in-bss
+  44              	! -maccumulate-outgoing-args -mb
+  45              	
+  46              		.section	.text.sweclear,"ax",@progbits
+  47              		.align 1
+  48              		.type	_sweclear, @function
+  49              	_sweclear:
+  50 0000 910C     		mov.w	.L2,r1	!,
+  51 0002 E2BF     		mov	#-65,r2	!, tmp165
+  52 0004 6310     		mov.b	@r1,r3	!,
+  53 0006 2239     		and	r3,r2	! tmp163, tmp164
+  54 0008 2120     		mov.b	r2,@r1	! tmp164,
+  55 000a 9108     		mov.w	.L3,r1	!,
+  56 000c 6010     		mov.b	@r1,r0	!,
+  57 000e CB40     		or	#64,r0	!, tmp174
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 2
+
+
+  58 0010 2100     		mov.b	r0,@r1	! tmp174,
+  59 0012 9105     		mov.w	.L4,r1	!,
+  60              	! 28 "./CPU_STUFF.h" 1
+  61 0014 4110     		0: dt r1	! tmp
+  62              	! 0 "" 2
+  63              	! 29 "./CPU_STUFF.h" 1
+  64 0016 8BFD     		bf 0b
+  65              	! 0 "" 2
+  66 0018 000B     		rts	
+  67 001a 0009     		nop
+  68              		.align 1
+  69              	.L2:
+  70 001c E800     		.short	-6144
+  71              	.L3:
+  72 001e F719     		.short	-2279
+  73              	.L4:
+  74 0020 03E9     		.short	1001
+  75              		.size	_sweclear, .-_sweclear
+  76              		.section	.text.fwecheck,"ax",@progbits
+  77              		.align 1
+  78              		.type	_fwecheck, @function
+  79              	_fwecheck:
+  80 0000 910D     		mov.w	.L8,r1	!,
+  81 0002 6010     		mov.b	@r1,r0	! MEM[(volatile struct st_flash *)4294961152B],
+  82 0004 C880     		tst	#128,r0	!, MEM[(volatile struct st_flash *)4294961152B]
+  83 0006 8D08     		bt.s	.L7	!
+  84 0008 7101     		add	#1,r1	!, tmp174
+  85 000a 6010     		mov.b	@r1,r0	! MEM[(volatile struct st_flash *)4294961152B],
+  86 000c 6007     		not	r0,r0	! MEM[(volatile struct st_flash *)4294961152B], tmp178
+  87 000e 600C     		extu.b	r0,r0	! tmp178, D.5111
+  88 0010 4009     		shlr2	r0	!, D.5111
+  89 0012 4009     		shlr2	r0	!, D.5111
+  90 0014 4001     		shlr	r0	! D.5111
+  91 0016 000B     		rts	
+  92 0018 4009     		shlr2	r0	!, D.5111
+  93              	.L7:
+  94 001a 000B     		rts	
+  95 001c E000     		mov	#0,r0	!, D.5111
+  96              		.align 1
+  97              	.L8:
+  98 001e E800     		.short	-6144
+  99              		.size	_fwecheck, .-_fwecheck
+ 100              		.section	.text.die_trace,"ax",@progbits
+ 101              		.align 1
+ 102              		.global	_die_trace
+ 103              		.type	_die_trace, @function
+ 104              	_die_trace:
+ 105              	! 167 "ISR.h" 1
+ 106 0000 2F06     		mov.l	r0, @-r15
+ 107 0002 0002     	stc	sr, r0
+ 108 0004 CBF0     	or	#0xF0, r0
+ 109 0006 400E     	ldc	r0, sr
+ 110              	
+ 111              	! 0 "" 2
+ 112 0008 9018     		mov.w	.L10,r0	!,
+ 113              	! 175 "ISR.h" 1
+ 114 000a 2F16     		mov.l	r1, @-r15
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 3
+
+
+ 115 000c 61F3     	mov	r15, r1
+ 116 000e 7108     	add	#0x08, r1
+ 117 0010 6112     	mov.l	@r1, r1
+ 118 0012 2016     	mov.l	r1, @-r0
+ 119 0014 20F6     	mov.l	r15, @-r0
+ 120 0016 20E6     	mov.l	r14, @-r0
+ 121 0018 20D6     	mov.l	r13, @-r0
+ 122 001a 20C6     	mov.l	r12, @-r0
+ 123 001c 20B6     	mov.l	r11, @-r0
+ 124 001e 20A6     	mov.l	r10, @-r0
+ 125 0020 2096     	mov.l	r9, @-r0
+ 126 0022 2086     	mov.l	r8, @-r0
+ 127 0024 2076     	mov.l	r7, @-r0
+ 128 0026 2066     	mov.l	r6, @-r0
+ 129 0028 2056     	mov.l	r5, @-r0
+ 130 002a 2046     	mov.l	r4, @-r0
+ 131 002c 6BF6     	mov.l	@r15+, r11
+ 132 002e 2036     	mov.l	r3, @-r0
+ 133 0030 6AF6     	mov.l	@r15+, r10
+ 134 0032 2026     	mov.l	r2, @-r0
+ 135 0034 20B6     	mov.l	r11, @-r0
+ 136 0036 20A6     	mov.l	r10, @-r0
+ 137              	0:
+ 138 0038 AFFE     	bra	0b
+ 139 003a 0009     	nop
+ 140              	
+ 141              	! 0 "" 2
+ 142              		.align 1
+ 143              	.L10:
+ 144 003c B000     		.short	-20480
+ 145              		.size	_die_trace, .-_die_trace
+ 146              		.section	.text.INT_ATU11_IMI1A,"ax",@progbits
+ 147              		.align 1
+ 148              		.global	_INT_ATU11_IMI1A
+ 149              		.type	_INT_ATU11_IMI1A, @function
+ 150              	_INT_ATU11_IMI1A:
+ 151 0000 4F02     		sts.l	mach,@-r15	!,
+ 152 0002 4F12     		sts.l	macl,@-r15	!,
+ 153 0004 2F06     		mov.l	r0,@-r15	!,
+ 154 0006 2F16     		mov.l	r1,@-r15	!,
+ 155 0008 2F26     		mov.l	r2,@-r15	!,
+ 156 000a 2F36     		mov.l	r3,@-r15	!,
+ 157 000c 2F46     		mov.l	r4,@-r15	!,
+ 158 000e 2F56     		mov.l	r5,@-r15	!,
+ 159 0010 2F66     		mov.l	r6,@-r15	!,
+ 160 0012 D10E     		mov.l	.L12,r1	!, tmp160
+ 161 0014 2F76     		mov.l	r7,@-r15	!,
+ 162 0016 4F22     		sts.l	pr,@-r15	!,
+ 163 0018 410B     		jsr	@r1
+ 164 001a 0009     		nop	! tmp160
+ 165 001c 9115     		mov.w	.L13,r1	!,
+ 166 001e E300     		mov	#0,r3	!, tmp164
+ 167 0020 6213     		mov	r1,r2	! tmp161, tmp163
+ 168 0022 7202     		add	#2,r2	!, tmp163
+ 169 0024 2231     		mov.w	r3,@r2	! tmp164, MEM[(volatile struct st_atu1 *)4294964288B].TCNTB
+ 170 0026 7120     		add	#32,r1	!, tmp167
+ 171 0028 6311     		mov.w	@r1,r3	!,
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 4
+
+
+ 172 002a E2FE     		mov	#-2,r2	!, tmp171
+ 173 002c 2239     		and	r3,r2	! tmp169, tmp170
+ 174 002e 2121     		mov.w	r2,@r1	! tmp170,
+ 175 0030 4F26     		lds.l   @r15+,pr	!,
+ 176 0032 67F6     		mov.l   @r15+,r7	!,
+ 177 0034 66F6     		mov.l   @r15+,r6	!,
+ 178 0036 65F6     		mov.l   @r15+,r5	!,
+ 179 0038 64F6     		mov.l   @r15+,r4	!,
+ 180 003a 63F6     		mov.l   @r15+,r3	!,
+ 181 003c 62F6     		mov.l   @r15+,r2	!,
+ 182 003e 61F6     		mov.l   @r15+,r1	!,
+ 183 0040 60F6     		mov.l   @r15+,r0	!,
+ 184 0042 4F16     		lds.l   @r15+,macl	!,
+ 185 0044 4F06     		lds.l   @r15+,mach	!,
+ 186 0046 002B     		rte	
+ 187 0048 0009     		nop
+ 188              		.align 1
+ 189              	.L13:
+ 190 004a F440     		.short	-3008
+ 191              	.L14:
+ 192              		.align 2
+ 193              	.L12:
+ 194 004c 00000000 		.long	_wdt_tog
+ 195              		.size	_INT_ATU11_IMI1A, .-_INT_ATU11_IMI1A
+ 196              		.section	.text.platf_flash_eb,"ax",@progbits
+ 197              		.align 1
+ 198              		.global	_platf_flash_eb
+ 199              		.type	_platf_flash_eb, @function
+ 200              	_platf_flash_eb:
+ 201 0000 2F86     		mov.l	r8,@-r15	!,
+ 202 0002 E10B     		mov	#11,r1	!, tmp209
+ 203 0004 2F96     		mov.l	r9,@-r15	!,
+ 204 0006 3416     		cmp/hi	r1,r4	! tmp209, blockno
+ 205 0008 2FA6     		mov.l	r10,@-r15	!,
+ 206 000a 6843     		mov	r4,r8	! blockno, blockno
+ 207 000c 2FB6     		mov.l	r11,@-r15	!,
+ 208 000e 2FC6     		mov.l	r12,@-r15	!,
+ 209 0010 2FD6     		mov.l	r13,@-r15	!,
+ 210 0012 2FE6     		mov.l	r14,@-r15	!,
+ 211 0014 4F22     		sts.l	pr,@-r15	!,
+ 212 0016 8F02     		bf.s	.L73	!
+ 213 0018 7FF0     		add	#-16,r15	!,
+ 214 001a A0C0     		bra	.L29
+ 215 001c 0009     		nop	!
+ 216              	.L73:
+ 217 001e D170     		mov.l	.L34,r1	!, tmp210
+ 218 0020 6110     		mov.b	@r1,r1	! reflash_enabled, reflash_enabled
+ 219 0022 2118     		tst	r1,r1	! reflash_enabled
+ 220 0024 8B01     		bf	.L71	!
+ 221 0026 A0BE     		bra	.L16	!
+ 222 0028 E000     		mov	#0,r0	!, D.4958
+ 223              	.L71:
+ 224 002a D16E     		mov.l	.L47,r1	!, tmp213
+ 225 002c 6043     		mov	r4,r0	! blockno, tmp214
+ 226 002e 4008     		shll2	r0	!, tmp214
+ 227 0030 0D1E     		mov.l	@(r0,r1),r13	! fblocks, D.4963
+ 228 0032 91C3     		mov.w	.L36,r1	!,
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 5
+
+
+ 229 0034 3D16     		cmp/hi	r1,r13	! tmp216, D.4963
+ 230 0036 D16C     		mov.l	.L61,r1	!, tmp321
+ 231 0038 8B02     		bf	.L17	!
+ 232 003a 92C0     		mov.w	.L38,r2	!,
+ 233 003c A001     		bra	.L33
+ 234 003e 0009     		nop	!
+ 235              	.L17:
+ 236 0040 92BE     		mov.w	.L42,r2	!,
+ 237              	.L33:
+ 238 0042 D06A     		mov.l	.L40,r0	!, tmp221
+ 239 0044 400B     		jsr	@r0	! tmp221
+ 240 0046 2122     		mov.l	r2,@r1	! tmp220, pFLMCR
+ 241 0048 2008     		tst	r0,r0	! tmp222
+ 242 004a 8B01     		bf	.L72	!
+ 243 004c A0AA     		bra	.L31
+ 244 004e 0009     		nop	!
+ 245              	.L72:
+ 246 0050 91B7     		mov.w	.L41,r1	!,
+ 247 0052 E2BF     		mov	#-65,r2	!, tmp232
+ 248 0054 6310     		mov.b	@r1,r3	!,
+ 249 0056 2239     		and	r3,r2	! tmp230, tmp231
+ 250 0058 2120     		mov.b	r2,@r1	! tmp231,
+ 251 005a 91B1     		mov.w	.L42,r1	!,
+ 252 005c 6010     		mov.b	@r1,r0	!,
+ 253 005e CB40     		or	#64,r0	!, tmp237
+ 254 0060 2100     		mov.b	r0,@r1	! tmp237,
+ 255 0062 E165     		mov	#101,r1	!, tmp
+ 256              	! 28 "./CPU_STUFF.h" 1
+ 257 0064 4110     		0: dt r1	! tmp
+ 258              	! 0 "" 2
+ 259              	! 29 "./CPU_STUFF.h" 1
+ 260 0066 8BFD     		bf 0b
+ 261              	! 0 "" 2
+ 262 0068 9BAC     		mov.w	.L43,r11	!,
+ 263 006a E93D     		mov	#61,r9	!, ivtmp.36
+ 264 006c 91AB     		mov.w	.L44,r1	!,
+ 265 006e 9EAB     		mov.w	.L50,r14	!, tmp242
+ 266 0070 92AB     		mov.w	.L46,r2	!, tmp246
+ 267 0072 2BE1     		mov.w	r14,@r11	! tmp242, MEM[(volatile union un_wdt *)4294962192B].WRITE.TCSR
+ 268 0074 2121     		mov.w	r2,@r1	! tmp246, MEM[(volatile union un_wdt *)4294962192B].WRITE.RSTCSR
+ 269 0076 6183     		mov	r8,r1	! blockno, tmp332
+ 270 0078 DC5A     		mov.l	.L47,r12	!, tmp333
+ 271 007a 7101     		add	#1,r1	!, tmp332
+ 272 007c 4108     		shll2	r1	!, tmp332
+ 273 007e 9AA5     		mov.w	.L48,r10	!,
+ 274 0080 A082     		bra	.L19	!
+ 275 0082 3C1C     		add	r1,r12	! tmp332, tmp333
+ 276              	.L20:
+ 277 0084 300C     		add	r0,r0	! bitsel
+ 278 0086 72FF     		add	#-1,r2	!, blockno
+ 279              	.L28:
+ 280 0088 4110     		dt	r1	! tmp334
+ 281 008a 8BFB     		bf	.L20	!
+ 282 008c 2A20     		mov.b	r2,@r10	! blockno, MEM[(volatile struct st_flash *)4294961152B].EBR2.BYTE
+ 283 008e E20F     		mov	#15,r2	!, D.5142
+ 284 0090 919D     		mov.w	.L60,r1	!,
+ 285 0092 2209     		and	r0,r2	! bitsel, D.5142
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 6
+
+
+ 286 0094 4009     		shlr2	r0	!, tmp255
+ 287 0096 4009     		shlr2	r0	!, tmp255
+ 288 0098 2120     		mov.b	r2,@r1	! D.5142, MEM[(volatile struct st_flash *)4294961152B].EBR1.BYTE
+ 289 009a 600C     		extu.b	r0,r0	! tmp255, D.5140
+ 290 009c 9194     		mov.w	.L50,r1	!,
+ 291 009e 2A00     		mov.b	r0,@r10	! D.5140, MEM[(volatile struct st_flash *)4294961152B].EBR2.BYTE
+ 292 00a0 2B11     		mov.w	r1,@r11	!, MEM[(volatile union un_wdt *)4294962192B].WRITE.TCSR
+ 293 00a2 9195     		mov.w	.L51,r1	!, tmp262
+ 294 00a4 2B11     		mov.w	r1,@r11	! tmp262, MEM[(volatile union un_wdt *)4294962192B].WRITE.TCSR
+ 295 00a6 D152     		mov.l	.L59,r1	!, tmp263
+ 296 00a8 410B     		jsr	@r1
+ 297 00aa 0009     		nop	! tmp263
+ 298 00ac D14E     		mov.l	.L61,r1	!, tmp264
+ 299 00ae 9290     		mov.w	.L54,r2	!,
+ 300 00b0 6112     		mov.l	@r1,r1	! pFLMCR, pFLMCR.6
+ 301 00b2 6010     		mov.b	@r1,r0	! *pFLMCR.6_42,
+ 302 00b4 600C     		extu.b	r0,r0	! *pFLMCR.6_42, D.5137
+ 303 00b6 CB20     		or	#32,r0	!, D.5137
+ 304 00b8 2100     		mov.b	r0,@r1	! D.5137, *pFLMCR.6_42
+ 305              	! 28 "./CPU_STUFF.h" 1
+ 306 00ba 4210     		0: dt r2	! tmp
+ 307              	! 0 "" 2
+ 308              	! 29 "./CPU_STUFF.h" 1
+ 309 00bc 8BFD     		bf 0b
+ 310              	! 0 "" 2
+ 311 00be 6010     		mov.b	@r1,r0	! *pFLMCR.6_42,
+ 312 00c0 600C     		extu.b	r0,r0	! *pFLMCR.6_42, D.5135
+ 313 00c2 CB02     		or	#2,r0	!, D.5135
+ 314 00c4 2100     		mov.b	r0,@r1	! D.5135, *pFLMCR.6_42
+ 315 00c6 9185     		mov.w	.L55,r1	!,
+ 316 00c8 9285     		mov.w	.L56,r2	!,
+ 317 00ca 6713     		mov	r1,r7	! tmp271, tmp324
+ 318 00cc 5314     		mov.l	@(16,r1),r3	! MEM[(volatile struct st_atu0 *)4294964256B].TCNT, start
+ 319 00ce A008     		bra	.L21
+ 320 00d0 0009     		nop	!
+ 321              	.L22:
+ 322 00d2 D147     		mov.l	.L59,r1	!, tmp272
+ 323 00d4 1F23     		mov.l	r2,@(12,r15)	!,
+ 324 00d6 2F32     		mov.l	r3,@r15	!,
+ 325 00d8 410B     		jsr	@r1	! tmp272
+ 326 00da 1F71     		mov.l	r7,@(4,r15)	!,
+ 327 00dc 57F1     		mov.l	@(4,r15),r7	!,
+ 328 00de 63F2     		mov.l	@r15,r3	!,
+ 329 00e0 52F3     		mov.l	@(12,r15),r2	!,
+ 330              	.L21:
+ 331 00e2 5174     		mov.l	@(16,r7),r1	! MEM[(volatile struct st_atu0 *)4294964256B].TCNT, tmp274
+ 332 00e4 3138     		sub	r3,r1	! start, tmp274
+ 333 00e6 3126     		cmp/hi	r2,r1	! tmp325, tmp274
+ 334 00e8 8BF3     		bf	.L22	!
+ 335 00ea E265     		mov	#101,r2	!, tmp281
+ 336 00ec D33E     		mov.l	.L61,r3	!, tmp276
+ 337 00ee 6723     		mov	r2,r7	! tmp281, tmp
+ 338 00f0 6132     		mov.l	@r3,r1	! pFLMCR, pFLMCR.6
+ 339 00f2 6010     		mov.b	@r1,r0	! *pFLMCR.6_48,
+ 340 00f4 C9FD     		and	#253,r0	!, D.5133
+ 341 00f6 2100     		mov.b	r0,@r1	! D.5133, *pFLMCR.6_48
+ 342              	! 28 "./CPU_STUFF.h" 1
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 7
+
+
+ 343 00f8 4710     		0: dt r7	! tmp
+ 344              	! 0 "" 2
+ 345              	! 29 "./CPU_STUFF.h" 1
+ 346 00fa 8BFD     		bf 0b
+ 347              	! 0 "" 2
+ 348 00fc 6010     		mov.b	@r1,r0	! *pFLMCR.6_48,
+ 349 00fe C9DF     		and	#223,r0	!, D.5131
+ 350 0100 2100     		mov.b	r0,@r1	! D.5131, *pFLMCR.6_48
+ 351 0102 6123     		mov	r2,r1	! tmp281, tmp
+ 352              	! 28 "./CPU_STUFF.h" 1
+ 353 0104 4110     		0: dt r1	! tmp
+ 354              	! 0 "" 2
+ 355              	! 29 "./CPU_STUFF.h" 1
+ 356 0106 8BFD     		bf 0b
+ 357              	! 0 "" 2
+ 358 0108 D239     		mov.l	.L59,r2	!, tmp287
+ 359 010a 2F32     		mov.l	r3,@r15	!,
+ 360 010c 420B     		jsr	@r2	! tmp287
+ 361 010e 1F23     		mov.l	r2,@(12,r15)	!,
+ 362 0110 975D     		mov.w	.L60,r7	!,
+ 363 0112 E100     		mov	#0,r1	!, tmp293
+ 364 0114 2BE1     		mov.w	r14,@r11	! tmp328, MEM[(volatile union un_wdt *)4294962192B].WRITE.TCSR
+ 365 0116 2710     		mov.b	r1,@r7	! tmp293, MEM[(volatile struct st_flash *)4294961152B].EBR1.BYTE
+ 366 0118 2A10     		mov.b	r1,@r10	! tmp293, MEM[(volatile struct st_flash *)4294961152B].EBR2.BYTE
+ 367 011a 61D3     		mov	r13,r1	! D.4963, cur
+ 368 011c 52F3     		mov.l	@(12,r15),r2	!,
+ 369 011e 67C2     		mov.l	@r12,r7	! fblocks, end
+ 370 0120 6623     		mov	r2,r6	! tmp287, tmp323
+ 371 0122 A01A     		bra	.L23	!
+ 372 0124 63F2     		mov.l	@r15,r3	!,
+ 373              	.L25:
+ 374 0126 6232     		mov.l	@r3,r2	! pFLMCR, pFLMCR.7
+ 375 0128 6020     		mov.b	@r2,r0	! *pFLMCR.7_63,
+ 376 012a 600C     		extu.b	r0,r0	! *pFLMCR.7_63, D.5158
+ 377 012c CB08     		or	#8,r0	!, D.5158
+ 378 012e 2200     		mov.b	r0,@r2	! D.5158, *pFLMCR.7_63
+ 379 0130 E265     		mov	#101,r2	!, tmp
+ 380              	! 28 "./CPU_STUFF.h" 1
+ 381 0132 4210     		0: dt r2	! tmp
+ 382              	! 0 "" 2
+ 383              	! 29 "./CPU_STUFF.h" 1
+ 384 0134 8BFD     		bf 0b
+ 385              	! 0 "" 2
+ 386 0136 1F13     		mov.l	r1,@(12,r15)	!,
+ 387 0138 2F32     		mov.l	r3,@r15	!,
+ 388 013a 1F62     		mov.l	r6,@(8,r15)	!,
+ 389 013c 460B     		jsr	@r6	! tmp323
+ 390 013e 1F71     		mov.l	r7,@(4,r15)	!,
+ 391 0140 51F3     		mov.l	@(12,r15),r1	!,
+ 392 0142 E2FF     		mov	#-1,r2	!, tmp308
+ 393 0144 2122     		mov.l	r2,@r1	! tmp308, *cur_67
+ 394 0146 E215     		mov	#21,r2	!, tmp
+ 395              	! 28 "./CPU_STUFF.h" 1
+ 396 0148 4210     		0: dt r2	! tmp
+ 397              	! 0 "" 2
+ 398              	! 29 "./CPU_STUFF.h" 1
+ 399 014a 8BFD     		bf 0b
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 8
+
+
+ 400              	! 0 "" 2
+ 401 014c 6012     		mov.l	@r1,r0	! *cur_67, D.5157
+ 402 014e 63F2     		mov.l	@r15,r3	!,
+ 403 0150 88FF     		cmp/eq	#-1,r0	!, D.5157
+ 404 0152 56F2     		mov.l	@(8,r15),r6	!,
+ 405 0154 8F06     		bf.s	.L32	!
+ 406 0156 57F1     		mov.l	@(4,r15),r7	!,
+ 407 0158 7104     		add	#4,r1	!, cur
+ 408              	.L23:
+ 409 015a 3172     		cmp/hs       r7,r1	! end, cur
+ 410 015c 8BE3     		bf	.L25	!
+ 411 015e E101     		mov	#1,r1	!, rv
+ 412 0160 A001     		bra	.L24
+ 413 0162 0009     		nop	!
+ 414              	.L32:
+ 415 0164 E100     		mov	#0,r1	!, rv
+ 416              	.L24:
+ 417 0166 D220     		mov.l	.L61,r2	!, tmp312
+ 418 0168 6222     		mov.l	@r2,r2	! pFLMCR, pFLMCR.7
+ 419 016a 6020     		mov.b	@r2,r0	! *pFLMCR.7_71,
+ 420 016c C9F7     		and	#247,r0	!, D.5155
+ 421 016e 2200     		mov.b	r0,@r2	! D.5155, *pFLMCR.7_71
+ 422 0170 E233     		mov	#51,r2	!, tmp
+ 423              	! 28 "./CPU_STUFF.h" 1
+ 424 0172 4210     		0: dt r2	! tmp
+ 425              	! 0 "" 2
+ 426              	! 29 "./CPU_STUFF.h" 1
+ 427 0174 8BFD     		bf 0b
+ 428              	! 0 "" 2
+ 429 0176 2118     		tst	r1,r1	! rv
+ 430 0178 8904     		bt	.L26	!
+ 431 017a D11E     		mov.l	.L63,r1	!, tmp318
+ 432 017c 410B     		jsr	@r1
+ 433 017e 0009     		nop	! tmp318
+ 434 0180 A011     		bra	.L16	!
+ 435 0182 E000     		mov	#0,r0	!, D.4958
+ 436              	.L26:
+ 437 0184 4910     		dt	r9	! ivtmp.36
+ 438 0186 8904     		bt	.L27	!
+ 439              	.L19:
+ 440 0188 6183     		mov	r8,r1	! blockno, tmp334
+ 441 018a 6283     		mov	r8,r2	! blockno, blockno
+ 442 018c E001     		mov	#1,r0	!, bitsel
+ 443 018e AF7B     		bra	.L28	!
+ 444 0190 7101     		add	#1,r1	!, tmp334
+ 445              	.L27:
+ 446 0192 D118     		mov.l	.L63,r1	!, tmp319
+ 447 0194 410B     		jsr	@r1
+ 448 0196 0009     		nop	! tmp319
+ 449 0198 901E     		mov.w	.L64,r0	!,
+ 450 019a A004     		bra	.L16
+ 451 019c 0009     		nop	!
+ 452              	.L29:
+ 453 019e 901C     		mov.w	.L65,r0	!,
+ 454 01a0 A001     		bra	.L16
+ 455 01a2 0009     		nop	!
+ 456              	.L31:
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 9
+
+
+ 457 01a4 901A     		mov.w	.L66,r0	!,
+ 458              	.L16:
+ 459 01a6 7F10     		add	#16,r15	!,
+ 460 01a8 4F26     		lds.l   @r15+,pr	!,
+ 461 01aa 6EF6     		mov.l   @r15+,r14	!,
+ 462 01ac 6DF6     		mov.l   @r15+,r13	!,
+ 463 01ae 6CF6     		mov.l   @r15+,r12	!,
+ 464 01b0 6BF6     		mov.l   @r15+,r11	!,
+ 465 01b2 6AF6     		mov.l   @r15+,r10	!,
+ 466 01b4 69F6     		mov.l   @r15+,r9	!,
+ 467 01b6 68F6     		mov.l   @r15+,r8	!,
+ 468 01b8 000B     		rts	
+ 469 01ba 0009     		nop
+ 470              		.align 1
+ 471              	.L36:
+ 472 01bc 7FFF     		.short	32767
+ 473              	.L38:
+ 474 01be E801     		.short	-6143
+ 475              	.L42:
+ 476 01c0 E800     		.short	-6144
+ 477              	.L41:
+ 478 01c2 F719     		.short	-2279
+ 479              	.L43:
+ 480 01c4 EC10     		.short	-5104
+ 481              	.L44:
+ 482 01c6 EC12     		.short	-5102
+ 483              	.L50:
+ 484 01c8 A558     		.short	-23208
+ 485              	.L46:
+ 486 01ca 5A4F     		.short	23119
+ 487              	.L48:
+ 488 01cc E803     		.short	-6141
+ 489              	.L60:
+ 490 01ce E802     		.short	-6142
+ 491              	.L51:
+ 492 01d0 A57E     		.short	-23170
+ 493              	.L54:
+ 494 01d2 07D1     		.short	2001
+ 495              	.L55:
+ 496 01d4 F420     		.short	-3040
+ 497              	.L56:
+ 498 01d6 1869     		.short	6249
+ 499              	.L64:
+ 500 01d8 008D     		.short	141
+ 501              	.L65:
+ 502 01da 008C     		.short	140
+ 503              	.L66:
+ 504 01dc 0080     		.short	128
+ 505              	.L67:
+ 506 01de 0009     		.align 2
+ 507              	.L34:
+ 508 01e0 00000000 		.long	_reflash_enabled
+ 509              	.L47:
+ 510 01e4 00000000 		.long	_fblocks
+ 511              	.L61:
+ 512 01e8 00000004 		.long	_pFLMCR
+ 513              	.L40:
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 10
+
+
+ 514 01ec 00000000 		.long	_fwecheck
+ 515              	.L59:
+ 516 01f0 00000000 		.long	_manual_wdt
+ 517              	.L63:
+ 518 01f4 00000000 		.long	_sweclear
+ 519              		.size	_platf_flash_eb, .-_platf_flash_eb
+ 520              		.section	.text.platf_flash_wb,"ax",@progbits
+ 521              		.align 1
+ 522              		.global	_platf_flash_wb
+ 523              		.type	_platf_flash_wb, @function
+ 524              	_platf_flash_wb:
+ 525 0000 2F86     		mov.l	r8,@-r15	!,
+ 526 0002 2F96     		mov.l	r9,@-r15	!,
+ 527 0004 2FA6     		mov.l	r10,@-r15	!,
+ 528 0006 6A43     		mov	r4,r10	! dest, dest
+ 529 0008 2FB6     		mov.l	r11,@-r15	!,
+ 530 000a 2FC6     		mov.l	r12,@-r15	!,
+ 531 000c 2FD6     		mov.l	r13,@-r15	!,
+ 532 000e 2FE6     		mov.l	r14,@-r15	!,
+ 533 0010 91DB     		mov.w	.L101,r1	!,
+ 534 0012 4F22     		sts.l	pr,@-r15	!,
+ 535 0014 3F18     		sub	r1,r15	!,
+ 536 0016 D175     		mov.l	.L102,r1	!, tmp277
+ 537 0018 3416     		cmp/hi	r1,r4	! tmp277, dest
+ 538 001a 8F02     		bf.s	.L150	!
+ 539 001c 1F57     		mov.l	r5,@(28,r15)	! src, %sfp
+ 540 001e A101     		bra	.L88
+ 541 0020 0009     		nop	!
+ 542              	.L150:
+ 543 0022 6043     		mov	r4,r0	! dest,
+ 544 0024 C81F     		tst	#31,r0	!,
+ 545 0026 8901     		bt	.L149	!
+ 546 0028 A0FF     		bra	.L89
+ 547 002a 0009     		nop	!
+ 548              	.L149:
+ 549 002c 6063     		mov	r6,r0	! len,
+ 550 002e C81F     		tst	#31,r0	!,
+ 551 0030 8901     		bt	.L148	!
+ 552 0032 A0FD     		bra	.L90
+ 553 0034 0009     		nop	!
+ 554              	.L148:
+ 555 0036 D16E     		mov.l	.L103,r1	!, tmp280
+ 556 0038 6110     		mov.b	@r1,r1	! reflash_enabled, reflash_enabled
+ 557 003a 2118     		tst	r1,r1	! reflash_enabled
+ 558 003c 890A     		bt	.L76	!
+ 559 003e 6BF3     		mov	r15,r11	!, tmp398
+ 560 0040 91C4     		mov.w	.L129,r1	!,
+ 561 0042 6963     		mov	r6,r9	! len, len
+ 562 0044 31FC     		add	r15,r1	!,
+ 563 0046 6C13     		mov	r1,r12	!, tmp401
+ 564 0048 3C48     		sub	r4,r12	! dest, tmp401
+ 565 004a 6843     		mov	r4,r8	! dest, dest
+ 566 004c 7B20     		add	#32,r11	!, tmp398
+ 567 004e 1F15     		mov.l	r1,@(20,r15)	!, %sfp
+ 568 0050 A0E2     		bra	.L77	!
+ 569 0052 3C68     		sub	r6,r12	! len, tmp401
+ 570              	.L76:
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 11
+
+
+ 571 0054 A0ED     		bra	.L75	!
+ 572 0056 ED00     		mov	#0,r13	!, rv
+ 573              	.L87:
+ 574 0058 91B9     		mov.w	.L105,r1	!,
+ 575 005a 3816     		cmp/hi	r1,r8	! tmp283, dest
+ 576 005c D165     		mov.l	.L130,r1	!, tmp385
+ 577 005e 8D03     		bt.s	.L78	!
+ 578 0060 55F7     		mov.l	@(28,r15),r5	! %sfp, tmp290
+ 579 0062 92B5     		mov.w	.L113,r2	!,
+ 580 0064 A002     		bra	.L155	!
+ 581 0066 64B3     		mov	r11,r4	! tmp398,
+ 582              	.L78:
+ 583 0068 92B3     		mov.w	.L108,r2	!,
+ 584 006a 64B3     		mov	r11,r4	! tmp398,
+ 585              	.L155:
+ 586 006c D062     		mov.l	.L109,r0	!, tmp295
+ 587 006e 35A8     		sub	r10,r5	! dest, tmp290
+ 588 0070 2122     		mov.l	r2,@r1	! tmp287, pFLMCR
+ 589 0072 358C     		add	r8,r5	! dest,
+ 590 0074 400B     		jsr	@r0	! tmp295
+ 591 0076 E620     		mov	#32,r6	!,
+ 592 0078 D160     		mov.l	.L110,r1	!, tmp301
+ 593 007a 65B3     		mov	r11,r5	! tmp398,
+ 594 007c 94A6     		mov.w	.L129,r4	!,
+ 595 007e E2BF     		mov	#-65,r2	!, tmp310
+ 596 0080 410B     		jsr	@r1	! tmp301
+ 597 0082 34FC     		add	r15,r4	!,
+ 598 0084 91A6     		mov.w	.L112,r1	!,
+ 599 0086 6310     		mov.b	@r1,r3	!,
+ 600 0088 2239     		and	r3,r2	! tmp308, tmp309
+ 601 008a 2120     		mov.b	r2,@r1	! tmp309,
+ 602 008c 91A0     		mov.w	.L113,r1	!,
+ 603 008e 6010     		mov.b	@r1,r0	!,
+ 604 0090 CB40     		or	#64,r0	!, tmp315
+ 605 0092 2100     		mov.b	r0,@r1	! tmp315,
+ 606 0094 E165     		mov	#101,r1	!, tmp
+ 607              	! 28 "./CPU_STUFF.h" 1
+ 608 0096 4110     		0: dt r1	! tmp
+ 609              	! 0 "" 2
+ 610              	! 29 "./CPU_STUFF.h" 1
+ 611 0098 8BFD     		bf 0b
+ 612              	! 0 "" 2
+ 613 009a 9E9C     		mov.w	.L114,r14	!,
+ 614 009c 919C     		mov.w	.L121,r1	!, tmp320
+ 615 009e 2E11     		mov.w	r1,@r14	! tmp320, MEM[(volatile union un_wdt *)4294962192B].WRITE.TCSR
+ 616 00a0 919B     		mov.w	.L116,r1	!,
+ 617 00a2 929B     		mov.w	.L117,r2	!, tmp324
+ 618 00a4 939B     		mov.w	.L118,r3	!,
+ 619 00a6 9D9B     		mov.w	.L119,r13	!,
+ 620 00a8 2121     		mov.w	r2,@r1	! tmp324, MEM[(volatile union un_wdt *)4294962192B].WRITE.RSTCSR
+ 621 00aa 3D8C     		add	r8,r13	! dest, D.5320
+ 622 00ac 1F36     		mov.l	r3,@(24,r15)	!, %sfp
+ 623              	.L86:
+ 624 00ae D154     		mov.l	.L128,r1	!, tmp325
+ 625 00b0 410B     		jsr	@r1
+ 626 00b2 0009     		nop	! tmp325
+ 627 00b4 61D3     		mov	r13,r1	! D.5320, tmp402
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 12
+
+
+ 628 00b6 6083     		mov	r8,r0	! dest, dest
+ 629 00b8 3188     		sub	r8,r1	! dest, tmp402
+ 630              	.L80:
+ 631 00ba 62C3     		mov	r12,r2	! tmp401, tmp330
+ 632 00bc 329C     		add	r9,r2	! len, tmp330
+ 633 00be 022C     		mov.b	@(r0,r2),r2	! MEM[base: D.5319_78, index: dest_123, offset: 0B],
+ 634 00c0 4110     		dt	r1	! tmp402
+ 635 00c2 2020     		mov.b	r2,@r0	! MEM[base: D.5319_78, index: dest_123, offset: 0B], *D.5236_57
+ 636 00c4 8FF9     		bf.s	.L80	!
+ 637 00c6 7001     		add	#1,r0	!, dest
+ 638              	! 62 "ISR.h" 1
+ 639 00c8 0002     		stc	sr, r0 
+ 640 00ca 6603     	mov r0, r6 	! uim
+ 641 00cc CBF0     	or	#0xF0, r0 
+ 642 00ce 400E     	ldc	r0, sr 
+ 643 00d0 6063     	mov	r6, r0 	! uim
+ 644 00d2 C9F0     	and	#0xF0, r0 
+ 645 00d4 6603     	mov	r0, r6 	! uim
+ 646              	
+ 647              	! 0 "" 2
+ 648 00d6 977F     		mov.w	.L121,r7	!, tmp335
+ 649 00d8 9183     		mov.w	.L122,r1	!, tmp337
+ 650 00da D049     		mov.l	.L128,r0	!,
+ 651 00dc 2E71     		mov.w	r7,@r14	! tmp335, MEM[(volatile union un_wdt *)4294962192B].WRITE.TCSR
+ 652 00de 2E11     		mov.w	r1,@r14	! tmp337, MEM[(volatile union un_wdt *)4294962192B].WRITE.TCSR
+ 653 00e0 1F63     		mov.l	r6,@(12,r15)	!,
+ 654 00e2 400B     		jsr	@r0	!
+ 655 00e4 1F72     		mov.l	r7,@(8,r15)	!,
+ 656 00e6 D343     		mov.l	.L130,r3	!, tmp339
+ 657 00e8 927C     		mov.w	.L125,r2	!,
+ 658 00ea 6132     		mov.l	@r3,r1	! pFLMCR, pFLMCR.4
+ 659 00ec 6010     		mov.b	@r1,r0	! *pFLMCR.4_62,
+ 660 00ee 600C     		extu.b	r0,r0	! *pFLMCR.4_62, D.5241
+ 661 00f0 CB10     		or	#16,r0	!, D.5241
+ 662 00f2 2100     		mov.b	r0,@r1	! D.5241, *pFLMCR.4_62
+ 663              	! 28 "./CPU_STUFF.h" 1
+ 664 00f4 4210     		0: dt r2	! tmp
+ 665              	! 0 "" 2
+ 666              	! 29 "./CPU_STUFF.h" 1
+ 667 00f6 8BFD     		bf 0b
+ 668              	! 0 "" 2
+ 669 00f8 6010     		mov.b	@r1,r0	! *pFLMCR.4_62,
+ 670 00fa 600C     		extu.b	r0,r0	! *pFLMCR.4_62, D.5243
+ 671 00fc CB01     		or	#1,r0	!, D.5243
+ 672 00fe 2100     		mov.b	r0,@r1	! D.5243, *pFLMCR.4_62
+ 673 0100 9271     		mov.w	.L126,r2	!,
+ 674              	! 28 "./CPU_STUFF.h" 1
+ 675 0102 4210     		0: dt r2	! tmp
+ 676              	! 0 "" 2
+ 677              	! 29 "./CPU_STUFF.h" 1
+ 678 0104 8BFD     		bf 0b
+ 679              	! 0 "" 2
+ 680 0106 6010     		mov.b	@r1,r0	! *pFLMCR.4_62,
+ 681 0108 E265     		mov	#101,r2	!, tmp352
+ 682 010a C9FE     		and	#254,r0	!, D.5245
+ 683 010c 2100     		mov.b	r0,@r1	! D.5245, *pFLMCR.4_62
+ 684 010e 6523     		mov	r2,r5	! tmp352, tmp
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 13
+
+
+ 685              	! 28 "./CPU_STUFF.h" 1
+ 686 0110 4510     		0: dt r5	! tmp
+ 687              	! 0 "" 2
+ 688              	! 29 "./CPU_STUFF.h" 1
+ 689 0112 8BFD     		bf 0b
+ 690              	! 0 "" 2
+ 691 0114 6010     		mov.b	@r1,r0	! *pFLMCR.4_62,
+ 692 0116 C9EF     		and	#239,r0	!, D.5247
+ 693 0118 2100     		mov.b	r0,@r1	! D.5247, *pFLMCR.4_62
+ 694 011a 6123     		mov	r2,r1	! tmp352, tmp
+ 695              	! 28 "./CPU_STUFF.h" 1
+ 696 011c 4110     		0: dt r1	! tmp
+ 697              	! 0 "" 2
+ 698              	! 29 "./CPU_STUFF.h" 1
+ 699 011e 8BFD     		bf 0b
+ 700              	! 0 "" 2
+ 701 0120 57F2     		mov.l	@(8,r15),r7	!,
+ 702 0122 2E71     		mov.w	r7,@r14	! tmp335, MEM[(volatile union un_wdt *)4294962192B].WRITE.TCSR
+ 703 0124 56F3     		mov.l	@(12,r15),r6	!,
+ 704              	! 94 "ISR.h" 1
+ 705 0126 0002     		stc	sr, r0 
+ 706 0128 CBF0     	or	#0xF0, r0 
+ 707 012a CAF0     	xor #0xF0, r0 
+ 708 012c 206B     	or	r6, r0 	! uim
+ 709 012e 400E     	ldc	r0, sr
+ 710              	! 0 "" 2
+ 711 0130 D133     		mov.l	.L128,r1	!,
+ 712 0132 2F22     		mov.l	r2,@r15	!,
+ 713 0134 410B     		jsr	@r1	!
+ 714 0136 1F31     		mov.l	r3,@(4,r15)	!,
+ 715 0138 53F1     		mov.l	@(4,r15),r3	!,
+ 716 013a 6132     		mov.l	@r3,r1	! pFLMCR, pFLMCR.3
+ 717 013c 6010     		mov.b	@r1,r0	! *pFLMCR.3_29,
+ 718 013e 600C     		extu.b	r0,r0	! *pFLMCR.3_29, D.5221
+ 719 0140 CB04     		or	#4,r0	!, D.5221
+ 720 0142 2100     		mov.b	r0,@r1	! D.5221, *pFLMCR.3_29
+ 721 0144 62F2     		mov.l	@r15,r2	!,
+ 722              	! 28 "./CPU_STUFF.h" 1
+ 723 0146 4210     		0: dt r2	! tmp
+ 724              	! 0 "" 2
+ 725              	! 29 "./CPU_STUFF.h" 1
+ 726 0148 8BFD     		bf 0b
+ 727              	! 0 "" 2
+ 728 014a D72D     		mov.l	.L128,r7	!, tmp387
+ 729 014c E200     		mov	#0,r2	!, m
+ 730 014e E600     		mov	#0,r6	!, cur
+ 731 0150 6163     		mov	r6,r1	! cur, D.5272
+ 732              	.L154:
+ 733 0152 318C     		add	r8,r1	! dest, D.5272
+ 734 0154 E3FF     		mov	#-1,r3	!, tmp366
+ 735 0156 2132     		mov.l	r3,@r1	! tmp366, *D.5272_76
+ 736 0158 E333     		mov	#51,r3	!, tmp
+ 737              	! 28 "./CPU_STUFF.h" 1
+ 738 015a 4310     		0: dt r3	! tmp
+ 739              	! 0 "" 2
+ 740              	! 29 "./CPU_STUFF.h" 1
+ 741 015c 8BFD     		bf 0b
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 14
+
+
+ 742              	! 0 "" 2
+ 743 015e 60B3     		mov	r11,r0	! tmp398,
+ 744 0160 6312     		mov.l	@r1,r3	! *D.5272_76, verifdata
+ 745 0162 016E     		mov.l	@(r0,r6),r1	! MEM[symbol: src, index: cur_120, offset: 0B], srcdata
+ 746 0164 2F22     		mov.l	r2,@r15	!,
+ 747 0166 1F14     		mov.l	r1,@(16,r15)	!,
+ 748 0168 1F31     		mov.l	r3,@(4,r15)	!,
+ 749 016a 1F63     		mov.l	r6,@(12,r15)	!,
+ 750 016c 470B     		jsr	@r7	! tmp387
+ 751 016e 1F72     		mov.l	r7,@(8,r15)	!,
+ 752 0170 51F4     		mov.l	@(16,r15),r1	!,
+ 753 0172 53F1     		mov.l	@(4,r15),r3	!,
+ 754 0174 62F2     		mov.l	@r15,r2	!,
+ 755 0176 3310     		cmp/eq	r1,r3	! srcdata, verifdata
+ 756 0178 56F3     		mov.l	@(12,r15),r6	!,
+ 757 017a 8D01     		bt.s	.L81	!
+ 758 017c 57F2     		mov.l	@(8,r15),r7	!,
+ 759 017e E201     		mov	#1,r2	!, m
+ 760              	.L81:
+ 761 0180 6337     		not	r3,r3	! verifdata, D.5217
+ 762 0182 2318     		tst	r1,r3	! srcdata, D.5217
+ 763 0184 8F40     		bf.s	.L92	!
+ 764 0186 213B     		or	r3,r1	! D.5217, tmp374
+ 765 0188 9320     		mov.w	.L129,r3	!,
+ 766 018a 60F3     		mov	r15,r0	!,
+ 767 018c 336C     		add	r6,r3	! cur,
+ 768 018e 7604     		add	#4,r6	!, cur
+ 769 0190 0316     		mov.l	r1,@(r0,r3)	! tmp374, MEM[symbol: reprog, index: cur_120, offset: 0B]
+ 770 0192 6063     		mov	r6,r0	! cur,
+ 771 0194 8820     		cmp/eq	#32,r0	!,
+ 772 0196 8FDC     		bf.s	.L154	!
+ 773 0198 6163     		mov	r6,r1	! cur, D.5272
+ 774 019a D116     		mov.l	.L130,r1	!, tmp376
+ 775 019c 6112     		mov.l	@r1,r1	! pFLMCR, pFLMCR.3
+ 776 019e 6010     		mov.b	@r1,r0	! *pFLMCR.3_45,
+ 777 01a0 C9FB     		and	#251,r0	!, D.5212
+ 778 01a2 2100     		mov.b	r0,@r1	! D.5212, *pFLMCR.3_45
+ 779 01a4 E133     		mov	#51,r1	!, tmp
+ 780              	! 28 "./CPU_STUFF.h" 1
+ 781 01a6 4110     		0: dt r1	! tmp
+ 782              	! 0 "" 2
+ 783              	! 29 "./CPU_STUFF.h" 1
+ 784 01a8 8BFD     		bf 0b
+ 785              	! 0 "" 2
+ 786 01aa 2228     		tst	r2,r2	! m
+ 787 01ac 8F05     		bf.s	.L84	!
+ 788 01ae 51F6     		mov.l	@(24,r15),r1	! %sfp,
+ 789 01b0 D114     		mov.l	.L131,r1	!, tmp382
+ 790 01b2 410B     		jsr	@r1	! tmp382
+ 791 01b4 7820     		add	#32,r8	!, dest
+ 792 01b6 A02F     		bra	.L77	!
+ 793 01b8 79E0     		add	#-32,r9	!, len
+ 794              	.L84:
+ 795 01ba 4110     		dt	r1	!
+ 796 01bc 8D02     		bt.s	.L147	!
+ 797 01be 1F16     		mov.l	r1,@(24,r15)	!, %sfp
+ 798 01c0 AF75     		bra	.L86
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 15
+
+
+ 799 01c2 0009     		nop	!
+ 800              	.L147:
+ 801 01c4 9D10     		mov.w	.L132,r13	!,
+ 802 01c6 A020     		bra	.L82
+ 803 01c8 0009     		nop	!
+ 804              		.align 1
+ 805              	.L101:
+ 806 01ca 0120     		.short	288
+ 807              	.L129:
+ 808 01cc 00A0     		.short	160
+ 809              	.L105:
+ 810 01ce 7FFF     		.short	32767
+ 811              	.L113:
+ 812 01d0 E800     		.short	-6144
+ 813              	.L108:
+ 814 01d2 E801     		.short	-6143
+ 815              	.L112:
+ 816 01d4 F719     		.short	-2279
+ 817              	.L114:
+ 818 01d6 EC10     		.short	-5104
+ 819              	.L121:
+ 820 01d8 A558     		.short	-23208
+ 821              	.L116:
+ 822 01da EC12     		.short	-5102
+ 823              	.L117:
+ 824 01dc 5A4F     		.short	23119
+ 825              	.L118:
+ 826 01de 018F     		.short	399
+ 827              	.L119:
+ 828 01e0 0080     		.short	128
+ 829              	.L122:
+ 830 01e2 A57D     		.short	-23171
+ 831              	.L125:
+ 832 01e4 0BB9     		.short	3001
+ 833              	.L126:
+ 834 01e6 1389     		.short	5001
+ 835              	.L132:
+ 836 01e8 008F     		.short	143
+ 837              	.L133:
+ 838 01ea 0009     		.align 2
+ 839              	.L102:
+ 840 01ec 0003FFFF 		.long	262143
+ 841              	.L103:
+ 842 01f0 00000000 		.long	_reflash_enabled
+ 843              	.L130:
+ 844 01f4 00000004 		.long	_pFLMCR
+ 845              	.L109:
+ 846 01f8 00000000 		.long	_memcpy
+ 847              	.L110:
+ 848 01fc 00000000 		.long	___movmemSI32
+ 849              	.L128:
+ 850 0200 00000000 		.long	_manual_wdt
+ 851              	.L131:
+ 852 0204 00000000 		.long	_sweclear
+ 853              	.L92:
+ 854 0208 9D20     		mov.w	.L134,r13	!,
+ 855              	.L82:
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 16
+
+
+ 856 020a D113     		mov.l	.L135,r1	!, tmp383
+ 857 020c 410B     		jsr	@r1
+ 858 020e 0009     		nop	! tmp383
+ 859 0210 2DD8     		tst	r13,r13	! rv
+ 860 0212 8B0E     		bf	.L75	!
+ 861 0214 7820     		add	#32,r8	!, dest
+ 862 0216 79E0     		add	#-32,r9	!, len
+ 863              	.L77:
+ 864 0218 2998     		tst	r9,r9	! len
+ 865 021a 8901     		bt	.L146	!
+ 866 021c AF1C     		bra	.L87
+ 867 021e 0009     		nop	!
+ 868              	.L146:
+ 869 0220 AF18     		bra	.L76
+ 870 0222 0009     		nop	!
+ 871              	.L88:
+ 872 0224 9D13     		mov.w	.L136,r13	!,
+ 873 0226 A005     		bra	.L153	!
+ 874 0228 60D3     		mov	r13,r0	! rv,
+ 875              	.L89:
+ 876 022a 9D11     		mov.w	.L137,r13	!,
+ 877 022c A002     		bra	.L153	!
+ 878 022e 60D3     		mov	r13,r0	! rv,
+ 879              	.L90:
+ 880 0230 9D0F     		mov.w	.L138,r13	!,
+ 881              	.L75:
+ 882 0232 60D3     		mov	r13,r0	! rv,
+ 883              	.L153:
+ 884 0234 970E     		mov.w	.L139,r7	!,
+ 885 0236 3F7C     		add	r7,r15	!,
+ 886 0238 4F26     		lds.l   @r15+,pr	!,
+ 887 023a 6EF6     		mov.l   @r15+,r14	!,
+ 888 023c 6DF6     		mov.l   @r15+,r13	!,
+ 889 023e 6CF6     		mov.l   @r15+,r12	!,
+ 890 0240 6BF6     		mov.l   @r15+,r11	!,
+ 891 0242 6AF6     		mov.l   @r15+,r10	!,
+ 892 0244 69F6     		mov.l   @r15+,r9	!,
+ 893 0246 68F6     		mov.l   @r15+,r8	!,
+ 894 0248 000B     		rts	
+ 895 024a 0009     		nop
+ 896              		.align 1
+ 897              	.L134:
+ 898 024c 008B     		.short	139
+ 899              	.L136:
+ 900 024e 0088     		.short	136
+ 901              	.L137:
+ 902 0250 0089     		.short	137
+ 903              	.L138:
+ 904 0252 008A     		.short	138
+ 905              	.L139:
+ 906 0254 0120     		.short	288
+ 907              	.L140:
+ 908 0256 0009     		.align 2
+ 909              	.L135:
+ 910 0258 00000000 		.long	_sweclear
+ 911              		.size	_platf_flash_wb, .-_platf_flash_wb
+ 912              		.section	.text.platf_flash_init,"ax",@progbits
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 17
+
+
+ 913              		.align 1
+ 914              		.global	_platf_flash_init
+ 915              		.type	_platf_flash_init, @function
+ 916              	_platf_flash_init:
+ 917 0000 2F86     		mov.l	r8,@-r15	!,
+ 918 0002 E200     		mov	#0,r2	!, tmp165
+ 919 0004 D107     		mov.l	.L159,r1	!, tmp164
+ 920 0006 6843     		mov	r4,r8	! err, err
+ 921 0008 D007     		mov.l	.L160,r0	!, tmp166
+ 922 000a 4F22     		sts.l	pr,@-r15	!,
+ 923 000c 400B     		jsr	@r0	! tmp166
+ 924 000e 2120     		mov.b	r2,@r1	! tmp165, reflash_enabled
+ 925 0010 2008     		tst	r0,r0	! tmp167
+ 926 0012 8F02     		bf.s	.L158	!
+ 927 0014 E180     		mov	#-128,r1	!, tmp169
+ 928 0016 A001     		bra	.L157	!
+ 929 0018 2810     		mov.b	r1,@r8	! tmp169, *err_4(D)
+ 930              	.L158:
+ 931 001a E001     		mov	#1,r0	!, D.4879
+ 932              	.L157:
+ 933 001c 4F26     		lds.l   @r15+,pr	!,
+ 934 001e 68F6     		mov.l   @r15+,r8	!,
+ 935 0020 000B     		rts	
+ 936 0022 0009     		nop
+ 937              	.L161:
+ 938              		.align 2
+ 939              	.L159:
+ 940 0024 00000000 		.long	_reflash_enabled
+ 941              	.L160:
+ 942 0028 00000000 		.long	_fwecheck
+ 943              		.size	_platf_flash_init, .-_platf_flash_init
+ 944              		.section	.text.platf_flash_unprotect,"ax",@progbits
+ 945              		.align 1
+ 946              		.global	_platf_flash_unprotect
+ 947              		.type	_platf_flash_unprotect, @function
+ 948              	_platf_flash_unprotect:
+ 949 0000 D101     		mov.l	.L163,r1	!, tmp160
+ 950 0002 E201     		mov	#1,r2	!, tmp161
+ 951 0004 000B     		rts	
+ 952 0006 2120     		mov.b	r2,@r1	! tmp161, reflash_enabled
+ 953              	.L164:
+ 954              		.align 2
+ 955              	.L163:
+ 956 0008 00000000 		.long	_reflash_enabled
+ 957              		.size	_platf_flash_unprotect, .-_platf_flash_unprotect
+ 958              		.comm	_ivt,660,4
+ 959              		.global	_fblocks
+ 960              		.section	.rodata.align4,"a"
+ 961              		.align 2
+ 962              		.type	_fblocks, @object
+ 963              		.size	_fblocks, 52
+ 964              	_fblocks:
+ 965 0000 00000000 		.long	0
+ 966 0004 00001000 		.long	4096
+ 967 0008 00002000 		.long	8192
+ 968 000c 00003000 		.long	12288
+ 969 0010 00004000 		.long	16384
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 18
+
+
+ 970 0014 00005000 		.long	20480
+ 971 0018 00006000 		.long	24576
+ 972 001c 00007000 		.long	28672
+ 973 0020 00008000 		.long	32768
+ 974 0024 00010000 		.long	65536
+ 975 0028 00020000 		.long	131072
+ 976 002c 00030000 		.long	196608
+ 977 0030 00040000 		.long	262144
+ 978              		.local	_reflash_enabled
+ 979              		.comm	_reflash_enabled,1,1
+ 980              		.local	_pFLMCR
+ 981              		.comm	_pFLMCR,4,4
+ 982              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
+Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s 			page 19
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 FLASH.c
+C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s:49     .text.sweclear:0000000000000000 _sweclear
+C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s:79     .text.fwecheck:0000000000000000 _fwecheck
+C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s:104    .text.die_trace:0000000000000000 _die_trace
+C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s:150    .text.INT_ATU11_IMI1A:0000000000000000 _INT_ATU11_IMI1A
+C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s:200    .text.platf_flash_eb:0000000000000000 _platf_flash_eb
+                             .bss:0000000000000000 _reflash_enabled
+C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s:964    .rodata.align4:0000000000000000 _fblocks
+C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s:981    .bss:0000000000000004 _pFLMCR
+C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s:524    .text.platf_flash_wb:0000000000000000 _platf_flash_wb
+C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s:916    .text.platf_flash_init:0000000000000000 _platf_flash_init
+C:\Users\Limbo-s\AppData\Local\Temp\ccQ2OMBK.s:948    .text.platf_flash_unprotect:0000000000000000 _platf_flash_unprotect
+                            *COM*:0000000000000294 _ivt
+
+UNDEFINED SYMBOLS
+_wdt_tog
+_manual_wdt
+_memcpy
+___movmemSI32

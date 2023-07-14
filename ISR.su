@@ -1,0 +1,2 @@
+ISR.h:165:6:die_trace	0	static
+WDT.h:39:6:INT_ATU11_IMI1A	44	static

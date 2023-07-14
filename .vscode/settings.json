@@ -1,0 +1,16 @@
+{
+    "makefile.configurations": [
+    {
+        "name": "Default",
+        "makeArgs": []
+    },
+    {
+        "name": "Clean",
+        "makeArgs": ["clean"]
+    },
+    {
+        "name": "Print make version",
+        "makeArgs": ["--version"]
+    }
+]
+}
