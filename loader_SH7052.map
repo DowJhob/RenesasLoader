@@ -97,7 +97,7 @@ LOAD c:/program files (x86)/kpit/gnushv13.01-elf/sh-elf/bin/../lib/gcc/sh-elf/4.
 LOAD c:/program files (x86)/kpit/gnushv13.01-elf/sh-elf/bin/../lib/gcc/sh-elf/4.7-GNUSH_v13.01/m2\libgcc-Os-4-200.a
                 0x00000000ffffdffc                _stackinit = ((ORIGIN (RAM) + 0x6000) - 0x4)
 
-.text           0x00000000ffff8000     0x137c
+.text           0x00000000ffff8000     0x1310
                 0x00000000ffff8000                . = ALIGN (0x4)
  *(.rja)
  .rja           0x00000000ffff8000       0x2c start_mmc.o
@@ -188,112 +188,97 @@ LOAD c:/program files (x86)/kpit/gnushv13.01-elf/sh-elf/bin/../lib/gcc/sh-elf/4.
                 0x00000000ffff892c                _main
  .text.crc16    0x00000000ffff89c4       0x78 crc.o
                 0x00000000ffff89c4                _crc16
- .text.fwecheck
-                0x00000000ffff8a3c       0x20 FLASH.o
-                0x00000000ffff8a3c                _fwecheck
- .text.sweset   0x00000000ffff8a5c       0x24 FLASH.o
-                0x00000000ffff8a5c                _sweset
  .text.sweclear
-                0x00000000ffff8a80       0x24 FLASH.o
-                0x00000000ffff8a80                _sweclear
- .text.ferasevf
-                0x00000000ffff8aa4       0x84 FLASH.o
-                0x00000000ffff8aa4                _ferasevf
- .text.ferase   0x00000000ffff8b28       0xc8 FLASH.o
-                0x00000000ffff8b28                _ferase
+                0x00000000ffff8a3c       0x24 FLASH.o
+ .text.fwecheck
+                0x00000000ffff8a60       0x20 FLASH.o
  .text.platf_flash_eb
-                0x00000000ffff8bf0       0xc4 FLASH.o
-                0x00000000ffff8bf0                _platf_flash_eb
- .text.writepulse
-                0x00000000ffff8cb4       0xb4 FLASH.o
-                0x00000000ffff8cb4                _writepulse
- .text.flash_write
-                0x00000000ffff8d68      0x140 FLASH.o
-                0x00000000ffff8d68                _flash_write
+                0x00000000ffff8a80      0x1e0 FLASH.o
+                0x00000000ffff8a80                _platf_flash_eb
  .text.platf_flash_wb
-                0x00000000ffff8ea8       0x84 FLASH.o
-                0x00000000ffff8ea8                _platf_flash_wb
+                0x00000000ffff8c60      0x260 FLASH.o
+                0x00000000ffff8c60                _platf_flash_wb
  .text.platf_flash_init
-                0x00000000ffff8f2c       0x2c FLASH.o
-                0x00000000ffff8f2c                _platf_flash_init
+                0x00000000ffff8ec0       0x2c FLASH.o
+                0x00000000ffff8ec0                _platf_flash_init
  .text.platf_flash_unprotect
-                0x00000000ffff8f58        0xc FLASH.o
-                0x00000000ffff8f58                _platf_flash_unprotect
+                0x00000000ffff8eec        0xc FLASH.o
+                0x00000000ffff8eec                _platf_flash_unprotect
  .text.die_trace
-                0x00000000ffff8f64       0x3e ISR.o
-                0x00000000ffff8f64                _die_trace
- *fill*         0x00000000ffff8fa2        0x2 
+                0x00000000ffff8ef8       0x3e ISR.o
+                0x00000000ffff8ef8                _die_trace
+ *fill*         0x00000000ffff8f36        0x2 
  .text.build_ivt
-                0x00000000ffff8fa4       0x2c ISR.o
-                0x00000000ffff8fa4                _build_ivt
+                0x00000000ffff8f38       0x2c ISR.o
+                0x00000000ffff8f38                _build_ivt
  .text.init_ints
-                0x00000000ffff8fd0       0x4c ISR.o
-                0x00000000ffff8fd0                _init_ints
+                0x00000000ffff8f64       0x4c ISR.o
+                0x00000000ffff8f64                _init_ints
  .text.init_sci
-                0x00000000ffff901c       0x14 SERIAL.o
-                0x00000000ffff901c                _init_sci
+                0x00000000ffff8fb0       0x14 SERIAL.o
+                0x00000000ffff8fb0                _init_sci
  .text.sci_rxidle
-                0x00000000ffff9030       0x3e SERIAL.o
-                0x00000000ffff9030                _sci_rxidle
+                0x00000000ffff8fc4       0x3e SERIAL.o
+                0x00000000ffff8fc4                _sci_rxidle
  .text.sci_txblock
-                0x00000000ffff906e       0x2a SERIAL.o
-                0x00000000ffff906e                _sci_txblock
+                0x00000000ffff9002       0x2a SERIAL.o
+                0x00000000ffff9002                _sci_txblock
  .text.iso_clearmsg
-                0x00000000ffff9098        0xc SERIAL.o
-                0x00000000ffff9098                _iso_clearmsg
- .text.cks_u8   0x00000000ffff90a4       0x1e SERIAL.o
-                0x00000000ffff90a4                _cks_u8
- *fill*         0x00000000ffff90c2        0x2 
+                0x00000000ffff902c        0xc SERIAL.o
+                0x00000000ffff902c                _iso_clearmsg
+ .text.cks_u8   0x00000000ffff9038       0x1e SERIAL.o
+                0x00000000ffff9038                _cks_u8
+ *fill*         0x00000000ffff9056        0x2 
  .text.iso_sendpkt
-                0x00000000ffff90c4       0x9c SERIAL.o
-                0x00000000ffff90c4                _iso_sendpkt
- .text.tx_7F    0x00000000ffff9160       0x28 SERIAL.o
-                0x00000000ffff9160                _tx_7F
+                0x00000000ffff9058       0x9c SERIAL.o
+                0x00000000ffff9058                _iso_sendpkt
+ .text.tx_7F    0x00000000ffff90f4       0x28 SERIAL.o
+                0x00000000ffff90f4                _tx_7F
  .text.cks_add8
-                0x00000000ffff9188       0x24 SERIAL.o
-                0x00000000ffff9188                _cks_add8
- .text.wdt_tog  0x00000000ffff91ac       0x1c WDT.o
-                0x00000000ffff91ac                _wdt_tog
+                0x00000000ffff911c       0x24 SERIAL.o
+                0x00000000ffff911c                _cks_add8
+ .text.wdt_tog  0x00000000ffff9140       0x1c WDT.o
+                0x00000000ffff9140                _wdt_tog
  .text.INT_ATU11_IMI1A
-                0x00000000ffff91c8       0x50 WDT.o
-                0x00000000ffff91c8                _INT_ATU11_IMI1A
+                0x00000000ffff915c       0x50 WDT.o
+                0x00000000ffff915c                _INT_ATU11_IMI1A
  .text.init_wdt
-                0x00000000ffff9218       0x6c WDT.o
-                0x00000000ffff9218                _init_wdt
- .text.die      0x00000000ffff9284       0x1a WDT.o
-                0x00000000ffff9284                _die
- *fill*         0x00000000ffff929e        0x2 
+                0x00000000ffff91ac       0x6c WDT.o
+                0x00000000ffff91ac                _init_wdt
+ .text.die      0x00000000ffff9218       0x1a WDT.o
+                0x00000000ffff9218                _die
+ *fill*         0x00000000ffff9232        0x2 
  .text.manual_wdt
-                0x00000000ffff92a0       0x34 WDT.o
-                0x00000000ffff92a0                _manual_wdt
+                0x00000000ffff9234       0x34 WDT.o
+                0x00000000ffff9234                _manual_wdt
  .text.pre_init_wdt
-                0x00000000ffff92d4       0x2c WDT.o
-                0x00000000ffff92d4                _pre_init_wdt
+                0x00000000ffff9268       0x2c WDT.o
+                0x00000000ffff9268                _pre_init_wdt
  .text.waitn_tse
-                0x00000000ffff9300       0x38 WDT.o
-                0x00000000ffff9300                _waitn_tse
- .text.waitn    0x00000000ffff9338        0x8 CPU_STUFF.o
-                0x00000000ffff9338                _waitn
+                0x00000000ffff9294       0x38 WDT.o
+                0x00000000ffff9294                _waitn_tse
+ .text.waitn    0x00000000ffff92cc        0x8 CPU_STUFF.o
+                0x00000000ffff92cc                _waitn
  .text.init_mclk
-                0x00000000ffff9340       0x3a SH7052/CPU.o
-                0x00000000ffff9340                _init_mclk
-                0x00000000ffff937c                . = ALIGN (0x4)
- *fill*         0x00000000ffff937a        0x2 
-                0x00000000ffff937c                _etext = .
+                0x00000000ffff92d4       0x3a SH7052/CPU.o
+                0x00000000ffff92d4                _init_mclk
+                0x00000000ffff9310                . = ALIGN (0x4)
+ *fill*         0x00000000ffff930e        0x2 
+                0x00000000ffff9310                _etext = .
 
-.rodata         0x00000000ffff937c       0x3c
-                0x00000000ffff937c                . = ALIGN (0x4)
+.rodata         0x00000000ffff9310       0x3c
+                0x00000000ffff9310                . = ALIGN (0x4)
  *(.rodata)
  *(.rodata*)
  .rodata.align1
-                0x00000000ffff937c        0x8 cmd_parser.o
-                0x00000000ffff937c                _npk_ver_string
+                0x00000000ffff9310        0x8 cmd_parser.o
+                0x00000000ffff9310                _npk_ver_string
  .rodata.align4
-                0x00000000ffff9384       0x34 SH7052/FLASH_CONST.o
-                0x00000000ffff9384                _fblocks
-                0x00000000ffff93b8                . = ALIGN (0x4)
+                0x00000000ffff9318       0x34 SH7052/FLASH_CONST.o
+                0x00000000ffff9318                _fblocks
+                0x00000000ffff934c                . = ALIGN (0x4)
 
-.rela.dyn       0x00000000ffff93b8        0x0
+.rela.dyn       0x00000000ffff934c        0x0
  .rela.text.iso_parserx
                 0x0000000000000000        0x0 cmd_parser.o
  .rela.text.cmd_init
@@ -318,19 +303,11 @@ LOAD c:/program files (x86)/kpit/gnushv13.01-elf/sh-elf/bin/../lib/gcc/sh-elf/4.
                 0x0000000000000000        0x0 cmd_parser.o
  .rela.text.startup.main
                 0x0000000000000000        0x0 cmd_parser.o
- .rela.text.sweset
-                0x0000000000000000        0x0 cmd_parser.o
  .rela.text.sweclear
-                0x0000000000000000        0x0 cmd_parser.o
- .rela.text.ferasevf
-                0x0000000000000000        0x0 cmd_parser.o
- .rela.text.ferase
                 0x0000000000000000        0x0 cmd_parser.o
  .rela.text.platf_flash_eb
                 0x0000000000000000        0x0 cmd_parser.o
- .rela.text.writepulse
-                0x0000000000000000        0x0 cmd_parser.o
- .rela.text.flash_write
+ .rela.text.platf_flash_wb
                 0x0000000000000000        0x0 cmd_parser.o
  .rela.text.build_ivt
                 0x0000000000000000        0x0 cmd_parser.o
@@ -341,44 +318,44 @@ LOAD c:/program files (x86)/kpit/gnushv13.01-elf/sh-elf/bin/../lib/gcc/sh-elf/4.
  .rela.text.pre_init_wdt
                 0x0000000000000000        0x0 cmd_parser.o
 
-.data           0x00000000ffff93b8        0x0
-                0x00000000ffff93b8                . = ALIGN (0x4)
-                0x00000000ffff93b8                _sdata = .
+.data           0x00000000ffff934c        0x0
+                0x00000000ffff934c                . = ALIGN (0x4)
+                0x00000000ffff934c                _sdata = .
  *(.data)
  *(.data*)
-                0x00000000ffff93b8                . = ALIGN (0x4)
-                0x00000000ffff93b8                _edata = .
+                0x00000000ffff934c                . = ALIGN (0x4)
+                0x00000000ffff934c                _edata = .
                 0x0000000000000000                _idatalen = (. - _sdata)
                 0x0000000000000001                ASSERT ((_sdata == _edata), unhandled initialized data !)
-                0x00000000ffff93b8                . = ALIGN (0x4)
+                0x00000000ffff934c                . = ALIGN (0x4)
 
-.bss            0x00000000ffff93b8      0x6c8
-                0x00000000ffff93b8                _sbss = .
+.bss            0x00000000ffff934c      0x6c8
+                0x00000000ffff934c                _sbss = .
  *(.bss)
- .bss           0x00000000ffff93b8      0x118 cmd_parser.o
-                0x00000000ffff93b8                _lasterr
- .bss           0x00000000ffff94d0        0x4 eep_funcs.o
- .bss           0x00000000ffff94d4      0x202 crc.o
- .bss           0x00000000ffff96d6        0x1 FLASH.o
-                0x00000000ffff96d6                _reflash_enabled
+ .bss           0x00000000ffff934c      0x118 cmd_parser.o
+                0x00000000ffff934c                _lasterr
+ .bss           0x00000000ffff9464        0x4 eep_funcs.o
+ .bss           0x00000000ffff9468      0x202 crc.o
+ .bss           0x00000000ffff966a        0x1 FLASH.o
+                0x00000000ffff966a                _reflash_enabled
  *(.bss*)
  *(COMMON)
- *fill*         0x00000000ffff96d7        0x1 
- COMMON         0x00000000ffff96d8      0x39c cmd_parser.o
-                0x00000000ffff96d8                _ivt
-                0x00000000ffff996c                _cmstate
-                0x00000000ffff9970                _txbuf
-                0x00000000ffff9a70                _flashstate
- COMMON         0x00000000ffff9a74        0x4 FLASH.o
-                0x00000000ffff9a74                _pFLMCR
- COMMON         0x00000000ffff9a78        0x6 WDT.o
-                0x00000000ffff9a78                _wdt_dr
-                0x00000000ffff9a7c                _wdt_pin
-                0x00000000ffff9a80                . = ALIGN (0x4)
- *fill*         0x00000000ffff9a7e        0x2 
-                0x00000000ffff9a80                _ebss = .
+ *fill*         0x00000000ffff966b        0x1 
+ COMMON         0x00000000ffff966c      0x39c cmd_parser.o
+                0x00000000ffff966c                _ivt
+                0x00000000ffff9900                _cmstate
+                0x00000000ffff9904                _txbuf
+                0x00000000ffff9a04                _flashstate
+ COMMON         0x00000000ffff9a08        0x4 FLASH.o
+                0x00000000ffff9a08                _pFLMCR
+ COMMON         0x00000000ffff9a0c        0x6 WDT.o
+                0x00000000ffff9a0c                _wdt_dr
+                0x00000000ffff9a10                _wdt_pin
+                0x00000000ffff9a14                . = ALIGN (0x4)
+ *fill*         0x00000000ffff9a12        0x2 
+                0x00000000ffff9a14                _ebss = .
                 0x00000000000006c8                _bsslen = (. - _sbss)
-                0x00000000ffff9a80                _endpayload = .
+                0x00000000ffff9a14                _endpayload = .
 
 /DISCARD/
  *(.comment)
@@ -461,11 +438,7 @@ eep_setptr                                        eep_funcs.o
                                                   cmd_parser.o
 fblocks                                           SH7052/FLASH_CONST.o
                                                   FLASH.o
-ferase                                            FLASH.o
-ferasevf                                          FLASH.o
-flash_write                                       FLASH.o
 flashstate                                        cmd_parser.o
-fwecheck                                          FLASH.o
 init_ints                                         ISR.o
                                                   main.o
 init_mclk                                         SH7052/CPU.o
@@ -513,8 +486,6 @@ sci_txblock                                       SERIAL.o
 set_lasterr                                       cmd_parser.o
 stackinit                                         ISR.o
                                                   start_mmc.o
-sweclear                                          FLASH.o
-sweset                                            FLASH.o
 tx_7F                                             SERIAL.o
                                                   cmd_parser.o
 txbuf                                             cmd_parser.o
@@ -525,4 +496,3 @@ waitn_tse                                         WDT.o
 wdt_dr                                            WDT.o
 wdt_pin                                           WDT.o
 wdt_tog                                           WDT.o
-writepulse                                        FLASH.o

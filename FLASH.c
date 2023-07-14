@@ -13,14 +13,14 @@ volatile u8 *pFLMCR;	//will point to FLMCR1 or FLMCR2 as required
 /** Check FWE and FLER bits
  * ret 1 if ok
  */
-bool fwecheck(void) {
+static bool fwecheck(void) {
     if (!FLASH.FLMCR1.BIT.FWE) return 0;
     if (FLASH.FLMCR2.BIT.FLER) return 0;
     return 1;
 }
 
 /** Set SWE bit and wait */
-void sweset(void) {
+static void sweset(void) {
     CMT1.CMCSR.BIT.CMIE = 0;	// Disable interrupt on 7051 for erase/write
     FLASH.FLMCR1.BIT.SWE1 = 1;
     waitn(TSSWE);
@@ -28,7 +28,7 @@ void sweset(void) {
 }
 
 /** Clear SWE bit and wait */
-void sweclear(void) {
+static void sweclear(void) {
     FLASH.FLMCR1.BIT.SWE1 = 0;
     CMT1.CMCSR.BIT.CMIE = 1;	// Re-enable interrupt
     waitn(TCSWE);
@@ -41,15 +41,12 @@ void sweclear(void) {
  * Assumes pFLMCR is set, of course
  * ret 1 if ok
  */
-bool ferasevf(unsigned blockno) {
+static bool ferasevf(unsigned blockno) {
     bool rv = 1;
     volatile u32 *cur, *end;
 
-    // cur = (volatile u32 *) fblocks[blockno];
-    // end = (volatile u32 *) fblocks[blockno + 1];
-
-    cur =  fblocks[blockno];
-    end =  fblocks[blockno + 1];
+    cur = (volatile u32 *) fblocks[blockno];
+    end = (volatile u32 *) fblocks[blockno + 1];
 
     for (; cur < end; cur++) {
         *pFLMCR |= FLMCR_EV;
@@ -73,7 +70,7 @@ bool ferasevf(unsigned blockno) {
 /* pFLMCR must be set;
  * blockno validated <= 11 of course
  */
-void ferase(unsigned blockno) {
+static void ferase(unsigned blockno) {
     unsigned bitsel;
 
     bitsel = 1;
@@ -166,7 +163,7 @@ uint32_t platf_flash_eb(unsigned blockno) {
 
 /** Copy 32-byte chunk + apply write pulse for tsp=500us
  */
-void writepulse(volatile u8 *dest, u8 *src, unsigned tsp) {
+static void writepulse(volatile u8 *dest, u8 *src, unsigned tsp) {
     unsigned uim;
     u32 cur;
 
@@ -198,7 +195,7 @@ void writepulse(volatile u8 *dest, u8 *src, unsigned tsp) {
 /** ret 0 if ok, NRC if error
  * assumes params are ok, and that block was already erased
  */
-u32 flash_write(u32 dest, u32 src_unaligned) {
+static u32 flash_write(u32 dest, u32 src_unaligned) {
     u8 src[MAX_FLASH_BLOCK_SIZE] __attribute ((aligned (4)));	// aligned copy of desired data
     u8 reprog[MAX_FLASH_BLOCK_SIZE] __attribute ((aligned (4)));	// retry / reprogram data
 

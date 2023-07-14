@@ -1,11 +1,6 @@
-FLASH.c:16:6:fwecheck	0	static
-FLASH.c:23:6:sweset	0	static
-FLASH.c:31:6:sweclear	0	static
-FLASH.c:44:6:ferasevf	20	static
-FLASH.c:76:6:ferase	36	static
-FLASH.c:112:10:platf_flash_eb	20	static
-FLASH.c:169:6:writepulse	28	static
-FLASH.c:201:5:flash_write	296	static
-FLASH.c:299:10:platf_flash_wb	24	static
-FLASH.c:327:6:platf_flash_init	8	static
-FLASH.c:342:6:platf_flash_unprotect	0	static
+FLASH.c:31:13:sweclear	0	static
+FLASH.c:16:13:fwecheck	0	static
+FLASH.c:109:10:platf_flash_eb	52	static
+FLASH.c:296:10:platf_flash_wb	320	static
+FLASH.c:324:6:platf_flash_init	8	static
+FLASH.c:339:6:platf_flash_unprotect	0	static

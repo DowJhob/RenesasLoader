@@ -1,4 +1,4 @@
-Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 			page 1
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccV4CCHO.s 			page 1
 
 
    1              		.file	"main.c"
@@ -58,7 +58,7 @@ Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 
   55 0006 0002     		stc	sr, r0 
   56 0008 CBF0     	or	#0xF0, r0 
   57 000a CAF0     	xor	#0xF0, r0 
-Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 			page 2
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccV4CCHO.s 			page 2
 
 
   58 000c 201B     	or	r1,r0	! tmp160
@@ -118,7 +118,7 @@ Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 
  112              	.L8:
  113 006e F400     		.short	-3072
  114              	.L14:
-Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 			page 3
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccV4CCHO.s 			page 3
 
 
  115              		.align 2
@@ -145,12 +145,12 @@ Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 
  136              		.size	_main, .-_main
  137              		.comm	_ivt,660,4
  138              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
-Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 			page 4
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccV4CCHO.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s:50     .text.startup.main:0000000000000000 _main
+C:\Users\Bimbo\AppData\Local\Temp\ccV4CCHO.s:50     .text.startup.main:0000000000000000 _main
                             *COM*:0000000000000294 _ivt
 
 UNDEFINED SYMBOLS

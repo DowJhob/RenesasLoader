@@ -33,7 +33,8 @@ CPU = -m2 -mb
 #OPT = -Os
 OPT = -Os -ffunction-sections
 
-BUILD_DIR = build/
+BUILDDIR = $(CURDIR)/build/
+
 
 PROJBASE = loader
 PROJECT = $(PROJBASE)_$(BUILDWHAT)
@@ -74,8 +75,8 @@ endif
 
 OBJS  = $(ASRC:.s=.o) $(SRC:.c=.o)
 
-#all: npk_commit.h
 all: $(OBJS) $(PROJECT).elf $(PROJECT).bin $(SIZE) $(PROJECT).elf
+
 
 %.o: %.c
 	$(CC) -c $(CPFLAGS) -D $(BUILDWHAT) -D PLATF=\"$(BUILDWHAT)\" -I . $< -o $@
@@ -90,7 +91,7 @@ all: $(OBJS) $(PROJECT).elf $(PROJECT).bin $(SIZE) $(PROJECT).elf
 	$(HEX) $< $@
 
 %bin: %elf
-	$(BIN)  $< $@
+	$(BIN) $< $@
 
 #npk_commit.h:
 #	git log -n 1 --format=format:"#define NPK_COMMIT \"%h\"%n" HEAD > $@
