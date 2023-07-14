@@ -1,15 +1,15 @@
-Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s 			page 1
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccEskLWN.s 			page 1
 
 
-   1              		.file	"eep_funcs.c"
+   1              		.file	"CPU.c"
    2              		.text
    3              	! GNU C (GCC) version 4.7-GNUSH_v13.01 (sh-elf)
    4              	!	compiled by GNU C version 4.2.1-sjlj (mingw32-2), GMP version 4.3.2, MPFR version 2.4.2, MPC vers
    5              	! GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
    6              	! options passed:  -I . -imultilib m2
    7              	! -iprefix c:\program files (x86)\kpit\gnushv13.01-elf\sh-elf\bin\../lib/gcc/sh-elf/4.7-GNUSH_v13.0
-   8              	! -D SH7052 -D PLATF="SH7052" eep_funcs.c -m2 -mb
-   9              	! -auxbase-strip eep_funcs.o -Os -Wall -Wextra -Wstrict-prototypes
+   8              	! -D SH7052 -D PLATF="SH7052" SH7052/CPU.c -m2 -mb
+   9              	! -auxbase-strip SH7052/CPU.o -Os -Wall -Wextra -Wstrict-prototypes
   10              	! -std=gnu99 -ffunction-sections -fomit-frame-pointer -fstack-usage
   11              	! -fverbose-asm
   12              	! options enabled:  -fauto-inc-dec -fbranch-count-reg
@@ -47,52 +47,53 @@ Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s 
   44              	! -funit-at-a-time -fverbose-asm -fzero-initialized-in-bss
   45              	! -maccumulate-outgoing-args -mb
   46              	
-  47              		.section	.text.eep_read16,"ax",@progbits
+  47              		.section	.text.init_mclk,"ax",@progbits
   48              		.align 1
-  49              		.global	_eep_read16
-  50              		.type	_eep_read16, @function
-  51              	_eep_read16:
-  52 0000 D104     		mov.l	.L3,r1	!, tmp165
-  53 0002 6112     		mov.l	@r1,r1	! builtin_eep_read16, builtin_eep_read16.1
-  54 0004 2118     		tst	r1,r1	! builtin_eep_read16.1
-  55 0006 8D02     		bt.s	.L1	!
-  56 0008 644C     		extu.b	r4,r4	! addr, addr
-  57 000a 412B     		jmp	@r1
-Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s 			page 2
+  49              		.global	_init_mclk
+  50              		.type	_init_mclk, @function
+  51              	_init_mclk:
+  52 0000 9219     		mov.w	.L2,r2	!,
+  53 0002 E1FE     		mov	#-2,r1	!, tmp166
+  54 0004 E700     		mov	#0,r7	!, tmp171
+  55 0006 6320     		mov.b	@r2,r3	!,
+  56 0008 2139     		and	r3,r1	! tmp164, tmp165
+  57 000a 2210     		mov.b	r1,@r2	! tmp165,
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccEskLWN.s 			page 2
 
 
-  58 000c 0009     		nop	! builtin_eep_read16.1
-  59              	.L1:
-  60 000e 000B     		rts	
-  61 0010 0009     		nop
-  62              	.L4:
-  63 0012 0009     		.align 2
-  64              	.L3:
-  65 0014 00000000 		.long	_builtin_eep_read16
-  66              		.size	_eep_read16, .-_eep_read16
-  67              		.section	.text.eep_setptr,"ax",@progbits
-  68              		.align 1
-  69              		.global	_eep_setptr
-  70              		.type	_eep_setptr, @function
-  71              	_eep_setptr:
-  72 0000 D101     		mov.l	.L6,r1	!, tmp162
-  73 0002 000B     		rts	
-  74 0004 2142     		mov.l	r4,@r1	! newaddr, builtin_eep_read16
-  75              	.L7:
-  76 0006 0009     		.align 2
-  77              	.L6:
-  78 0008 00000000 		.long	_builtin_eep_read16
-  79              		.size	_eep_setptr, .-_eep_setptr
-  80              		.local	_builtin_eep_read16
-  81              		.comm	_builtin_eep_read16,4,4
-  82              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
-Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s 			page 3
+  58 000c 9114     		mov.w	.L3,r1	!,
+  59 000e 6313     		mov	r1,r3	! tmp168, tmp170
+  60 0010 730A     		add	#10,r3	!, tmp170
+  61 0012 2370     		mov.b	r7,@r3	! tmp171, MEM[(volatile struct st_atu0 *)4294964256B].TIOR.BYTE
+  62 0014 6713     		mov	r1,r7	! tmp168, tmp174
+  63 0016 E300     		mov	#0,r3	!, tmp175
+  64 0018 770E     		add	#14,r7	!, tmp174
+  65 001a 2731     		mov.w	r3,@r7	! tmp175, MEM[(volatile struct st_atu0 *)4294964256B].TIER.WORD
+  66 001c 77F6     		add	#-10,r7	!, tmp178
+  67 001e 2730     		mov.b	r3,@r7	! tmp175, MEM[(volatile struct st_atu0 *)4294964256B].ITVRR1.BYTE
+  68 0020 7702     		add	#2,r7	!, tmp182
+  69 0022 2730     		mov.b	r3,@r7	! tmp175, MEM[(volatile struct st_atu0 *)4294964256B].ITVRR2A.BYTE
+  70 0024 7702     		add	#2,r7	!, tmp186
+  71 0026 2730     		mov.b	r3,@r7	! tmp175, MEM[(volatile struct st_atu0 *)4294964256B].ITVRR2B.BYTE
+  72 0028 E300     		mov	#0,r3	!, tmp189
+  73 002a 1134     		mov.l	r3,@(16,r1)	! tmp189, MEM[(volatile struct st_atu0 *)4294964256B].TCNT
+  74 002c 6020     		mov.b	@r2,r0	!,
+  75 002e CB01     		or	#1,r0	!, tmp195
+  76 0030 2200     		mov.b	r0,@r2	! tmp195,
+  77 0032 000B     		rts	
+  78 0034 0009     		nop
+  79              		.align 1
+  80              	.L2:
+  81 0036 F401     		.short	-3071
+  82              	.L3:
+  83 0038 F420     		.short	-3040
+  84              		.size	_init_mclk, .-_init_mclk
+  85              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccEskLWN.s 			page 3
 
 
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 eep_funcs.c
-C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s:51     .text.eep_read16:0000000000000000 _eep_read16
-C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s:81     .bss:0000000000000000 _builtin_eep_read16
-C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s:71     .text.eep_setptr:0000000000000000 _eep_setptr
+                            *ABS*:0000000000000000 CPU.c
+C:\Users\Bimbo\AppData\Local\Temp\ccEskLWN.s:51     .text.init_mclk:0000000000000000 _init_mclk
 
 NO UNDEFINED SYMBOLS

@@ -12,5 +12,19 @@
         "name": "Print make version",
         "makeArgs": ["--version"]
     }
-]
+],
+"makefile.makePath": "C:/Program Files (x86)/KPIT/GNUSHv13.01-ELF/Other Utilities",
+"files.associations": {
+    "serial.h": "c",
+    "stypes.h": "c",
+    "iodef.h": "c",
+    "vehicle_selector.h": "c",
+    "eep_funcs.h": "c",
+    "iso_cmds.h": "c",
+    "errcodes.h": "c",
+    "crc.h": "c",
+    "flash_const.h": "c",
+    "cpu_stuff.h": "c",
+    "cpu_selector.h": "c"
+}
 }

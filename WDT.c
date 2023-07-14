@@ -2,13 +2,34 @@
 #include "SH7052/IODEF.h"
 #include "SH7052/VECT_TBL.h"
 
+volatile uint16_t *wdt_dr;	//such as &PL.DR.WORD
+uint16_t wdt_pin;	//mask for PxDR
 
 
-/** WDT toggle interrupt
- *
- * clr timer and flag, easy
- */
-void INT_CMT1_CMTI1(void) ISR_attrib;
+/** toggle WDT pin */
+void wdt_tog(void) {
+#ifdef DIAG_TAINTWDT
+	/* for debugging purposes, generate a recognizable pattern :
+	 * skip one toggle every 16 periods */
+	static int ic = 0;
+	ic += 1;
+	if (ic & 0x0f) {
+		*wdt_dr ^= wdt_pin;
+	}
+#else
+	*wdt_dr ^= wdt_pin;
+#endif
+	return;
+}
+
+void INT_ATU11_IMI1A(void) {
+
+    wdt_tog();
+    ATU1.TCNTB = 0;
+    ATU1.TSRB.BIT.CMF = 0;	//TCNT1B compare match
+    return;
+}
+
 
 void INT_CMT1_CMTI1(void) {
 
@@ -88,4 +109,12 @@ void pre_init_wdt()
 
     // set PD8 to bring FWE high to prepare for erasing or flashing
     PD.DR.WORD |= 0x0100;
+}
+
+void waitn_tse(void) {
+    u32 start = ATU0.TCNT;
+    while ((ATU0.TCNT - start) < TSE)
+    {
+        manual_wdt();
+    }
 }

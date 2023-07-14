@@ -1,5 +1,5 @@
-#ifndef _NPK_ERRCODES_H
-#define _NPK_ERRCODES_H
+#ifndef ERRCODES_H
+#define ERRCODES_H
 /* Supplemental negative response codes for kernel errors */
 
 /* (c) copyright fenugrec 2017
@@ -21,9 +21,6 @@
 
 
 #include "stypes.h"
-
-void set_lasterr(u8 err);	//see SID_CONF_LASTERR
-
 
 /* SID_CONF error codes */
 #define SID_CONF_CKS1_BADCKS	0x77	//NRC when crc is bad
@@ -108,4 +105,4 @@ void set_lasterr(u8 err);	//see SID_CONF_LASTERR
 
 
 
-#endif	//_NPK_ERRCODES_H
+#endif	//ERRCODES_H

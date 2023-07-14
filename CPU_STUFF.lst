@@ -1,15 +1,15 @@
-Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s 			page 1
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccuLKV9C.s 			page 1
 
 
-   1              		.file	"eep_funcs.c"
+   1              		.file	"CPU_STUFF.c"
    2              		.text
    3              	! GNU C (GCC) version 4.7-GNUSH_v13.01 (sh-elf)
    4              	!	compiled by GNU C version 4.2.1-sjlj (mingw32-2), GMP version 4.3.2, MPFR version 2.4.2, MPC vers
    5              	! GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
    6              	! options passed:  -I . -imultilib m2
    7              	! -iprefix c:\program files (x86)\kpit\gnushv13.01-elf\sh-elf\bin\../lib/gcc/sh-elf/4.7-GNUSH_v13.0
-   8              	! -D SH7052 -D PLATF="SH7052" eep_funcs.c -m2 -mb
-   9              	! -auxbase-strip eep_funcs.o -Os -Wall -Wextra -Wstrict-prototypes
+   8              	! -D SH7052 -D PLATF="SH7052" CPU_STUFF.c -m2 -mb
+   9              	! -auxbase-strip CPU_STUFF.o -Os -Wall -Wextra -Wstrict-prototypes
   10              	! -std=gnu99 -ffunction-sections -fomit-frame-pointer -fstack-usage
   11              	! -fverbose-asm
   12              	! options enabled:  -fauto-inc-dec -fbranch-count-reg
@@ -47,52 +47,29 @@ Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s 
   44              	! -funit-at-a-time -fverbose-asm -fzero-initialized-in-bss
   45              	! -maccumulate-outgoing-args -mb
   46              	
-  47              		.section	.text.eep_read16,"ax",@progbits
+  47              		.section	.text.waitn,"ax",@progbits
   48              		.align 1
-  49              		.global	_eep_read16
-  50              		.type	_eep_read16, @function
-  51              	_eep_read16:
-  52 0000 D104     		mov.l	.L3,r1	!, tmp165
-  53 0002 6112     		mov.l	@r1,r1	! builtin_eep_read16, builtin_eep_read16.1
-  54 0004 2118     		tst	r1,r1	! builtin_eep_read16.1
-  55 0006 8D02     		bt.s	.L1	!
-  56 0008 644C     		extu.b	r4,r4	! addr, addr
-  57 000a 412B     		jmp	@r1
-Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s 			page 2
+  49              		.global	_waitn
+  50              		.type	_waitn, @function
+  51              	_waitn:
+  52              	! 5 "CPU_STUFF.c" 1
+  53 0000 4410     		0: dt r4	! tmp
+  54              	! 0 "" 2
+  55              	! 6 "CPU_STUFF.c" 1
+  56 0002 8BFD     		bf 0b
+  57              	! 0 "" 2
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccuLKV9C.s 			page 2
 
 
-  58 000c 0009     		nop	! builtin_eep_read16.1
-  59              	.L1:
-  60 000e 000B     		rts	
-  61 0010 0009     		nop
-  62              	.L4:
-  63 0012 0009     		.align 2
-  64              	.L3:
-  65 0014 00000000 		.long	_builtin_eep_read16
-  66              		.size	_eep_read16, .-_eep_read16
-  67              		.section	.text.eep_setptr,"ax",@progbits
-  68              		.align 1
-  69              		.global	_eep_setptr
-  70              		.type	_eep_setptr, @function
-  71              	_eep_setptr:
-  72 0000 D101     		mov.l	.L6,r1	!, tmp162
-  73 0002 000B     		rts	
-  74 0004 2142     		mov.l	r4,@r1	! newaddr, builtin_eep_read16
-  75              	.L7:
-  76 0006 0009     		.align 2
-  77              	.L6:
-  78 0008 00000000 		.long	_builtin_eep_read16
-  79              		.size	_eep_setptr, .-_eep_setptr
-  80              		.local	_builtin_eep_read16
-  81              		.comm	_builtin_eep_read16,4,4
-  82              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
-Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s 			page 3
+  58 0004 000B     		rts	
+  59 0006 0009     		nop
+  60              		.size	_waitn, .-_waitn
+  61              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccuLKV9C.s 			page 3
 
 
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 eep_funcs.c
-C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s:51     .text.eep_read16:0000000000000000 _eep_read16
-C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s:81     .bss:0000000000000000 _builtin_eep_read16
-C:\Users\Bimbo\AppData\Local\Temp\cc5QsA2H.s:71     .text.eep_setptr:0000000000000000 _eep_setptr
+                            *ABS*:0000000000000000 CPU_STUFF.c
+C:\Users\Bimbo\AppData\Local\Temp\ccuLKV9C.s:51     .text.waitn:0000000000000000 _waitn
 
 NO UNDEFINED SYMBOLS

@@ -45,13 +45,10 @@ ENTRY(RAMjump_entry)
 
 /* Memory areas, areas common to 7055 and 7058 */
 MEMORY {
-	RAM (xw)	: ORIGIN = 0xFFFF6000, LENGTH = 24K
-	RMETA (xr) : ORIGIN = 0xFFFF8000, LENGTH = 64
-	/* skip the area @ FFFF8000 because there's some metadata copied there */
-	RJFIX (xw)	: ORIGIN = 0xFFFF8100, LENGTH = 8K
+	RAM (xw)	: ORIGIN = 0xFFFF8000, LENGTH = 24K
 
 }
-REGION_ALIAS("TGT", RJFIX);
+REGION_ALIAS("TGT", RAM);
 
 /* Highest address of the user mode stack */
 _stackinit =  ORIGIN(RAM) + LENGTH(RAM) - 4;
@@ -62,7 +59,6 @@ SECTIONS
 	/* program code and other data */
 	.text :
 	{
-		_rja_start = .;	/* where the whole payload must be moved */
 		. = ALIGN(4);
 		*(.rja)
 		*(.text)           /* .text sections (code) */

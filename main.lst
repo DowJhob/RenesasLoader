@@ -1,4 +1,4 @@
-Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.s 			page 1
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 			page 1
 
 
    1              		.file	"main.c"
@@ -46,262 +46,119 @@ Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.
   43              	! -funit-at-a-time -fverbose-asm -fzero-initialized-in-bss
   44              	! -maccumulate-outgoing-args -mb
   45              	
-  46              		.section	.text.die_trace,"ax",@progbits
+  46              		.section	.text.startup.main,"ax",@progbits
   47              		.align 1
-  48              		.global	_die_trace
-  49              		.type	_die_trace, @function
-  50              	_die_trace:
-  51              	! 167 "ISR.h" 1
-  52 0000 2F06     		mov.l	r0, @-r15
-  53 0002 0002     	stc	sr, r0
-  54 0004 CBF0     	or	#0xF0, r0
-  55 0006 400E     	ldc	r0, sr
-  56              	
-  57              	! 0 "" 2
-Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.s 			page 2
+  48              		.global	_main
+  49              		.type	_main, @function
+  50              	_main:
+  51 0000 2F86     		mov.l	r8,@-r15	!,
+  52 0002 9133     		mov.w	.L2,r1	!,
+  53 0004 4F22     		sts.l	pr,@-r15	!,
+  54              	! 111 "ISR.h" 1
+  55 0006 0002     		stc	sr, r0 
+  56 0008 CBF0     	or	#0xF0, r0 
+  57 000a CAF0     	xor	#0xF0, r0 
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 			page 2
 
 
-  58 0008 9018     		mov.w	.L2,r0	!,
-  59              	! 175 "ISR.h" 1
-  60 000a 2F16     		mov.l	r1, @-r15
-  61 000c 61F3     	mov	r15, r1
-  62 000e 7108     	add	#0x08, r1
-  63 0010 6112     	mov.l	@r1, r1
-  64 0012 2016     	mov.l	r1, @-r0
-  65 0014 20F6     	mov.l	r15, @-r0
-  66 0016 20E6     	mov.l	r14, @-r0
-  67 0018 20D6     	mov.l	r13, @-r0
-  68 001a 20C6     	mov.l	r12, @-r0
-  69 001c 20B6     	mov.l	r11, @-r0
-  70 001e 20A6     	mov.l	r10, @-r0
-  71 0020 2096     	mov.l	r9, @-r0
-  72 0022 2086     	mov.l	r8, @-r0
-  73 0024 2076     	mov.l	r7, @-r0
-  74 0026 2066     	mov.l	r6, @-r0
-  75 0028 2056     	mov.l	r5, @-r0
-  76 002a 2046     	mov.l	r4, @-r0
-  77 002c 6BF6     	mov.l	@r15+, r11
-  78 002e 2036     	mov.l	r3, @-r0
-  79 0030 6AF6     	mov.l	@r15+, r10
-  80 0032 2026     	mov.l	r2, @-r0
-  81 0034 20B6     	mov.l	r11, @-r0
-  82 0036 20A6     	mov.l	r10, @-r0
-  83              	0:
-  84 0038 AFFE     	bra	0b
-  85 003a 0009     	nop
-  86              	
-  87              	! 0 "" 2
-  88              		.align 1
-  89              	.L2:
-  90 003c B000     		.short	-20480
-  91              		.size	_die_trace, .-_die_trace
-  92              		.section	.text.INT_ATU11_IMI1A,"ax",@progbits
-  93              		.align 1
-  94              		.global	_INT_ATU11_IMI1A
-  95              		.type	_INT_ATU11_IMI1A, @function
-  96              	_INT_ATU11_IMI1A:
-  97 0000 4F02     		sts.l	mach,@-r15	!,
-  98 0002 4F12     		sts.l	macl,@-r15	!,
-  99 0004 2F06     		mov.l	r0,@-r15	!,
- 100 0006 2F16     		mov.l	r1,@-r15	!,
- 101 0008 2F26     		mov.l	r2,@-r15	!,
- 102 000a 2F36     		mov.l	r3,@-r15	!,
- 103 000c 2F46     		mov.l	r4,@-r15	!,
- 104 000e 2F56     		mov.l	r5,@-r15	!,
- 105 0010 2F66     		mov.l	r6,@-r15	!,
- 106 0012 D10E     		mov.l	.L4,r1	!, tmp160
- 107 0014 2F76     		mov.l	r7,@-r15	!,
- 108 0016 4F22     		sts.l	pr,@-r15	!,
- 109 0018 410B     		jsr	@r1
- 110 001a 0009     		nop	! tmp160
- 111 001c 9115     		mov.w	.L5,r1	!,
- 112 001e E300     		mov	#0,r3	!, tmp164
- 113 0020 6213     		mov	r1,r2	! tmp161, tmp163
- 114 0022 7202     		add	#2,r2	!, tmp163
-Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.s 			page 3
+  58 000c 201B     	or	r1,r0	! tmp160
+  59 000e 400E     	ldc	r0,sr
+  60              	! 0 "" 2
+  61 0010 D117     		mov.l	.L3,r1	!, tmp161
+  62 0012 D818     		mov.l	.L4,r8	!, tmp162
+  63 0014 410B     		jsr	@r1
+  64 0016 0009     		nop	! tmp161
+  65 0018 480B     		jsr	@r8
+  66 001a 0009     		nop	! tmp162
+  67 001c D116     		mov.l	.L5,r1	!, tmp164
+  68 001e D417     		mov.l	.L6,r4	!,
+  69 0020 410B     		jsr	@r1
+  70 0022 0009     		nop	! tmp164
+  71 0024 D116     		mov.l	.L7,r1	!, tmp165
+  72 0026 410B     		jsr	@r1
+  73 0028 0009     		nop	! tmp165
+  74 002a 9220     		mov.w	.L8,r2	!,
+  75 002c E100     		mov	#0,r1	!, tmp169
+  76 002e 6323     		mov	r2,r3	! tmp166, tmp168
+  77 0030 7301     		add	#1,r3	!, tmp168
+  78 0032 2310     		mov.b	r1,@r3	! tmp169, MEM[(volatile struct st_atu *)4294964224B].TSTR1.BYTE
+  79 0034 2210     		mov.b	r1,@r2	! tmp169, MEM[(volatile struct st_atu *)4294964224B].TSTR2.BYTE
+  80 0036 7202     		add	#2,r2	!, tmp174
+  81 0038 2210     		mov.b	r1,@r2	! tmp169, MEM[(volatile struct st_atu *)4294964224B].TSTR3.BYTE
+  82 003a D112     		mov.l	.L9,r1	!, tmp176
+  83 003c 410B     		jsr	@r1
+  84 003e 0009     		nop	! tmp176
+  85 0040 D111     		mov.l	.L10,r1	!, tmp177
+  86 0042 410B     		jsr	@r1
+  87 0044 0009     		nop	! tmp177
+  88 0046 480B     		jsr	@r8
+  89 0048 0009     		nop	! tmp162
+  90 004a E170     		mov	#112,r1	!, tmp179
+  91              	! 111 "ISR.h" 1
+  92 004c 0002     		stc	sr, r0 
+  93 004e CBF0     	or	#0xF0, r0 
+  94 0050 CAF0     	xor	#0xF0, r0 
+  95 0052 201B     	or	r1,r0	! tmp179
+  96 0054 400E     	ldc	r0,sr
+  97              	! 0 "" 2
+  98 0056 D10D     		mov.l	.L11,r1	!, tmp180
+  99 0058 410B     		jsr	@r1	! tmp180
+ 100 005a E409     		mov	#9,r4	!,
+ 101 005c D10C     		mov.l	.L12,r1	!, tmp181
+ 102 005e 410B     		jsr	@r1
+ 103 0060 0009     		nop	! tmp181
+ 104 0062 D10C     		mov.l	.L13,r1	!, tmp182
+ 105 0064 4F26     		lds.l   @r15+,pr	!,
+ 106 0066 68F6     		mov.l   @r15+,r8	!,
+ 107 0068 412B     		jmp	@r1
+ 108 006a 0009     		nop	! tmp182
+ 109              		.align 1
+ 110              	.L2:
+ 111 006c 00F0     		.short	240
+ 112              	.L8:
+ 113 006e F400     		.short	-3072
+ 114              	.L14:
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 			page 3
 
 
- 115 0024 2231     		mov.w	r3,@r2	! tmp164, MEM[(volatile struct st_atu1 *)4294964288B].TCNTB
- 116 0026 7120     		add	#32,r1	!, tmp167
- 117 0028 6311     		mov.w	@r1,r3	!,
- 118 002a E2FE     		mov	#-2,r2	!, tmp171
- 119 002c 2239     		and	r3,r2	! tmp169, tmp170
- 120 002e 2121     		mov.w	r2,@r1	! tmp170,
- 121 0030 4F26     		lds.l   @r15+,pr	!,
- 122 0032 67F6     		mov.l   @r15+,r7	!,
- 123 0034 66F6     		mov.l   @r15+,r6	!,
- 124 0036 65F6     		mov.l   @r15+,r5	!,
- 125 0038 64F6     		mov.l   @r15+,r4	!,
- 126 003a 63F6     		mov.l   @r15+,r3	!,
- 127 003c 62F6     		mov.l   @r15+,r2	!,
- 128 003e 61F6     		mov.l   @r15+,r1	!,
- 129 0040 60F6     		mov.l   @r15+,r0	!,
- 130 0042 4F16     		lds.l   @r15+,macl	!,
- 131 0044 4F06     		lds.l   @r15+,mach	!,
- 132 0046 002B     		rte	
- 133 0048 0009     		nop
- 134              		.align 1
- 135              	.L5:
- 136 004a F440     		.short	-3008
- 137              	.L6:
- 138              		.align 2
- 139              	.L4:
- 140 004c 00000000 		.long	_wdt_tog
- 141              		.size	_INT_ATU11_IMI1A, .-_INT_ATU11_IMI1A
- 142              		.section	.text.startup.main,"ax",@progbits
- 143              		.align 1
- 144              		.global	_main
- 145              		.type	_main, @function
- 146              	_main:
- 147 0000 2F86     		mov.l	r8,@-r15	!,
- 148 0002 9146     		mov.w	.L8,r1	!,
- 149 0004 4F22     		sts.l	pr,@-r15	!,
- 150              	! 111 "ISR.h" 1
- 151 0006 0002     		stc	sr, r0 
- 152 0008 CBF0     	or	#0xF0, r0 
- 153 000a CAF0     	xor	#0xF0, r0 
- 154 000c 201B     	or	r1,r0	! tmp160
- 155 000e 400E     	ldc	r0,sr
- 156              	! 0 "" 2
- 157 0010 D121     		mov.l	.L9,r1	!, tmp161
- 158 0012 D822     		mov.l	.L10,r8	!, tmp162
- 159 0014 410B     		jsr	@r1
- 160 0016 0009     		nop	! tmp161
- 161 0018 480B     		jsr	@r8
- 162 001a 0009     		nop	! tmp162
- 163 001c D120     		mov.l	.L11,r1	!, tmp164
- 164 001e D421     		mov.l	.L12,r4	!,
- 165 0020 410B     		jsr	@r1
- 166 0022 0009     		nop	! tmp164
- 167 0024 D120     		mov.l	.L13,r1	!, tmp165
- 168 0026 410B     		jsr	@r1
- 169 0028 0009     		nop	! tmp165
- 170 002a 9133     		mov.w	.L14,r1	!,
- 171 002c E300     		mov	#0,r3	!, tmp169
-Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.s 			page 4
-
-
- 172 002e 6213     		mov	r1,r2	! tmp166, tmp168
- 173 0030 7201     		add	#1,r2	!, tmp168
- 174 0032 2230     		mov.b	r3,@r2	! tmp169, MEM[(volatile struct st_atu *)4294964224B].TSTR1.BYTE
- 175 0034 2130     		mov.b	r3,@r1	! tmp169, MEM[(volatile struct st_atu *)4294964224B].TSTR2.BYTE
- 176 0036 7102     		add	#2,r1	!, tmp174
- 177 0038 2130     		mov.b	r3,@r1	! tmp169, MEM[(volatile struct st_atu *)4294964224B].TSTR3.BYTE
- 178 003a E1FE     		mov	#-2,r1	!, tmp182
- 179 003c 6720     		mov.b	@r2,r7	!,
- 180 003e 2179     		and	r7,r1	! tmp180, tmp181
- 181 0040 2210     		mov.b	r1,@r2	! tmp181,
- 182 0042 9128     		mov.w	.L15,r1	!,
- 183 0044 6713     		mov	r1,r7	! tmp184, tmp186
- 184 0046 770A     		add	#10,r7	!, tmp186
- 185 0048 2730     		mov.b	r3,@r7	! tmp169, MEM[(volatile struct st_atu0 *)4294964256B].TIOR.BYTE
- 186 004a E300     		mov	#0,r3	!, tmp191
- 187 004c 7704     		add	#4,r7	!, tmp190
- 188 004e 2731     		mov.w	r3,@r7	! tmp191, MEM[(volatile struct st_atu0 *)4294964256B].TIER.WORD
- 189 0050 77F6     		add	#-10,r7	!, tmp194
- 190 0052 2730     		mov.b	r3,@r7	! tmp191, MEM[(volatile struct st_atu0 *)4294964256B].ITVRR1.BYTE
- 191 0054 7702     		add	#2,r7	!, tmp198
- 192 0056 2730     		mov.b	r3,@r7	! tmp191, MEM[(volatile struct st_atu0 *)4294964256B].ITVRR2A.BYTE
- 193 0058 7702     		add	#2,r7	!, tmp202
- 194 005a 2730     		mov.b	r3,@r7	! tmp191, MEM[(volatile struct st_atu0 *)4294964256B].ITVRR2B.BYTE
- 195 005c E300     		mov	#0,r3	!, tmp205
- 196 005e 1134     		mov.l	r3,@(16,r1)	! tmp205, MEM[(volatile struct st_atu0 *)4294964256B].TCNT
- 197 0060 D112     		mov.l	.L16,r1	!, tmp213
- 198 0062 6020     		mov.b	@r2,r0	!,
- 199 0064 CB01     		or	#1,r0	!, tmp211
- 200 0066 2200     		mov.b	r0,@r2	! tmp211,
- 201 0068 410B     		jsr	@r1
- 202 006a 0009     		nop	! tmp213
- 203 006c 480B     		jsr	@r8
- 204 006e 0009     		nop	! tmp162
- 205 0070 E170     		mov	#112,r1	!, tmp215
- 206              	! 111 "ISR.h" 1
- 207 0072 0002     		stc	sr, r0 
- 208 0074 CBF0     	or	#0xF0, r0 
- 209 0076 CAF0     	xor	#0xF0, r0 
- 210 0078 201B     	or	r1,r0	! tmp215
- 211 007a 400E     	ldc	r0,sr
- 212              	! 0 "" 2
- 213 007c D10C     		mov.l	.L17,r1	!, tmp216
- 214 007e 410B     		jsr	@r1	! tmp216
- 215 0080 E409     		mov	#9,r4	!,
- 216 0082 D10C     		mov.l	.L18,r1	!, tmp217
- 217 0084 410B     		jsr	@r1
- 218 0086 0009     		nop	! tmp217
- 219 0088 D10B     		mov.l	.L19,r1	!, tmp218
- 220 008a 4F26     		lds.l   @r15+,pr	!,
- 221 008c 68F6     		mov.l   @r15+,r8	!,
- 222 008e 412B     		jmp	@r1
- 223 0090 0009     		nop	! tmp218
- 224              		.align 1
- 225              	.L8:
- 226 0092 00F0     		.short	240
- 227              	.L14:
- 228 0094 F400     		.short	-3072
-Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.s 			page 5
-
-
- 229              	.L15:
- 230 0096 F420     		.short	-3040
- 231              	.L20:
- 232              		.align 2
- 233              	.L9:
- 234 0098 00000000 		.long	_pre_init_wdt
- 235              	.L10:
- 236 009c 00000000 		.long	_init_wdt
- 237              	.L11:
- 238 00a0 00000000 		.long	_build_ivt
- 239              	.L12:
- 240 00a4 00000000 		.long	_ivt
- 241              	.L13:
- 242 00a8 00000000 		.long	_init_ints
- 243              	.L16:
- 244 00ac 00000000 		.long	_init_sci
- 245              	.L17:
- 246 00b0 00000000 		.long	_cmd_init
- 247              	.L18:
- 248 00b4 00000000 		.long	_cmd_loop
- 249              	.L19:
- 250 00b8 00000000 		.long	_die
- 251              		.size	_main, .-_main
- 252              		.comm	_ivt,660,4
- 253              		.global	_fblocks
- 254              		.section	.rodata.align4,"a"
- 255              		.align 2
- 256              		.type	_fblocks, @object
- 257              		.size	_fblocks, 52
- 258              	_fblocks:
- 259 0000 00000000 		.long	0
- 260 0004 00001000 		.long	4096
- 261 0008 00002000 		.long	8192
- 262 000c 00003000 		.long	12288
- 263 0010 00004000 		.long	16384
- 264 0014 00005000 		.long	20480
- 265 0018 00006000 		.long	24576
- 266 001c 00007000 		.long	28672
- 267 0020 00008000 		.long	32768
- 268 0024 00010000 		.long	65536
- 269 0028 00020000 		.long	131072
- 270 002c 00030000 		.long	196608
- 271 0030 00040000 		.long	262144
- 272              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
-Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.s 			page 6
+ 115              		.align 2
+ 116              	.L3:
+ 117 0070 00000000 		.long	_pre_init_wdt
+ 118              	.L4:
+ 119 0074 00000000 		.long	_init_wdt
+ 120              	.L5:
+ 121 0078 00000000 		.long	_build_ivt
+ 122              	.L6:
+ 123 007c 00000000 		.long	_ivt
+ 124              	.L7:
+ 125 0080 00000000 		.long	_init_ints
+ 126              	.L9:
+ 127 0084 00000000 		.long	_init_mclk
+ 128              	.L10:
+ 129 0088 00000000 		.long	_init_sci
+ 130              	.L11:
+ 131 008c 00000000 		.long	_cmd_init
+ 132              	.L12:
+ 133 0090 00000000 		.long	_cmd_loop
+ 134              	.L13:
+ 135 0094 00000000 		.long	_die
+ 136              		.size	_main, .-_main
+ 137              		.comm	_ivt,660,4
+ 138              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.s:50     .text.die_trace:0000000000000000 _die_trace
-C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.s:96     .text.INT_ATU11_IMI1A:0000000000000000 _INT_ATU11_IMI1A
-C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.s:146    .text.startup.main:0000000000000000 _main
+C:\Users\Bimbo\AppData\Local\Temp\ccx7ErCM.s:50     .text.startup.main:0000000000000000 _main
                             *COM*:0000000000000294 _ivt
-C:\Users\Limbo-s\AppData\Local\Temp\ccGtYvrx.s:258    .rodata.align4:0000000000000000 _fblocks
 
 UNDEFINED SYMBOLS
-_wdt_tog
 _pre_init_wdt
 _init_wdt
 _build_ivt
 _init_ints
+_init_mclk
 _init_sci
 _cmd_init
 _cmd_loop

@@ -25,32 +25,33 @@
 #include <string.h>	//memcpy
 
 
-//#include "platf.h"
+#include "cmd_parser.h"
 
 #include "eep_funcs.h"
 #include "iso_cmds.h"
 #include "errcodes.h"
 #include "crc.h"
 #include "SERIAL.h"
+#include "WDT.h"
 
 #define MAX_INTERBYTE	10	//ms between bytes that causes a disconnect
 
 /* concatenate the ReadECUID positive response byte
  * in front of the version string
  */
-static const u8 npk_ver_string[] = SID_RECUID_PRC;
+const u8 npk_ver_string[] = SID_RECUID_PRC;
 
 /* low-level error code, to give more detail about errors than the SID 7F NRC can provide,
  * without requiring the error string list of nisprog to be updated.
  */
-static u8 lasterr = 0;
+u8 lasterr = 0;
 
 /* generic buffer to construct responses. Saves a lot of stack vs
  * each function declaring its buffer as a local var : gcc tends to inline everything
  * but not combine /overlap each buffer.
  * We just need to make sure the comms functions (iso_sendpkt, tx_7F etc) use their own
  * private buffers. */
-static u8 txbuf[256];
+u8 txbuf[256];
 
 
 void set_lasterr(u8 err) {
@@ -61,7 +62,7 @@ void set_lasterr(u8 err) {
  * i.e. FF8000 => FFFF8000 etc
  * data stored as big (sh) endian
  */
-static u32 reconst_24(const u8 *data) {
+u32 reconst_24(const u8 *data) {
 	u32 tmp;
 	tmp = (data[0] << 16) | (data[1] << 8) | data[2];
 	if (data[0] & 0x80) {
@@ -81,7 +82,7 @@ enum iso_prc { ISO_PRC_ERROR, ISO_PRC_NEEDMORE, ISO_PRC_DONE };
  * Note : the *msg->hi, ->di, ->hdrlen, ->datalen memberes must be set to 0 before parsing a new message
  */
 
-static enum iso_prc iso_parserx(struct iso14230_msg *msg, u8 newbyte) {
+enum iso_prc iso_parserx(struct iso14230_msg *msg, u8 newbyte) {
 	u8 dl;
 
 	// 1) new msg ?
@@ -139,14 +140,14 @@ static enum iso_prc iso_parserx(struct iso14230_msg *msg, u8 newbyte) {
 
 
 /* Command state machine */
-static enum t_cmdsm {
+enum t_cmdsm {
 	CM_IDLE,		//not initted, only accepts the "startComm" request
 	CM_READY,		//initted, accepts all commands
 
 } cmstate;
 
 /* flash state machine */
-static enum t_flashsm {
+enum t_flashsm {
 	FL_IDLE,
 	FL_READY,	//after doing init.
 } flashstate;
@@ -167,7 +168,7 @@ void cmd_init(u8 brrdiv) {
 	return;
 }
 
-static void cmd_startcomm(void) {
+void cmd_startcomm(void) {
 	// KW : noaddr;  len-in-fmt or lenbyte
 	static const u8 startcomm_resp[3] = {0xC1, 0x67, 0x8F};
 	iso_sendpkt(startcomm_resp, 3);
@@ -186,7 +187,7 @@ static void cmd_startcomm(void) {
  * ex.: "01 80 00 00 00" dumps 1MB of ROM@ 0x0
  *
  */
-static void cmd_dump(struct iso14230_msg *msg) {
+void cmd_dump(struct iso14230_msg *msg) {
 	u32 addr;
 	u32 len;
 	u8 space;
@@ -251,7 +252,7 @@ static void cmd_dump(struct iso14230_msg *msg) {
 
 
 /* SID 34 : prepare for reflashing */
-static void cmd_flash_init(void) {
+void cmd_flash_init(void) {
 	u8 errval;
 
 	if (!platf_flash_init(&errval)) {
@@ -268,7 +269,7 @@ static void cmd_flash_init(void) {
 /* compare given CRC with calculated value.
  * data is the first byte after SID_CONF_CKS1
  */
-static int cmd_romcrc(const u8 *data) {
+int cmd_romcrc(const u8 *data) {
 	unsigned idx;
 	// <CNH> <CNL> <CRC0H> <CRC0L> ...<CRC3H> <CRC3L>
 	u16 chunkno = (*(data+0) << 8) | *(data+1);
@@ -288,7 +289,7 @@ static int cmd_romcrc(const u8 *data) {
 }
 
 /* handle low-level reflash commands */
-static void cmd_flash_utils(struct iso14230_msg *msg) {
+void cmd_flash_utils(struct iso14230_msg *msg) {
 	u8 subcommand;
 	u32 tmp;
 
@@ -368,7 +369,7 @@ exit_bad:
 
 
 /* ReadMemByAddress */
-static void cmd_rmba(struct iso14230_msg *msg) {
+void cmd_rmba(struct iso14230_msg *msg) {
 	//format : <SID_RMBA> <AH> <AM> <AL> <SIZ>
 	/* response : <SID + 0x40> <D0>....<Dn> <AH> <AM> <AL> */
 
@@ -400,7 +401,7 @@ bad12:
 
 
 /* WriteMemByAddr - RAM only */
-static void cmd_wmba(struct iso14230_msg *msg) {
+void cmd_wmba(struct iso14230_msg *msg) {
 	/* WriteMemByAddress (RAM only !) . format : <SID_WMBA> <AH> <AM> <AL> <SIZ> <DATA> , siz <= 250. */
 	/* response : <SID + 0x40> <AH> <AM> <AL> */
 	u8 rv = ISO_NRC_SFNS_IF;
@@ -438,7 +439,7 @@ badexit:
 }
 
 /* set & configure kernel */
-static void cmd_conf(struct iso14230_msg *msg) {
+void cmd_conf(struct iso14230_msg *msg) {
 	u8 resp[4];
 	u32 tmp;
 

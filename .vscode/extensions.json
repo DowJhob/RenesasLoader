@@ -1,5 +1,7 @@
 {
     "recommendations": [
-        "trond-snekvik.gnu-mapfiles"
+        "trond-snekvik.gnu-mapfiles",
+        "ms-vscode.makefile-tools",
+        "zixuanwang.linkerscript"
     ]
 }

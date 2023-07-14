@@ -20,14 +20,11 @@
 
 #define trapa(trap_no)	asm ("trapa  %0"::"i"(trap_no))
 
-extern volatile uint16_t *wdt_dr;	//such as &PL.DR.WORD
-extern uint16_t wdt_pin;	//mask for PxDR
-
 /** toggle pin. This is called from a periodic interrupt */
-void wdt_tog(void);
+extern void wdt_tog(void);
 
 //implemented in main.c
-void wdt_tog(void);
+// void wdt_tog(void);
 
 
 
@@ -35,40 +32,31 @@ void wdt_tog(void);
  *
  * clr timer and flag, easy
  */
-void INT_ATU11_IMI1A(void) ISR_attrib;
-void INT_ATU11_IMI1A(void) {
+extern void INT_ATU11_IMI1A(void) ISR_attrib;
 
-    wdt_tog();
-    ATU1.TCNTB = 0;
-    ATU1.TSRB.BIT.CMF = 0;	//TCNT1B compare match
-    return;
-}
+/** WDT toggle interrupt
+ *
+ * clr timer and flag, easy
+ */
+extern void INT_CMT1_CMTI1(void) ISR_attrib;
 
-
-
-static void pre_init_wdt(void);
+extern void pre_init_wdt(void);
 
 /*
  * Assumes the wdt pin setup has already been done,
  * since host was taking care of it just before.
  * This uses Channel 1 TCNTB CMF interrupt
  */
-static void init_wdt(void);
+extern void init_wdt(void);
 
 
-static void manual_wdt(void);
+extern void manual_wdt(void);
 
-static void waitn_tse(void) {
-    u32 start = ATU0.TCNT;
-    while ((ATU0.TCNT - start) < TSE)
-    {
-        manual_wdt();
-    }
-}
+extern void waitn_tse(void);
 
 
 /** force reset by external supervisor and/or internal WDT.
  */
-void die(void);
+extern void die(void);
 
 #endif // WDT_H

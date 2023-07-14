@@ -34,10 +34,10 @@ FUNCS_DECL void *get_vbr(void) __attribute__ ((always_inline));
 
 /** Build an IVT
  */
-static void build_ivt(u32 *dest);
+extern void build_ivt(u32 *dest);
 
 /** init interrupts : set all prios to 0, set vbr */
-static void init_ints(void) ;
+extern void init_ints(void) ;
 
 
 
@@ -161,54 +161,7 @@ extern __inline__ void* get_vbr(void)
 
 
 // ISR handler that saves the previous PC value at the top of RAM, then dies of external WDT.
-void die_trace(void) __attribute__ ((noreturn));
-void die_trace(void) {
-    register u32 tmp asm ("r0");
-    asm volatile (
-        "mov.l	r0, @-r15\n"
-        "stc	sr, r0\n"	//critical part is out of the way; disable ints
-        "or	#0xF0, r0\n"
-        "ldc	r0, sr\n"
-
-    );
-    tmp = (RAM_MAX + 1);
-    asm volatile (
-        "mov.l	r1, @-r15\n"	//save clobbers for full reg dump !
-        "mov	r15, r1\n"
-        "add	#0x08, r1\n"
-        "mov.l	@r1, r1\n"	//get previous PC val off stack
-        "mov.l	r1, @-r0\n"	//save at top-of-ram
-
-                        //now, dump all regs
-        "mov.l	r15, @-r0\n"
-        "mov.l	r14, @-r0\n"
-        "mov.l	r13, @-r0\n"
-        "mov.l	r12, @-r0\n"
-        "mov.l	r11, @-r0\n"
-        "mov.l	r10, @-r0\n"
-        "mov.l	r9, @-r0\n"
-        "mov.l	r8, @-r0\n"
-        "mov.l	r7, @-r0\n"
-        "mov.l	r6, @-r0\n"
-        "mov.l	r5, @-r0\n"
-        "mov.l	r4, @-r0\n"
-        "mov.l	@r15+, r11\n"	//rescue orig r1 value
-        "mov.l	r3, @-r0\n"
-        "mov.l	@r15+, r10\n"	//and orig r0
-        "mov.l	r2, @-r0\n"
-        "mov.l	r11, @-r0\n"
-        "mov.l	r10, @-r0\n"
-        "0:\n"
-        "bra	0b\n"
-        "nop\n"
-
-        :
-        : "r" (tmp)
-        : "r1"
-    );
-    __builtin_unreachable();
-}
-
+extern void die_trace(void) __attribute__ ((noreturn));
 
 
 #endif // ISR_H

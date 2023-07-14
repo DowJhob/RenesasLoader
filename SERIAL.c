@@ -1,7 +1,7 @@
 #include "SERIAL.h"
 #include "CPU_STUFF.h"
 
-#include "SELECTOR-HEADERS/IODEF.h"
+// #include "SELECTOR-HEADERS/IODEF.h"
 #include "VEHICLE_SELECTOR.h"
 
 void init_sci() {
@@ -77,7 +77,7 @@ void tx_7F(u8 sid, u8 nrc) {
     iso_sendpkt(buf, 3);
 }
 
-void iso_clearmsg(iso14230_msg *msg) {
+void iso_clearmsg(struct iso14230_msg *msg) {
     msg->hdrlen = 0;
     msg->datalen = 0;
     msg->hi = 0;

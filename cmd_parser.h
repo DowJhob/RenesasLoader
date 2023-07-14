@@ -16,9 +16,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#ifndef CMD_P_H
+#define CMD_P_H
+
 
 #include "stypes.h"
 
 void cmd_init(u8 brrdiv);
 
 void cmd_loop(void);
+
+void set_lasterr(u8 err);	//see SID_CONF_LASTERR
+
+
+
+#endif // CMD_P_H

@@ -18,17 +18,17 @@ struct iso14230_msg {
     u8	data[256];	//255 data bytes + checksum
 };
 
-static void init_sci(void);
+extern void init_sci(void);
 
 /** discard RX data until idle for a given time
  * @param idle : purge until interbyte > idle ms
  *
  * blocking, of course. Do not call from ISR
  */
-static void sci_rxidle(unsigned ms);
+extern void sci_rxidle(unsigned ms);
 
 /** send a whole buffer, blocking. For use by iso_sendpkt() only */
-static void sci_txblock(const uint8_t *buf, uint32_t len);
+extern void sci_txblock(const uint8_t *buf, uint32_t len);
 
 /** Send a headerless iso14230 packet
  * @param len is clipped to 0xff
@@ -38,26 +38,26 @@ static void sci_txblock(const uint8_t *buf, uint32_t len);
  *
  * this is blocking
  */
-static void iso_sendpkt(const uint8_t *buf, int len);
+extern void iso_sendpkt(const uint8_t *buf, int len);
 
 
 
 /* transmit negative response, 0x7F <SID> <NRC>
  * Blocking
  */
-static void tx_7F(u8 sid, u8 nrc);
+extern void tx_7F(u8 sid, u8 nrc);
 
 
-static void iso_clearmsg(struct iso14230_msg *msg);
+extern void iso_clearmsg(struct iso14230_msg *msg);
 
 
 /** simple 8-bit sum */
-static uint8_t cks_u8(const uint8_t * data, unsigned int len);
+extern uint8_t cks_u8(const uint8_t * data, unsigned int len);
 
 
 /* "one's complement" checksum; if adding causes a carry, add 1 to sum. Slightly better than simple 8bit sum
  */
-static u8 cks_add8(u8 *data, unsigned len);
+extern u8 cks_add8(u8 *data, unsigned len);
 
 
 #endif // SERIAL_H

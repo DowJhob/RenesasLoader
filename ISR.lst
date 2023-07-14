@@ -1,4 +1,4 @@
-Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s 			page 1
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccHqSsRg.s 			page 1
 
 
    1              		.file	"ISR.c"
@@ -51,18 +51,18 @@ Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.
   48              		.global	_die_trace
   49              		.type	_die_trace, @function
   50              	_die_trace:
-  51              	! 167 "ISR.h" 1
+  51              	! 76 "ISR.c" 1
   52 0000 2F06     		mov.l	r0, @-r15
   53 0002 0002     	stc	sr, r0
   54 0004 CBF0     	or	#0xF0, r0
   55 0006 400E     	ldc	r0, sr
   56              	
   57              	! 0 "" 2
-Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s 			page 2
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccHqSsRg.s 			page 2
 
 
   58 0008 9018     		mov.w	.L2,r0	!,
-  59              	! 175 "ISR.h" 1
+  59              	! 84 "ISR.c" 1
   60 000a 2F16     		mov.l	r1, @-r15
   61 000c 61F3     	mov	r15, r1
   62 000e 7108     	add	#0x08, r1
@@ -95,89 +95,108 @@ Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.
   89              	.L2:
   90 003c B000     		.short	-20480
   91              		.size	_die_trace, .-_die_trace
-  92              		.section	.text.INT_ATU11_IMI1A,"ax",@progbits
+  92              		.section	.text.build_ivt,"ax",@progbits
   93              		.align 1
-  94              		.global	_INT_ATU11_IMI1A
-  95              		.type	_INT_ATU11_IMI1A, @function
-  96              	_INT_ATU11_IMI1A:
-  97 0000 4F02     		sts.l	mach,@-r15	!,
-  98 0002 4F12     		sts.l	macl,@-r15	!,
-  99 0004 2F06     		mov.l	r0,@-r15	!,
- 100 0006 2F16     		mov.l	r1,@-r15	!,
- 101 0008 2F26     		mov.l	r2,@-r15	!,
- 102 000a 2F36     		mov.l	r3,@-r15	!,
- 103 000c 2F46     		mov.l	r4,@-r15	!,
- 104 000e 2F56     		mov.l	r5,@-r15	!,
- 105 0010 2F66     		mov.l	r6,@-r15	!,
- 106 0012 D10E     		mov.l	.L4,r1	!, tmp160
- 107 0014 2F76     		mov.l	r7,@-r15	!,
- 108 0016 4F22     		sts.l	pr,@-r15	!,
- 109 0018 410B     		jsr	@r1
- 110 001a 0009     		nop	! tmp160
- 111 001c 9115     		mov.w	.L5,r1	!,
- 112 001e E300     		mov	#0,r3	!, tmp164
- 113 0020 6213     		mov	r1,r2	! tmp161, tmp163
- 114 0022 7202     		add	#2,r2	!, tmp163
-Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s 			page 3
+  94              		.global	_build_ivt
+  95              		.type	_build_ivt, @function
+  96              	_build_ivt:
+  97 0000 D207     		mov.l	.L6,r2	!, tmp201
+  98 0002 E000     		mov	#0,r0	!, ivtmp.20
+  99 0004 910A     		mov.w	.L7,r1	!,
+ 100              	.L4:
+ 101 0006 0426     		mov.l	r2,@(r0,r4)	! tmp201, MEM[base: dest_4(D), index: ivtmp.20_14, offset: 0B]
+ 102 0008 4110     		dt	r1	! tmp203
+ 103 000a 8FFC     		bf.s	.L4	!
+ 104 000c 7004     		add	#4,r0	!, ivtmp.20
+ 105 000e D105     		mov.l	.L8,r1	!, stackinit.1
+ 106 0010 9005     		mov.w	.L9,r0	!,
+ 107 0012 D205     		mov.l	.L10,r2	!, tmp200
+ 108 0014 1411     		mov.l	r1,@(4,r4)	! stackinit.1, MEM[(u32 *)dest_4(D) + 4B]
+ 109 0016 1413     		mov.l	r1,@(12,r4)	! stackinit.1, MEM[(u32 *)dest_4(D) + 12B]
+ 110 0018 000B     		rts	
+ 111 001a 0426     		mov.l	r2,@(r0,r4)	! tmp200, MEM[(u32 *)dest_4(D) + 384B]
+ 112              		.align 1
+ 113              	.L7:
+ 114 001c 00A5     		.short	165
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccHqSsRg.s 			page 3
 
 
- 115 0024 2231     		mov.w	r3,@r2	! tmp164, MEM[(volatile struct st_atu1 *)4294964288B].TCNTB
- 116 0026 7120     		add	#32,r1	!, tmp167
- 117 0028 6311     		mov.w	@r1,r3	!,
- 118 002a E2FE     		mov	#-2,r2	!, tmp171
- 119 002c 2239     		and	r3,r2	! tmp169, tmp170
- 120 002e 2121     		mov.w	r2,@r1	! tmp170,
- 121 0030 4F26     		lds.l   @r15+,pr	!,
- 122 0032 67F6     		mov.l   @r15+,r7	!,
- 123 0034 66F6     		mov.l   @r15+,r6	!,
- 124 0036 65F6     		mov.l   @r15+,r5	!,
- 125 0038 64F6     		mov.l   @r15+,r4	!,
- 126 003a 63F6     		mov.l   @r15+,r3	!,
- 127 003c 62F6     		mov.l   @r15+,r2	!,
- 128 003e 61F6     		mov.l   @r15+,r1	!,
- 129 0040 60F6     		mov.l   @r15+,r0	!,
- 130 0042 4F16     		lds.l   @r15+,macl	!,
- 131 0044 4F06     		lds.l   @r15+,mach	!,
- 132 0046 002B     		rte	
- 133 0048 0009     		nop
- 134              		.align 1
- 135              	.L5:
- 136 004a F440     		.short	-3008
- 137              	.L6:
- 138              		.align 2
- 139              	.L4:
- 140 004c 00000000 		.long	_wdt_tog
- 141              		.size	_INT_ATU11_IMI1A, .-_INT_ATU11_IMI1A
- 142              		.comm	_ivt,660,4
- 143              		.global	_fblocks
- 144              		.section	.rodata.align4,"a"
- 145              		.align 2
- 146              		.type	_fblocks, @object
- 147              		.size	_fblocks, 52
- 148              	_fblocks:
- 149 0000 00000000 		.long	0
- 150 0004 00001000 		.long	4096
- 151 0008 00002000 		.long	8192
- 152 000c 00003000 		.long	12288
- 153 0010 00004000 		.long	16384
- 154 0014 00005000 		.long	20480
- 155 0018 00006000 		.long	24576
- 156 001c 00007000 		.long	28672
- 157 0020 00008000 		.long	32768
- 158 0024 00010000 		.long	65536
- 159 0028 00020000 		.long	131072
- 160 002c 00030000 		.long	196608
- 161 0030 00040000 		.long	262144
- 162              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
-Renesas / SuperH SH GAS Big Endian C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s 			page 4
+ 115              	.L9:
+ 116 001e 0180     		.short	384
+ 117              	.L11:
+ 118              		.align 2
+ 119              	.L6:
+ 120 0020 00000000 		.long	_die_trace
+ 121              	.L8:
+ 122 0024 00000000 		.long	_stackinit
+ 123              	.L10:
+ 124 0028 00000000 		.long	_INT_ATU11_IMI1A
+ 125              		.size	_build_ivt, .-_build_ivt
+ 126              		.section	.text.init_ints,"ax",@progbits
+ 127              		.align 1
+ 128              		.global	_init_ints
+ 129              		.type	_init_ints, @function
+ 130              	_init_ints:
+ 131 0000 921F     		mov.w	.L13,r2	!,
+ 132 0002 E100     		mov	#0,r1	!, tmp161
+ 133 0004 6323     		mov	r2,r3	! tmp160, tmp164
+ 134 0006 2211     		mov.w	r1,@r2	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRA.WORD
+ 135 0008 7304     		add	#4,r3	!, tmp164
+ 136 000a 2311     		mov.w	r1,@r3	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRC.WORD
+ 137 000c 7302     		add	#2,r3	!, tmp168
+ 138 000e 2311     		mov.w	r1,@r3	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRD.WORD
+ 139 0010 7302     		add	#2,r3	!, tmp172
+ 140 0012 2311     		mov.w	r1,@r3	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRE.WORD
+ 141 0014 7302     		add	#2,r3	!, tmp176
+ 142 0016 2311     		mov.w	r1,@r3	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRF.WORD
+ 143 0018 7302     		add	#2,r3	!, tmp180
+ 144 001a 2311     		mov.w	r1,@r3	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRG.WORD
+ 145 001c 7302     		add	#2,r3	!, tmp184
+ 146 001e 2311     		mov.w	r1,@r3	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRH.WORD
+ 147 0020 7302     		add	#2,r3	!, tmp188
+ 148 0022 2311     		mov.w	r1,@r3	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRI.WORD
+ 149 0024 7302     		add	#2,r3	!, tmp192
+ 150 0026 2311     		mov.w	r1,@r3	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRJ.WORD
+ 151 0028 7302     		add	#2,r3	!, tmp196
+ 152 002a 2311     		mov.w	r1,@r3	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRK.WORD
+ 153 002c 7216     		add	#22,r2	!, tmp200
+ 154 002e 2211     		mov.w	r1,@r2	! tmp161, MEM[(volatile struct st_intc *)4294962432B].IPRL.WORD
+ 155 0030 9108     		mov.w	.L14,r1	!,
+ 156 0032 6011     		mov.w	@r1,r0	!,
+ 157 0034 CB01     		or	#1,r0	!, tmp207
+ 158 0036 2101     		mov.w	r0,@r1	! tmp207,
+ 159 0038 D103     		mov.l	.L15,r1	!, tmp209
+ 160              	! 141 "ISR.h" 1
+ 161 003a 6213     		mov r1, r2	! tmp209
+ 162 003c 422E     	ldc r2,vbr
+ 163              	! 0 "" 2
+ 164 003e 000B     		rts	
+ 165 0040 0009     		nop
+ 166              		.align 1
+ 167              	.L13:
+ 168 0042 ED00     		.short	-4864
+ 169              	.L14:
+ 170 0044 EC0A     		.short	-5110
+ 171              	.L16:
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccHqSsRg.s 			page 4
+
+
+ 172 0046 0009     		.align 2
+ 173              	.L15:
+ 174 0048 00000000 		.long	_ivt
+ 175              		.size	_init_ints, .-_init_ints
+ 176              		.comm	_ivt,660,4
+ 177              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccHqSsRg.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ISR.c
-C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s:50     .text.die_trace:0000000000000000 _die_trace
-C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s:96     .text.INT_ATU11_IMI1A:0000000000000000 _INT_ATU11_IMI1A
+C:\Users\Bimbo\AppData\Local\Temp\ccHqSsRg.s:50     .text.die_trace:0000000000000000 _die_trace
+C:\Users\Bimbo\AppData\Local\Temp\ccHqSsRg.s:96     .text.build_ivt:0000000000000000 _build_ivt
+C:\Users\Bimbo\AppData\Local\Temp\ccHqSsRg.s:130    .text.init_ints:0000000000000000 _init_ints
                             *COM*:0000000000000294 _ivt
-C:\Users\Limbo-s\AppData\Local\Temp\ccgoNgoW.s:148    .rodata.align4:0000000000000000 _fblocks
 
 UNDEFINED SYMBOLS
-_wdt_tog
+_stackinit
+_INT_ATU11_IMI1A

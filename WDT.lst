@@ -1,0 +1,417 @@
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s 			page 1
+
+
+   1              		.file	"WDT.c"
+   2              		.text
+   3              	! GNU C (GCC) version 4.7-GNUSH_v13.01 (sh-elf)
+   4              	!	compiled by GNU C version 4.2.1-sjlj (mingw32-2), GMP version 4.3.2, MPFR version 2.4.2, MPC vers
+   5              	! GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+   6              	! options passed:  -I . -imultilib m2
+   7              	! -iprefix c:\program files (x86)\kpit\gnushv13.01-elf\sh-elf\bin\../lib/gcc/sh-elf/4.7-GNUSH_v13.0
+   8              	! -D SH7052 -D PLATF="SH7052" WDT.c -m2 -mb -auxbase-strip WDT.o -Os -Wall
+   9              	! -Wextra -Wstrict-prototypes -std=gnu99 -ffunction-sections
+  10              	! -fomit-frame-pointer -fstack-usage -fverbose-asm
+  11              	! options enabled:  -fauto-inc-dec -fbranch-count-reg
+  12              	! -fbranch-target-load-optimize -fcaller-saves -fcombine-stack-adjustments
+  13              	! -fcommon -fcompare-elim -fcprop-registers -fcrossjumping
+  14              	! -fcse-follow-jumps -fdebug-types-section -fdefer-pop -fdelayed-branch
+  15              	! -fdelete-null-pointer-checks -fdevirtualize -fdwarf2-cfi-asm
+  16              	! -fearly-inlining -feliminate-unused-debug-types -fexpensive-optimizations
+  17              	! -fforward-propagate -ffunction-cse -ffunction-sections -fgcse -fgcse-lm
+  18              	! -fgnu-runtime -fguess-branch-probability -fident -fif-conversion
+  19              	! -fif-conversion2 -findirect-inlining -finline -finline-atomics
+  20              	! -finline-functions -finline-functions-called-once
+  21              	! -finline-small-functions -fipa-cp -fipa-profile -fipa-pure-const
+  22              	! -fipa-reference -fipa-sra -fira-share-save-slots -fira-share-spill-slots
+  23              	! -fivopts -fkeep-static-consts -fleading-underscore -fmath-errno
+  24              	! -fmerge-constants -fmerge-debug-strings -fmove-loop-invariants
+  25              	! -fomit-frame-pointer -foptimize-register-move -foptimize-sibling-calls
+  26              	! -fpartial-inlining -fpeephole -fpeephole2 -fprefetch-loop-arrays
+  27              	! -freg-struct-return -fregmove -freorder-blocks -freorder-functions
+  28              	! -frerun-cse-after-loop -fsched-critical-path-heuristic
+  29              	! -fsched-dep-count-heuristic -fsched-group-heuristic -fsched-interblock
+  30              	! -fsched-last-insn-heuristic -fsched-rank-heuristic -fsched-spec
+  31              	! -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
+  32              	! -fshow-column -fshrink-wrap -fsigned-zeros -fsort-data
+  33              	! -fsplit-ivs-in-unroller -fsplit-wide-types -fstrict-aliasing
+  34              	! -fstrict-overflow -fstrict-volatile-bitfields -fthread-jumps
+  35              	! -ftoplevel-reorder -ftrapping-math -ftree-bit-ccp -ftree-builtin-call-dce
+  36              	! -ftree-ccp -ftree-ch -ftree-copy-prop -ftree-copyrename -ftree-cselim
+  37              	! -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+  38              	! -ftree-loop-if-convert -ftree-loop-im -ftree-loop-ivcanon
+  39              	! -ftree-loop-optimize -ftree-parallelize-loops= -ftree-phiprop -ftree-pre
+  40              	! -ftree-pta -ftree-reassoc -ftree-scev-cprop -ftree-sink
+  41              	! -ftree-slp-vectorize -ftree-sra -ftree-switch-conversion
+  42              	! -ftree-tail-merge -ftree-ter -ftree-vect-loop-version -ftree-vrp
+  43              	! -funit-at-a-time -fverbose-asm -fzero-initialized-in-bss
+  44              	! -maccumulate-outgoing-args -mb
+  45              	
+  46              		.section	.text.wdt_tog,"ax",@progbits
+  47              		.align 1
+  48              		.global	_wdt_tog
+  49              		.type	_wdt_tog, @function
+  50              	_wdt_tog:
+  51 0000 D104     		mov.l	.L2,r1	!, tmp164
+  52 0002 D305     		mov.l	.L3,r3	!, tmp166
+  53 0004 6112     		mov.l	@r1,r1	! wdt_dr, wdt_dr.0
+  54 0006 6331     		mov.w	@r3,r3	! wdt_pin,
+  55 0008 6211     		mov.w	@r1,r2	! *wdt_dr.0_2,
+  56 000a 223A     		xor	r3,r2	! wdt_pin, tmp168
+  57 000c 622D     		extu.w	r2,r2	! tmp168, D.4475
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s 			page 2
+
+
+  58 000e 2121     		mov.w	r2,@r1	! D.4475, *wdt_dr.0_2
+  59 0010 000B     		rts	
+  60 0012 0009     		nop
+  61              	.L4:
+  62              		.align 2
+  63              	.L2:
+  64 0014 00000000 		.long	_wdt_dr
+  65              	.L3:
+  66 0018 00000000 		.long	_wdt_pin
+  67              		.size	_wdt_tog, .-_wdt_tog
+  68              		.section	.text.INT_ATU11_IMI1A,"ax",@progbits
+  69              		.align 1
+  70              		.global	_INT_ATU11_IMI1A
+  71              		.type	_INT_ATU11_IMI1A, @function
+  72              	_INT_ATU11_IMI1A:
+  73 0000 4F02     		sts.l	mach,@-r15	!,
+  74 0002 4F12     		sts.l	macl,@-r15	!,
+  75 0004 2F06     		mov.l	r0,@-r15	!,
+  76 0006 2F16     		mov.l	r1,@-r15	!,
+  77 0008 2F26     		mov.l	r2,@-r15	!,
+  78 000a 2F36     		mov.l	r3,@-r15	!,
+  79 000c 2F46     		mov.l	r4,@-r15	!,
+  80 000e 2F56     		mov.l	r5,@-r15	!,
+  81 0010 2F66     		mov.l	r6,@-r15	!,
+  82 0012 D10E     		mov.l	.L6,r1	!, tmp160
+  83 0014 2F76     		mov.l	r7,@-r15	!,
+  84 0016 4F22     		sts.l	pr,@-r15	!,
+  85 0018 410B     		jsr	@r1
+  86 001a 0009     		nop	! tmp160
+  87 001c 9115     		mov.w	.L7,r1	!,
+  88 001e E300     		mov	#0,r3	!, tmp164
+  89 0020 6213     		mov	r1,r2	! tmp161, tmp163
+  90 0022 7202     		add	#2,r2	!, tmp163
+  91 0024 2231     		mov.w	r3,@r2	! tmp164, MEM[(volatile struct st_atu1 *)4294964288B].TCNTB
+  92 0026 7120     		add	#32,r1	!, tmp167
+  93 0028 6311     		mov.w	@r1,r3	!,
+  94 002a E2FE     		mov	#-2,r2	!, tmp171
+  95 002c 2239     		and	r3,r2	! tmp169, tmp170
+  96 002e 2121     		mov.w	r2,@r1	! tmp170,
+  97 0030 4F26     		lds.l   @r15+,pr	!,
+  98 0032 67F6     		mov.l   @r15+,r7	!,
+  99 0034 66F6     		mov.l   @r15+,r6	!,
+ 100 0036 65F6     		mov.l   @r15+,r5	!,
+ 101 0038 64F6     		mov.l   @r15+,r4	!,
+ 102 003a 63F6     		mov.l   @r15+,r3	!,
+ 103 003c 62F6     		mov.l   @r15+,r2	!,
+ 104 003e 61F6     		mov.l   @r15+,r1	!,
+ 105 0040 60F6     		mov.l   @r15+,r0	!,
+ 106 0042 4F16     		lds.l   @r15+,macl	!,
+ 107 0044 4F06     		lds.l   @r15+,mach	!,
+ 108 0046 002B     		rte	
+ 109 0048 0009     		nop
+ 110              		.align 1
+ 111              	.L7:
+ 112 004a F440     		.short	-3008
+ 113              	.L8:
+ 114              		.align 2
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s 			page 3
+
+
+ 115              	.L6:
+ 116 004c 00000000 		.long	_wdt_tog
+ 117              		.size	_INT_ATU11_IMI1A, .-_INT_ATU11_IMI1A
+ 118              		.section	.text.INT_CMT1_CMTI1,"ax",@progbits
+ 119              		.align 1
+ 120              		.global	_INT_CMT1_CMTI1
+ 121              		.type	_INT_CMT1_CMTI1, @function
+ 122              	_INT_CMT1_CMTI1:
+ 123 0000 4F02     		sts.l	mach,@-r15	!,
+ 124 0002 4F12     		sts.l	macl,@-r15	!,
+ 125 0004 2F06     		mov.l	r0,@-r15	!,
+ 126 0006 2F16     		mov.l	r1,@-r15	!,
+ 127 0008 2F26     		mov.l	r2,@-r15	!,
+ 128 000a 2F36     		mov.l	r3,@-r15	!,
+ 129 000c 2F46     		mov.l	r4,@-r15	!,
+ 130 000e 2F56     		mov.l	r5,@-r15	!,
+ 131 0010 2F66     		mov.l	r6,@-r15	!,
+ 132 0012 D10E     		mov.l	.L10,r1	!, tmp160
+ 133 0014 2F76     		mov.l	r7,@-r15	!,
+ 134 0016 4F22     		sts.l	pr,@-r15	!,
+ 135 0018 410B     		jsr	@r1
+ 136 001a 0009     		nop	! tmp160
+ 137 001c 9114     		mov.w	.L11,r1	!,
+ 138 001e E300     		mov	#0,r3	!, tmp164
+ 139 0020 6213     		mov	r1,r2	! tmp161, tmp163
+ 140 0022 7202     		add	#2,r2	!, tmp163
+ 141 0024 2231     		mov.w	r3,@r2	! tmp164, MEM[(volatile struct st_cmt0 *)4294965016B].CMCNT
+ 142 0026 7101     		add	#1,r1	!, tmp170
+ 143 0028 6010     		mov.b	@r1,r0	!,
+ 144 002a C97F     		and	#127,r0	!, tmp172
+ 145 002c 2100     		mov.b	r0,@r1	! tmp172,
+ 146 002e 4F26     		lds.l   @r15+,pr	!,
+ 147 0030 67F6     		mov.l   @r15+,r7	!,
+ 148 0032 66F6     		mov.l   @r15+,r6	!,
+ 149 0034 65F6     		mov.l   @r15+,r5	!,
+ 150 0036 64F6     		mov.l   @r15+,r4	!,
+ 151 0038 63F6     		mov.l   @r15+,r3	!,
+ 152 003a 62F6     		mov.l   @r15+,r2	!,
+ 153 003c 61F6     		mov.l   @r15+,r1	!,
+ 154 003e 60F6     		mov.l   @r15+,r0	!,
+ 155 0040 4F16     		lds.l   @r15+,macl	!,
+ 156 0042 4F06     		lds.l   @r15+,mach	!,
+ 157 0044 002B     		rte	
+ 158 0046 0009     		nop
+ 159              		.align 1
+ 160              	.L11:
+ 161 0048 F718     		.short	-2280
+ 162              	.L12:
+ 163 004a 0009     		.align 2
+ 164              	.L10:
+ 165 004c 00000000 		.long	_wdt_tog
+ 166              		.size	_INT_CMT1_CMTI1, .-_INT_CMT1_CMTI1
+ 167              		.section	.text.init_wdt,"ax",@progbits
+ 168              		.align 1
+ 169              		.global	_init_wdt
+ 170              		.type	_init_wdt, @function
+ 171              	_init_wdt:
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s 			page 4
+
+
+ 172 0000 972F     		mov.w	.L14,r7	!,
+ 173 0002 E1F7     		mov	#-9,r1	!, tmp166
+ 174 0004 952E     		mov.w	.L15,r5	!, tmp191
+ 175 0006 6273     		mov	r7,r2	! tmp160, tmp162
+ 176 0008 7201     		add	#1,r2	!, tmp162
+ 177 000a 6320     		mov.b	@r2,r3	!,
+ 178 000c 7704     		add	#4,r7	!, tmp219
+ 179 000e 2139     		and	r3,r1	! tmp164, tmp165
+ 180 0010 2210     		mov.b	r1,@r2	! tmp165,
+ 181 0012 E300     		mov	#0,r3	!, tmp171
+ 182 0014 9127     		mov.w	.L16,r1	!,
+ 183 0016 6613     		mov	r1,r6	! tmp168, tmp170
+ 184 0018 7619     		add	#25,r6	!, tmp170
+ 185 001a 2630     		mov.b	r3,@r6	! tmp171, MEM[(volatile struct st_atu1 *)4294964288B].TIORA.BYTE
+ 186 001c 76FF     		add	#-1,r6	!, tmp174
+ 187 001e 2630     		mov.b	r3,@r6	! tmp171, MEM[(volatile struct st_atu1 *)4294964288B].TIORB.BYTE
+ 188 0020 7603     		add	#3,r6	!, tmp178
+ 189 0022 2630     		mov.b	r3,@r6	! tmp171, MEM[(volatile struct st_atu1 *)4294964288B].TIORC.BYTE
+ 190 0024 76FF     		add	#-1,r6	!, tmp182
+ 191 0026 2630     		mov.b	r3,@r6	! tmp171, MEM[(volatile struct st_atu1 *)4294964288B].TIORD.BYTE
+ 192 0028 E300     		mov	#0,r3	!, tmp187
+ 193 002a 7606     		add	#6,r6	!, tmp186
+ 194 002c 2631     		mov.w	r3,@r6	! tmp187, MEM[(volatile struct st_atu1 *)4294964288B].TSRB.WORD
+ 195 002e 76F4     		add	#-12,r6	!, tmp190
+ 196 0030 2651     		mov.w	r5,@r6	! tmp191, MEM[(volatile struct st_atu1 *)4294964288B].OCR
+ 197 0032 76EE     		add	#-18,r6	!, tmp194
+ 198 0034 2631     		mov.w	r3,@r6	! tmp187, MEM[(volatile struct st_atu1 *)4294964288B].TCNTB
+ 199 0036 9617     		mov.w	.L17,r6	!,
+ 200 0038 9517     		mov.w	.L18,r5	!,
+ 201 003a 6061     		mov.w	@r6,r0	!,
+ 202 003c 2059     		and	r5,r0	! tmp202, tmp204
+ 203 003e CB80     		or	#128,r0	!, tmp204
+ 204 0040 2601     		mov.w	r0,@r6	! tmp204,
+ 205 0042 6613     		mov	r1,r6	! tmp168, tmp208
+ 206 0044 7622     		add	#34,r6	!, tmp208
+ 207 0046 2631     		mov.w	r3,@r6	! tmp187, MEM[(volatile struct st_atu1 *)4294964288B].TIERA.WORD
+ 208 0048 7602     		add	#2,r6	!, tmp212
+ 209 004a 6061     		mov.w	@r6,r0	!,
+ 210 004c 711C     		add	#28,r1	!, tmp223
+ 211 004e CB01     		or	#1,r0	!, tmp215
+ 212 0050 2601     		mov.w	r0,@r6	! tmp215,
+ 213 0052 E61F     		mov	#31,r6	!, tmp220
+ 214 0054 2760     		mov.b	r6,@r7	! tmp220, MEM[(volatile struct st_atu *)4294964224B].PSCR1.BYTE
+ 215 0056 2130     		mov.b	r3,@r1	! tmp187, MEM[(volatile struct st_atu1 *)4294964288B].TCRB.BYTE
+ 216 0058 6020     		mov.b	@r2,r0	!,
+ 217 005a CB08     		or	#8,r0	!, tmp230
+ 218 005c 2200     		mov.b	r0,@r2	! tmp230,
+ 219 005e 000B     		rts	
+ 220 0060 0009     		nop
+ 221              		.align 1
+ 222              	.L14:
+ 223 0062 F400     		.short	-3072
+ 224              	.L15:
+ 225 0064 101D     		.short	4125
+ 226              	.L16:
+ 227 0066 F440     		.short	-3008
+ 228              	.L17:
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s 			page 5
+
+
+ 229 0068 ED06     		.short	-4858
+ 230              	.L18:
+ 231 006a FF0F     		.short	-241
+ 232              		.size	_init_wdt, .-_init_wdt
+ 233              		.section	.text.die,"ax",@progbits
+ 234              		.align 1
+ 235              		.global	_die
+ 236              		.type	_die, @function
+ 237              	_die:
+ 238 0000 910A     		mov.w	.L21,r1	!,
+ 239              	! 111 "ISR.h" 1
+ 240 0002 0002     		stc	sr, r0 
+ 241 0004 CBF0     	or	#0xF0, r0 
+ 242 0006 CAF0     	xor	#0xF0, r0 
+ 243 0008 201B     	or	r1,r0	! tmp160
+ 244 000a 400E     	ldc	r0,sr
+ 245              	! 0 "" 2
+ 246 000c E100     		mov	#0,r1	!, tmp161
+ 247              	! 141 "ISR.h" 1
+ 248 000e 6213     		mov r1, r2	! tmp161
+ 249 0010 422E     	ldc r2,vbr
+ 250              	! 0 "" 2
+ 251              	! 89 "WDT.c" 1
+ 252 0012 C33F     		trapa  #63	!
+ 253              	! 0 "" 2
+ 254              	.L20:
+ 255 0014 AFFE     		bra	.L20
+ 256 0016 0009     		nop	!
+ 257              		.align 1
+ 258              	.L21:
+ 259 0018 00F0     		.short	240
+ 260              		.size	_die, .-_die
+ 261              		.section	.text.manual_wdt,"ax",@progbits
+ 262              		.align 1
+ 263              		.global	_manual_wdt
+ 264              		.type	_manual_wdt, @function
+ 265              	_manual_wdt:
+ 266 0000 2F86     		mov.l	r8,@-r15	!,
+ 267 0002 9812     		mov.w	.L24,r8	!,
+ 268 0004 4F22     		sts.l	pr,@-r15	!,
+ 269 0006 9111     		mov.w	.L25,r1	!,
+ 270 0008 6281     		mov.w	@r8,r2	! MEM[(volatile struct st_cmt0 *)4294965016B].CMCNT,
+ 271 000a 622D     		extu.w	r2,r2	! MEM[(volatile struct st_cmt0 *)4294965016B].CMCNT, D.4461
+ 272 000c 3216     		cmp/hi	r1,r2	! tmp166, D.4461
+ 273 000e 8B08     		bf	.L22	!
+ 274 0010 D107     		mov.l	.L26,r1	!, tmp167
+ 275 0012 410B     		jsr	@r1
+ 276 0014 0009     		nop	! tmp167
+ 277 0016 E100     		mov	#0,r1	!, tmp171
+ 278 0018 2811     		mov.w	r1,@r8	! tmp171, MEM[(volatile struct st_cmt0 *)4294965016B].CMCNT
+ 279 001a 9108     		mov.w	.L27,r1	!,
+ 280 001c 6010     		mov.b	@r1,r0	!,
+ 281 001e C97F     		and	#127,r0	!, tmp179
+ 282 0020 2100     		mov.b	r0,@r1	! tmp179,
+ 283              	.L22:
+ 284 0022 4F26     		lds.l   @r15+,pr	!,
+ 285 0024 68F6     		mov.l   @r15+,r8	!,
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s 			page 6
+
+
+ 286 0026 000B     		rts	
+ 287 0028 0009     		nop
+ 288              		.align 1
+ 289              	.L24:
+ 290 002a F71A     		.short	-2278
+ 291              	.L25:
+ 292 002c 0FEA     		.short	4074
+ 293              	.L27:
+ 294 002e F719     		.short	-2279
+ 295              	.L28:
+ 296              		.align 2
+ 297              	.L26:
+ 298 0030 00000000 		.long	_wdt_tog
+ 299              		.size	_manual_wdt, .-_manual_wdt
+ 300              		.section	.text.pre_init_wdt,"ax",@progbits
+ 301              		.align 1
+ 302              		.global	_pre_init_wdt
+ 303              		.type	_pre_init_wdt, @function
+ 304              	_pre_init_wdt:
+ 305 0000 920C     		mov.w	.L30,r2	!,
+ 306 0002 D108     		mov.l	.L31,r1	!, tmp162
+ 307 0004 930B     		mov.w	.L32,r3	!,
+ 308 0006 2122     		mov.l	r2,@r1	! tmp163, wdt_dr
+ 309 0008 D107     		mov.l	.L33,r1	!, tmp164
+ 310 000a 9209     		mov.w	.L34,r2	!, tmp165
+ 311 000c 2121     		mov.w	r2,@r1	! tmp165, wdt_pin
+ 312 000e 9208     		mov.w	.L35,r2	!,
+ 313 0010 6121     		mov.w	@r2,r1	! MEM[(volatile struct st_pd *)4294965062B].DR.WORD,
+ 314 0012 611D     		extu.w	r1,r1	! MEM[(volatile struct st_pd *)4294965062B].DR.WORD, D.4459
+ 315 0014 213B     		or	r3,r1	! tmp169, D.4459
+ 316 0016 2211     		mov.w	r1,@r2	! D.4459, MEM[(volatile struct st_pd *)4294965062B].DR.WORD
+ 317 0018 000B     		rts	
+ 318 001a 0009     		nop
+ 319              		.align 1
+ 320              	.L30:
+ 321 001c F738     		.short	-2248
+ 322              	.L32:
+ 323 001e 0100     		.short	256
+ 324              	.L34:
+ 325 0020 8000     		.short	-32768
+ 326              	.L35:
+ 327 0022 F746     		.short	-2234
+ 328              	.L36:
+ 329              		.align 2
+ 330              	.L31:
+ 331 0024 00000000 		.long	_wdt_dr
+ 332              	.L33:
+ 333 0028 00000000 		.long	_wdt_pin
+ 334              		.size	_pre_init_wdt, .-_pre_init_wdt
+ 335              		.section	.text.waitn_tse,"ax",@progbits
+ 336              		.align 1
+ 337              		.global	_waitn_tse
+ 338              		.type	_waitn_tse, @function
+ 339              	_waitn_tse:
+ 340 0000 2F86     		mov.l	r8,@-r15	!,
+ 341 0002 2F96     		mov.l	r9,@-r15	!,
+ 342 0004 2FA6     		mov.l	r10,@-r15	!,
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s 			page 7
+
+
+ 343 0006 9112     		mov.w	.L40,r1	!,
+ 344 0008 4F22     		sts.l	pr,@-r15	!,
+ 345 000a 6A13     		mov	r1,r10	! tmp163, tmp168
+ 346 000c 5914     		mov.l	@(16,r1),r9	! MEM[(volatile struct st_atu0 *)4294964256B].TCNT, start
+ 347 000e 980F     		mov.w	.L41,r8	!,
+ 348 0010 A003     		bra	.L38
+ 349 0012 0009     		nop	!
+ 350              	.L39:
+ 351 0014 D107     		mov.l	.L42,r1	!, tmp164
+ 352 0016 410B     		jsr	@r1
+ 353 0018 0009     		nop	! tmp164
+ 354              	.L38:
+ 355 001a 51A4     		mov.l	@(16,r10),r1	! MEM[(volatile struct st_atu0 *)4294964256B].TCNT, tmp166
+ 356 001c 3198     		sub	r9,r1	! start, tmp166
+ 357 001e 3186     		cmp/hi	r8,r1	! tmp169, tmp166
+ 358 0020 8BF8     		bf	.L39	!
+ 359 0022 4F26     		lds.l   @r15+,pr	!,
+ 360 0024 6AF6     		mov.l   @r15+,r10	!,
+ 361 0026 69F6     		mov.l   @r15+,r9	!,
+ 362 0028 68F6     		mov.l   @r15+,r8	!,
+ 363 002a 000B     		rts	
+ 364 002c 0009     		nop
+ 365              		.align 1
+ 366              	.L40:
+ 367 002e F420     		.short	-3040
+ 368              	.L41:
+ 369 0030 1869     		.short	6249
+ 370              	.L43:
+ 371 0032 0009     		.align 2
+ 372              	.L42:
+ 373 0034 00000000 		.long	_manual_wdt
+ 374              		.size	_waitn_tse, .-_waitn_tse
+ 375              		.comm	_wdt_pin,2,2
+ 376              		.comm	_wdt_dr,4,4
+ 377              		.comm	_ivt,660,4
+ 378              		.ident	"GCC: (GNU) 4.7-GNUSH_v13.01"
+Renesas / SuperH SH GAS Big Endian C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 WDT.c
+C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s:50     .text.wdt_tog:0000000000000000 _wdt_tog
+                            *COM*:0000000000000004 _wdt_dr
+                            *COM*:0000000000000002 _wdt_pin
+C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s:72     .text.INT_ATU11_IMI1A:0000000000000000 _INT_ATU11_IMI1A
+C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s:122    .text.INT_CMT1_CMTI1:0000000000000000 _INT_CMT1_CMTI1
+C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s:171    .text.init_wdt:0000000000000000 _init_wdt
+C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s:237    .text.die:0000000000000000 _die
+C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s:265    .text.manual_wdt:0000000000000000 _manual_wdt
+C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s:304    .text.pre_init_wdt:0000000000000000 _pre_init_wdt
+C:\Users\Bimbo\AppData\Local\Temp\ccYKlmGq.s:339    .text.waitn_tse:0000000000000000 _waitn_tse
+                            *COM*:0000000000000294 _ivt
+
+NO UNDEFINED SYMBOLS

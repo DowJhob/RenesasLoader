@@ -20,7 +20,7 @@
     #define RAM_MAX	0xFFFFDFFF
 
 #elif defined(SH7052)
-    #define ECU             "SH7052"
+    // #define ECU             "SH7052"
     #define FLASH_CONST     "SH7052/FLASH_CONST.h"
     #define CPU             "SH7052/CPU.h"
     #define IODEF           "SH7052/IODEF.h"
