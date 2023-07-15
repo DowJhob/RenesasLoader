@@ -4,6 +4,7 @@
 #include "FLASH.h"
 #include "WDT.h"
 
+u32 ivt[IVT_ENTRIES];
 /** Build an IVT
  */
 //static void build_ivt(u32 *dest) {
@@ -39,19 +40,128 @@ void build_ivt(u32 *dest) {
 }
 
 
+ inline void set_imask(unsigned long mask)
+{
+    mask <<= 4;
+    mask &= 0xf0;
+
+    asm volatile (
+        "stc	sr, r0 \n"
+        "or	#0xF0, r0 \n"	// set IIII=b'1111
+        "xor	#0xF0, r0 \n"	// equiv. to "R0 = (SR & 0xFFFF FF0F)"
+        "or	%0,r0\n"
+        "ldc	r0,sr"
+            :
+            :"r" (mask)
+            :"r0"
+    );
+
+}
+
+ inline int get_imask()
+{
+    volatile int val;
+    asm volatile (
+        "stc         sr,r0\n"
+        "shlr2       r0\n"
+        "shlr2       r0\n"
+        "and         #15,r0\n"
+        "mov r0,%0"
+            :"=r"(val)
+            :
+            :"r0"
+    );
+    return val;
+}
+ inline void set_vbr(void *vbr)
+{
+    asm volatile (
+        "mov %0, r2\n"
+        "ldc r2,vbr"
+            :
+            :"r"(vbr)
+            :"r2"
+    );
+}
+ inline void* get_vbr(void)
+{
+    void *ptr;
+    asm volatile (
+        "stc vbr,r2\n"
+        "mov.l r2, %0"
+            :"=m"(ptr)
+            :
+            :"r2"
+    );
+    return ptr;
+}
+
+
+
+__inline__ unsigned imask_savedisable() {
+    unsigned val;
+
+#if 0 //old implem
+    volatile unsigned tmp;
+    asm volatile (
+        "stc   sr,%0\n"
+        "mov   %0, %1\n"
+        "mov   #0xF0, r0\n"
+        "extu.b r0, r0\n"	//r0 = 0000 00F0
+        "and   r0, %0\n"	//%0 (val) = 0000 00<I3:I0>0
+        "or    r0, %1\n"
+        "ldc   %1, sr"
+            :"=r"(val),"=r"(tmp)
+            :
+            :"r0"
+    );
+#else
+    asm volatile (
+        "stc	sr, r0 \n"
+        "mov r0, %0 \n"		//save orig SR
+        "or	#0xF0, r0 \n"
+        "ldc	r0, sr \n"	//disable
+        "mov	%0, r0 \n"
+        "and	#0xF0, r0 \n"	//keep only b'IIII0000 (#imm8 is zero-extended)
+        "mov	r0, %0 \n"
+            :"=r"(val)
+            :
+            :"r0"
+    );
+#endif
+    return val;
+}
+
+__inline__ void imask_restore(unsigned unshifted_mask) {
+#if 0 //old implem ; gcc sometimes uses the same reg for tmp2 and unshifted_mask !?? (fails)
+    volatile unsigned tmp2;
+    asm volatile (
+        "stc   sr,r0\n"
+        "mov   #0xff,%0\n"
+        "shll8 %0\n"
+        "add   #0x0F, %0\n"
+        "and   %0,r0\n"
+        "or    %1,r0\n"
+        "ldc   r0,sr"
+            :"=r"(tmp2)
+            :"r" (unshifted_mask)
+            :"r0"
+    );
+#endif
+    asm volatile (
+        "stc	sr, r0 \n"
+        "or	#0xF0, r0 \n"	// set IIII=b'1111
+        "xor #0xF0, r0 \n"	// equiv. to "R0 = (SR & 0xFFFF FF0F)"
+        "or	%0, r0 \n"
+        "ldc	r0, sr"
+            :
+            :"r" (unshifted_mask)
+            :"r0"
+    );
+}
+
+
 /** init interrupts : set all prios to 0, set vbr */
-//static void init_ints(void) {
-//    INTC.IPRA.WORD = 0;
-//    INTC.IPRB.WORD = 0;
-//    INTC.IPRC.WORD = 0;
-//    INTC.IPRD.WORD = 0;
-//    INTC.IPRE.WORD = 0;
-//    INTC.IPRF.WORD = 0;
-//    INTC.IPRG.WORD = 0;
-//    INTC.IPRH.WORD = 0;
-//    set_vbr((void *) ivt);
-//    return;
-//}
 
 void init_ints(void) {
     INTC.IPRA.WORD = 0;

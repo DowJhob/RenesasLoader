@@ -75,7 +75,8 @@ endif
 
 OBJS  = $(ASRC:.s=.o) $(SRC:.c=.o)
 
-all: $(OBJS) $(PROJECT).elf $(PROJECT).bin $(SIZE) $(PROJECT).elf
+all: $(OBJS) $(PROJECT).elf $(PROJECT).bin 
+	$(SIZE) $(PROJECT).elf
 
 
 %.o: %.c

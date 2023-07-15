@@ -1,8 +1,0 @@
-SERIAL.c:7:6:init_sci	0	static
-SERIAL.c:13:6:sci_rxidle	0	static
-SERIAL.c:32:6:sci_txblock	0	static
-SERIAL.c:80:6:iso_clearmsg	0	static
-SERIAL.c:87:9:cks_u8	0	static
-SERIAL.c:41:6:iso_sendpkt	32	static
-SERIAL.c:72:6:tx_7F	8	static
-SERIAL.c:97:4:cks_add8	0	static

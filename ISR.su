@@ -1,3 +1,0 @@
-ISR.c:74:6:die_trace	0	static
-ISR.c:25:6:build_ivt	0	static
-ISR.c:56:6:init_ints	0	static

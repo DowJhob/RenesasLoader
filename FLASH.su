@@ -1,6 +1,0 @@
-FLASH.c:31:13:sweclear	0	static
-FLASH.c:16:13:fwecheck	0	static
-FLASH.c:109:10:platf_flash_eb	52	static
-FLASH.c:296:10:platf_flash_wb	320	static
-FLASH.c:324:6:platf_flash_init	8	static
-FLASH.c:339:6:platf_flash_unprotect	0	static
